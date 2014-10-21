@@ -1,4 +1,5 @@
-<%=form_for @micropost do |m|%>
-    <%= m.text_area :content, placeholder: "Compose new micropost..." %>
+<%=simple_form_for @micropost do |m|%>
+    <%= m.input :content, placeholder: "Compose new micropost..." %>
+    <%= m.association :stock %>
     <%= m.submit "Post" %>
 <% end %>

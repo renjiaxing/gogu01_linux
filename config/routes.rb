@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :stocks
+
   resources :tests
 
   get 'static_pages/index'
