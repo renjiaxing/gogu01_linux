@@ -1,0 +1,15 @@
+<h4>Forgot Password </h4>
+<%= form_tag password_resets_path do %>
+    <div class="field">
+      <%= label_tag :email %>
+      <%= text_field_tag :email, params[:email], :placeholder => "Email address" %>
+    </div>
+    <div class="actions">
+      <%= submit_tag :recover, value: "Recover" %>
+    </div>
+    <div class="messages">
+      <% flash.each do |name,msg| %>
+          <%= content_tag :div, msg, id: "flash_#{name}", class: "notification" %>
+      <% end %>
+    </div>
+<% end %>

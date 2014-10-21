@@ -1,0 +1,31 @@
+<%= form_tag sessions_path do %>
+    <div class="field">
+      <%= label_tag :email %>
+      <%= text_field_tag :email, params[:email], :placeholder => "Email address" %>
+    </div>
+    <div class="field">
+      <%= label_tag :password %>
+      <%= password_field_tag :password, nil, :placeholder => "Password" %>
+    </div>
+    <!-- We will get to this in a while -->
+    <div class="field">
+      <%= label_tag :remember_me ,:class => "checkbox vsmall" do %>
+          <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+          Remember me
+      <% end %>
+    </div>
+    <!-- end block -->
+    <br>
+    <div class="actions">
+      <%= submit_tag :sign_in, :value => "Sign in" %>
+    </div>
+    <br>
+    <div class="messages">
+      <% flash.each do |name,msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+    </div>
+<% end %>
+
+<%=link_to "注册", new_user_path %>
+<%=link_to "忘记密码", new_password_reset_path %>

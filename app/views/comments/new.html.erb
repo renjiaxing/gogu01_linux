@@ -1,0 +1,4 @@
+<%=form_for @comment do |m|%>
+    <%= m.text_area :content, placeholder: "Compose new micropost..." %>
+    <%= m.submit "Post" %>
+<% end %>

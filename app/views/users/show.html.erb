@@ -1,0 +1,11 @@
+<h2>Hello <%= current_user.name %></h2>
+<h5><%= link_to "登出", session_path(current_user), method: :delete %></h5>
+<%=link_to "新建信息", new_micropost_path %>
+<% @microposts.each do |m| %>
+    <li>
+      <span><%=m.content%> </span>
+      <span><%=time_ago_in_words m.created_at%>ago </span>
+      <span><%=link_to "details",details_micropost_path(m) %></span>
+    </li>
+<% end %>
+
