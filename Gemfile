@@ -1,6 +1,6 @@
 source 'https://ruby.taobao.org'
 
-
+gem 'json'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use mysql as the database for Active Record
@@ -48,3 +48,9 @@ gem 'bcrypt-ruby', '~> 3.1.2', :require => 'bcrypt'
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'simple_form'
+
+gem 'kaminari'
+
+gem 'therubyracer'
+
+gem 'execjs'

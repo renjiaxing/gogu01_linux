@@ -1,15 +1,69 @@
-<li><%= @micropost.content %> </li>
-<li><%= time_ago_in_words @micropost.created_at %>ago</li>
+<section class="intro yellow">
+  <div class="container">
+    <div class="row">
+      <h1 class="has-subtitle">
+        <div class="col-sm-6 col-sm-push-2 msg">
+          <a><%= @micropost.content %></a>
 
-<%= form_for @micropost.comments.build do |m| %>
-    <input id="micrpost_id" name="comment[mid]" value=<%= @micropost.id %> hidden="hidden"/>
-    <%= m.text_area :msg, placeholder: "Compose new comment..." %>
-    <%= m.submit "Post" %>
-<% end %>
+          <p class="subtitle"><%= time_ago_in_words @micropost.created_at %></p>
+        </div>
+      </h1>
+    </div>
+  </div>
+</section>
 
-<% if @comments[0].id %>
-    <% @comments.each do |c| %>
-        <span><%= c.msg %> </span>
-        <span><%=time_ago_in_words c.created_at%>ago </span>
+<section>
+  <div class="container">
+    <div class="row">
+      <h1 class="has-subtitle">
+        <div class="col-sm-8 col-sm-push-2 msg">
+          <%= simple_form_for @micropost.comments.build, class: "contact-form" do |m| %>
+              <input id="micrpost_id" name="comment[mid]" value=<%= @micropost.id %> hidden="hidden"/>
+
+              <div class="form-group">
+                <%= m.input :msg, label: false, placeholder: "填写评论", input_html: {class: 'form-control input-lg', rows: '2'} %>
+              </div>
+              <div class="form-group">
+                <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
+              </div>
+          <% end %>
+        </div>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<% if @comments %>
+    <section>
+      <div class="container comments">
+        <div class="row ">
+          <h1 class="has-subtitle">
+            <div class="col-sm-6 col-sm-push-2 msg">
+              <h1>评论</h1>
+            </div>
+          </h1>
+        </div>
+      </div>
+
+    </section>
+    <% @comments.each_with_index do |c, i| %>
+
+        <section
+        <% if i%2==0 %>class="light"
+        <% else %>class="yellow"
+        <% end %>>
+          <div class="container comments">
+            <div class="row ">
+              <h1 class="has-subtitle">
+                <div class="col-sm-6 col-sm-push-2 msg">
+                  <a><%= c.msg %></a>
+
+                  <p class="subtitle"><%=time_ago_in_words c.created_at %></p>
+                </div>
+              </h1>
+            </div>
+          </div>
+        </section>
+
     <% end %>
 <% end %>

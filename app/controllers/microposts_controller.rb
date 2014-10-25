@@ -17,13 +17,13 @@ class MicropostsController < ApplicationController
   end
 
   def details
-    @comments=@micropost.comments
+    @comments=@micropost.comments.order(updated_at: :desc)
   end
 
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content)
+    params.require(:micropost).permit(:content,:stock_id)
   end
 
   def find_micropost

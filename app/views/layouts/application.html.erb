@@ -2,13 +2,46 @@
 <html>
 <head>
   <title>Gogu01</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<header>
+  <nav class="container">
+    <a href="/" class="surreal-logo surreal-logo-dark">Surreal CMS</a>
+    <a href="#" class="mobile-menu-toggle"><i class="fa fa-bars"></i></a>
+			<span class="menu-items">
+                <% if signed_in? %>
+				    <%= link_to "全部信息", user_path(current_user) %>
+                  <%= link_to "选择股票", choose_stock_path %>
+                <% else %>
+                    <%= link_to "主页", new_session_path %>
+                  <%= link_to "选择股票", new_session_path %>
+                <% end %>
+              <span class="extras">
+                  <% if signed_in? %>
+                    <%= link_to "你好，"+current_user.name, "#" %>
+                    <%= link_to "新建信息", new_micropost_path %>
+                    <%= link_to "退出", session_path(current_user), method: :delete %>
+                      <% else %>
+					<%= link_to "登录", new_session_path %>
+                      <% end %>
+				</span>
+			</span>
+  </nav>
+</header>
 
 <%= yield %>
 
+<footer>
+  <div class="container">
+
+    <p class="copyright">
+      ©2014 勾股定理 •
+      提供最有价值的金融信息</a>
+    </p>
+  </div>
+</footer>
 </body>
 </html>

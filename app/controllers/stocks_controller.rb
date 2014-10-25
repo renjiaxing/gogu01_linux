@@ -62,6 +62,15 @@ class StocksController < ApplicationController
     end
   end
 
+  def choose_stock
+    @stock = Stock.new
+  end
+
+  def show_stock_microposts
+    @stock=Stock.find(params[:stock][:id])
+    @microposts=@stock.microposts.order(updated_at: :desc)
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_stock

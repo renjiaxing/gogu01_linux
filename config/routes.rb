@@ -20,12 +20,17 @@ Rails.application.routes.draw do
 
   resources :comments
 
+  get 'choose_stock',to: 'stocks#choose_stock',as: :choose_stock
+  post 'show_stock_microposts',to: 'stocks#show_stock_microposts',as: :show_stock_microposts
+
   get 'account_confirmation', to: 'users#account_confirmation'
+
+  get 'root_page' , to:'users#root_page'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#show'
+  root 'users#root_page'
 
 
   # Example of regular route:

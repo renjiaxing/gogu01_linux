@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :check_signed_in, except: [:new, :create, :account_confirmation]
+  before_action :check_signed_in, except: [:new, :create, :account_confirmation,:root_page]
 
   def new
     @user = User.new
@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save!
-      @user.send_confirmation
+#      @user.send_confirmation
+      @user.update_column(:email_confirmed, true)
       redirect_to root_url, notice: "User Registered successfully"
     else
       render 'new'
@@ -40,6 +41,10 @@ class UsersController < ApplicationController
     else
       redirect_to new_session_url, :notice => "Account could not be confirmed"
     end
+  end
+
+  def root_page
+
   end
 
   private
