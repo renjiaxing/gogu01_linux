@@ -10,9 +10,9 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = "Micropost created!"
-      redirect_to root_url
+      redirect_to user_path(current_user)
     else
-      render root_url
+      render user_path(current_user)
     end
   end
 
@@ -33,7 +33,7 @@ class MicropostsController < ApplicationController
   def check_signed_in
     if !signed_in?
       flash[:alert] = "Please sign in to continue"
-      redirect_to root_url
+      redirect_to user_path(current_user)
     else
       @user = current_user
     end

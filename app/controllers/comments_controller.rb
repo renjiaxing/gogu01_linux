@@ -7,11 +7,11 @@ class CommentsController < ApplicationController
     @comment = @micropost.comments.build(comment_params)
     if @comment.save
       flash[:success] = "comment created!"
-      @comments=@micropost.comments
+      @comments=@micropost.comments.order(:update_at)
       redirect_to details_micropost_path(@micropost)
     else
       flash[:alert] = "comment failed!"
-      @comments=@micropost.comments
+      @comments=@micropost.comments.order(:update_at)
       render details_micropost_path(@micropost)
     end
   end
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
       flash[:alert] = "Please sign in to continue"
       redirect_to new_session_path
     else
-      @user = current_user
+      @user = current_user(current_user)
     end
   end
 end

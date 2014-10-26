@@ -1,24 +1,35 @@
-<% @microposts.each_with_index do |m, i| %>
-    <section
-    <% if i%2==0 %>class="intro yellow"
-    <% else %>class="intro light"
-    <% end %>>
-      <div class="container">
-        <div class="row">
-          <h1 class="has-subtitle">
-            <div class="col-sm-6 col-sm-push-2 msg">
+<div class="container1">
+  <% @microposts.each_with_index do |m, i| %>
+      <section
+      <% if i%2==0 %>class="intro yellow"
+      <% else %>class="intro light"
+      <% end %>>
+        <div class="container">
+          <div class="row">
+            <h1 class="has-subtitle">
+              <div class="col-sm-6 col-sm-push-2 msg">
 
-              <% if m.content.size>100 %>
-                  <% msg=m.content[0, 99]+"..." %>
-              <% else %>
-                  <% msg=m.content %>
-              <% end %>
-              <%= link_to msg, details_micropost_path(m) %>
-              <p class="subtitle"><%= time_ago_in_words m.created_at %></p>
+                <% if m.content.size>100 %>
+                    <% msg=m.content[0, 99]+"..." %>
+                <% else %>
+                    <% msg=m.content %>
+                <% end %>
+                <%= link_to msg, details_micropost_path(m) %>
+                <p class="subtitle"><%= time_ago_in_words m.created_at %></p>
 
-            </div>
-          </h1>
+              </div>
+            </h1>
+          </div>
         </div>
-      </div>
-    </section>
-<% end %>
+      </section>
+  <% end %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h4 class="has-subtitle text-center">
+      <%= paginate @microposts %>
+    </h4>
+  </div>
+</div>
+

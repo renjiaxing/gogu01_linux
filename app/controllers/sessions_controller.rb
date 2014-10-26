@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if user
       sign_in user if params[:remember_me]
       session_create user.id
-      redirect_to root_url
+      redirect_to user_path(current_user)
     else
       flash.now.alert = "Invalid Email or Password"
       render 'new'
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
   def check_signed_in
     if signed_in?
       flash.now.alert = "Already signed in"
-      redirect_to root_url
+      redirect_to user_path(current_user)
     end
   end
 

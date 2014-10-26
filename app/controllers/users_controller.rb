@@ -11,14 +11,14 @@ class UsersController < ApplicationController
     if @user.save!
 #      @user.send_confirmation
       @user.update_column(:email_confirmed, true)
-      redirect_to root_url, notice: "User Registered successfully"
+      redirect_to user_path(current_user), notice: "User Registered successfully"
     else
       render 'new'
     end
   end
 
   def show
-    @microposts=Micropost.order(updated_at: :desc)
+    @microposts=Micropost.order(updated_at: :desc).page(params[:page]).per(5)
   end
 
   def edit
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      redirect_to root_url, notice: "User updated successfully"
+      redirect_to user_path(current_user), notice: "User updated successfully"
     else
       render 'edit'
     end

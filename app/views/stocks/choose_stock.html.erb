@@ -6,7 +6,9 @@
             <h2>搜索股票名字</h2>
 
             <div class="form-group">
-              <%= m.input :id, collection: Stock.all, label: false, placeholder: "输入股票代码", input_html: {class: 'form-control input-lg'} %>
+              <input id="stock_name" class="numeric integer optional form-control input-lg"
+                     type="number" step="1" placeholder="输入股票代码" name="stock[name]">
+              <input id="stock_id" name="stock[id]" type="hidden">
             </div>
             <div class="form-group">
               <%= m.submit "提交",class: 'form-control input-lg btn-success'%>
@@ -16,3 +18,38 @@
     </div>
   </div>
 </section>
+
+
+<script>
+    $(function() {
+
+        $( "#stock_name" ).autocomplete({
+            minLength: 1,
+            source: function(request, response) {
+                $.ajax({
+                    url: "/stock_json",
+                    dataType: "json",
+                    data: {
+                        code:request.term,
+                        maxRows: 10
+                    },
+                    success: function(data) {
+                        response($.map(data, function(item) {
+                            return {
+                                label: item.code+ ", " + item.name,
+                                value: item.id
+
+                            }
+                        }));
+                    }
+                });
+            },
+
+            select: function( event, ui ) {
+                $( "#stock_name" ).val( ui.item.label );
+                $( "#stock_id" ).val( ui.item.value );
+                return false;
+            }
+        });
+    });
+</script>

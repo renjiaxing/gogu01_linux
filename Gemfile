@@ -4,14 +4,14 @@ gem 'json'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use mysql as the database for Active Record
-group :development, :test do
+# group :development, :test do
   gem 'mysql2'
-end
+# end
 
-group :production do
-  gem 'pg'
-  gem 'rails_12factor'
-end
+# group :production do
+#   gem 'pg'
+#   gem 'rails_12factor'
+# end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -54,3 +54,5 @@ gem 'kaminari'
 gem 'therubyracer'
 
 gem 'execjs'
+
+gem 'jquery-ui-rails'

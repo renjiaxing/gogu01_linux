@@ -71,6 +71,11 @@ class StocksController < ApplicationController
     @microposts=@stock.microposts.order(updated_at: :desc)
   end
 
+  def stock_json
+    @stocks=Stock.where("(code LIKE ?) OR (name LIKE ?)","%"+params[:code]+"%","%"+params[:code]+"%").limit(params[:maxRows])
+    render json: @stocks
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_stock
@@ -85,7 +90,7 @@ class StocksController < ApplicationController
   def check_signed_in
     if !signed_in?
       flash[:alert] = "Please sign in to continue"
-      redirect_to root_url
+      redirect_to user_path(current_user)
     else
       @user = current_user
     end
