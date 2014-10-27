@@ -8600,3 +8600,7 @@ section .comments{
     padding-bottom: 1em;
     padding-top: 1em;
 }
+
+#infscr-loading{
+    text-align: center;
+}

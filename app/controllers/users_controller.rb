@@ -18,7 +18,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @microposts=Micropost.order(updated_at: :desc).page(params[:page]).per(5)
+    @microposts=Micropost.order(updated_at: :desc).page(params[:page]).per(6)
+    respond_to do |format|
+      format.html
+      format.js # add this line for your js template
+    end
   end
 
   def edit
