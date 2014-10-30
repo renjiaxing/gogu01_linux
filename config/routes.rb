@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   post 'show_stock_microposts',to: 'stocks#show_stock_microposts',as: :show_stock_microposts
   get 'stock_json', to: 'stocks#stock_json'
 
+  get 'microposts_json', to: 'apijson#microposts_json'
+  get 'down_microposts_json', to: 'apijson#down_microposts_json'
+  get 'up_microposts_json', to: 'apijson#up_microposts_json'
+
   get 'account_confirmation', to: 'users#account_confirmation'
 
   get 'root_page' , to:'users#root_page'
