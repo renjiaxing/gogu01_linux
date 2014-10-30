@@ -7882,8 +7882,8 @@ section h1 {
     text-align: center;
     border-bottom: solid 1px #eae3d1;
     padding-bottom: 4px;
-    margin-top: 0;
-    margin-bottom: 100px
+    margin-top: 50px;
+    margin-bottom: 20px
 }
 
 section h1.has-subtitle {
@@ -8603,4 +8603,10 @@ section .comments{
 
 #infscr-loading{
     text-align: center;
+}
+
+section .marginbottom{
+    margin-bottom: 12px;
+}.circle-left .rootcenter1{
+    margin-top: 14px;
 }

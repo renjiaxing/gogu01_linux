@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'choose_stock',to: 'stocks#choose_stock',as: :choose_stock
   post 'show_stock_microposts',to: 'stocks#show_stock_microposts',as: :show_stock_microposts
+
   get 'stock_json', to: 'stocks#stock_json'
 
   get 'microposts_json', to: 'apijson#microposts_json'
