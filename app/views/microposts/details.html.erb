@@ -21,11 +21,22 @@
               <input id="micrpost_id" name="comment[mid]" value=<%= @micropost.id %> hidden="hidden"/>
 
               <div class="form-group">
-                <%= m.input :msg, label: false, placeholder: "填写评论", input_html: {class: 'form-control input-lg', rows: '2'} %>
+                <%= m.input :msg, label: false, placeholder: "填写评论", input_html: {class: 'form-control input-lg', rows: '4'} %>
               </div>
-              <div class="form-group">
-                <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <%= link_to "返回",user_path(current_user), class: 'form-control input-lg btn-success' %>
+                  </div>
+                </div>
               </div>
+
           <% end %>
         </div>
       </h1>
@@ -58,7 +69,7 @@
                 <div class="col-sm-6 col-sm-push-2 msg">
                   <a><%= c.msg %></a>
 
-                  <p class="subtitle"><%=time_ago_in_words c.created_at %></p>
+                  <p class="subtitle"><%= time_ago_in_words c.created_at %></p>
                 </div>
               </h1>
             </div>

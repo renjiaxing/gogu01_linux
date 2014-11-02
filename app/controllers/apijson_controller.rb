@@ -15,4 +15,17 @@ class ApijsonController < ApplicationController
     render json:@microposts
   end
 
+  def new_micropost_json
+    user=User.find(params[:user_id]);
+    @micropost = user.microposts.new
+    @micropost.content=params[:content]
+    @resp={}
+    if @micropost.save
+      @resp["result"]="true"
+    else
+      @resp["result"]="false"
+    end
+    render json:@resp
+  end
+
 end

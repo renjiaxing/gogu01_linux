@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :microposts do
     member do
-      get 'details'
+      get 'details','add_good','cancel_good'
     end
   end
 
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'microposts_json', to: 'apijson#microposts_json'
   get 'down_microposts_json', to: 'apijson#down_microposts_json'
   get 'up_microposts_json', to: 'apijson#up_microposts_json'
+  get 'new_micropost_json', to: 'apijson#new_micropost_json'
 
   get 'account_confirmation', to: 'users#account_confirmation'
 

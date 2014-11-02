@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
 
   has_many :microposts,dependent: :destroy
 
+  has_many :goodrelations,foreign_key: "good_id"
+  has_many :begoods, through: :goodrelations,source: :begood
+
   def self.authenticate_user(email, password)
     user = find_by_email(email)
     if user && user.authenticate(password)

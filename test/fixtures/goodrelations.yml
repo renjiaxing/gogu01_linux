@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  good_id: 1
+  begood_id: 1
+
+two:
+  good_id: 1
+  begood_id: 1

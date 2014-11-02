@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
   before_action :check_signed_in
-  before_action :find_micropost,only: [:details]
+  before_action :find_micropost,only: [:details,:add_good,:cancel_good ]
 
   def new
     @micropost=current_user.microposts.build
@@ -18,6 +18,16 @@ class MicropostsController < ApplicationController
 
   def details
     @comments=@micropost.comments.order(updated_at: :desc)
+  end
+
+  def add_good
+    current_user.begoods<<@micropost
+    redirect_to action:"show",controller:'users',id:current_user.id,micropost_id:@micropost.id
+  end
+
+  def cancel_good
+    current_user.begoods.delete(@micropost)
+    redirect_to action:"show",controller:"users",id:current_user.id,micropost_id:@micropost.id
   end
 
   private

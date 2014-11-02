@@ -12,9 +12,20 @@
               <input id="micropost_stock_name" class="form-control input-lg" placeholder="输入股票代码" name="micropost[stock_name">
               <input id="micropost_stock_id" type="hidden" name="micropost[stock_id">
             </div>
-            <div class="form-group">
-              <%= m.submit "提交",class: 'form-control input-lg btn-success'%>
+
+            <div class="row">
+              <div class="col-sm-6" >
+                <div class="form-group">
+                  <%= m.submit "提交",class: 'form-control input-lg btn-success'%>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= link_to "返回",user_path(current_user), class: 'form-control input-lg btn-success text-center' %>
+                </div>
+              </div>
             </div>
+
         <% end %>
       </div>
     </div>

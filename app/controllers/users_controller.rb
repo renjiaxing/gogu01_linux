@@ -11,14 +11,17 @@ class UsersController < ApplicationController
     if @user.save!
 #      @user.send_confirmation
       @user.update_column(:email_confirmed, true)
-      redirect_to user_path(current_user), notice: "User Registered successfully"
+      redirect_to new_session_path, notice: "User Registered successfully"
     else
-      render 'new'
+      redirect_to new_user_path
     end
   end
 
   def show
     @microposts=Micropost.order(updated_at: :desc).page(params[:page]).per(6)
+    if(!params[:micropost_id].nil?)
+      @micropost=Micropost.find(params[:micropost_id])
+    end
     respond_to do |format|
       format.html
       format.js # add this line for your js template

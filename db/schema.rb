@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021145730) do
+ActiveRecord::Schema.define(version: 20141102051217) do
 
   create_table "comments", force: true do |t|
     t.text     "msg"
@@ -20,8 +20,17 @@ ActiveRecord::Schema.define(version: 20141021145730) do
     t.datetime "updated_at"
   end
 
+  create_table "goodrelations", force: true do |t|
+    t.integer  "good_id"
+    t.integer  "begood_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "goodrelations", ["good_id", "begood_id"], name: "index_goodrelations_on_good_id_and_begood_id", unique: true, using: :btree
+
   create_table "microposts", force: true do |t|
-    t.string   "content"
+    t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
