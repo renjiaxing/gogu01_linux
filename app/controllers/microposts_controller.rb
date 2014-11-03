@@ -18,6 +18,11 @@ class MicropostsController < ApplicationController
 
   def details
     @comments=@micropost.comments.order(updated_at: :desc)
+    @unreadmicropost=current_user.unreadrelations.find_by_unreadmicropost_id(@micropost.id)
+    if !@unreadmicropost.nil?
+      @unreadmicropost.unread=0
+      @unreadmicropost.save
+    end
   end
 
   def add_good

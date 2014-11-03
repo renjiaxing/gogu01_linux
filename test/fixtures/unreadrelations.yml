@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  unreaduser_id: 1
+  unreadmicropost: 1
+  unread: 1
+
+two:
+  unreaduser_id: 1
+  unreadmicropost: 1
+  unread: 1

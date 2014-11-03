@@ -1,0 +1,26 @@
+<% if @microposts[0].nil? %>
+    <section class="intro">
+      <div class="container">
+        <div class="row">
+          <h1 class="has-subtitle">
+            <div class="col-sm-6 col-sm-push-2 msg">
+              <a>你还没有发布消息～</a>
+            </div>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+<% else %>
+    <div class="container1">
+      <%= render partial: "showform", locals: {microposts: @microposts} %>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <h4 class="has-subtitle text-center">
+          <%= paginate @microposts %>
+        </h4>
+      </div>
+    </div>
+<% end %>

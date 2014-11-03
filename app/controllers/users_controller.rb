@@ -54,6 +54,14 @@ class UsersController < ApplicationController
 
   end
 
+  def my_msg
+    @microposts=Micropost.where("user_id=?",current_user.id).order(updated_at: :desc).page(params[:page]).per(6)
+  end
+
+  def unread_msg
+    @microposts=current_user.unreadmicroposts.where("unread!=0").order(updated_at: :desc).page(params[:page]).per(6)
+  end
+
   private
   def user_params
     params.require(:user).permit(:name,:email,:phone,:password,:password_confirmation)

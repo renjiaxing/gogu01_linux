@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   get 'static_pages/index'
 
-  resources :users
+  resources :users do
+    collection do
+      get 'my_msg','unread_msg'
+    end
+  end
 
   resources :sessions
 

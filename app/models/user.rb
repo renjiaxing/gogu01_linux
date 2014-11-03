@@ -19,8 +19,13 @@ class User < ActiveRecord::Base
 
   has_many :microposts,dependent: :destroy
 
+  has_many :comments
+
   has_many :goodrelations,foreign_key: "good_id"
   has_many :begoods, through: :goodrelations,source: :begood
+
+  has_many :unreadrelations,foreign_key: "unreaduser_id"
+  has_many :unreadmicroposts,through: :unreadrelations,source: :unreadmicropost
 
   def self.authenticate_user(email, password)
     user = find_by_email(email)

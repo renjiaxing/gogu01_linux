@@ -23,6 +23,10 @@
                   <% if signed_in? %>
                     <%= link_to "你好，"+current_user.name, "#" %>
                     <%= link_to "新建信息", new_micropost_path %>
+                    <%= link_to "我的信息", my_msg_users_path %>
+                    <% if @unread==true %>
+                        <%= link_to "您有未读回复", unread_msg_users_path %>
+                    <% end %>
                     <%= link_to "退出", session_path(current_user), method: :delete %>
                       <% else %>
 					<%= link_to "登录", new_session_path %>
