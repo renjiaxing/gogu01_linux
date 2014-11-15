@@ -33,6 +33,13 @@ Rails.application.routes.draw do
   get 'down_microposts_json', to: 'apijson#down_microposts_json'
   get 'up_microposts_json', to: 'apijson#up_microposts_json'
   get 'new_micropost_json', to: 'apijson#new_micropost_json'
+  get 'detail_micropost_json', to: 'apijson#detail_micropost_json'
+  get 'new_comment_json', to: 'apijson#new_comment_json'
+  get 'login_json', to: 'apijson#login_json'
+  get 'login_token_json', to: 'apijson#login_token_json'
+  get 'reg_json', to: 'apijson#reg_json'
+  get 'micropost_good_json', to: 'apijson#micropost_good_json'
+  get 'micropost_nogood_json', to: 'apijson#micropost_nogood_json'
 
   get 'account_confirmation', to: 'users#account_confirmation'
 

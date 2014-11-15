@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102092856) do
+ActiveRecord::Schema.define(version: 20141104083118) do
 
   create_table "comments", force: true do |t|
     t.text     "msg"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20141102092856) do
     t.datetime "password_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mobile_toke"
   end
 
 end
