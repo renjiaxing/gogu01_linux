@@ -177,7 +177,7 @@ class ApijsonController < ApplicationController
       @resp["checkemail"]="ok"
 
       if @user.save!
-        @user.update_column(:email_confirmed, true)
+        @user.upte_column(:email_confirmed, true)
         @resp["result"]="ok"
       else
         @resp["result"]="nook"

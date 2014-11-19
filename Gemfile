@@ -56,3 +56,9 @@ gem 'therubyracer'
 gem 'execjs'
 
 gem 'jquery-ui-rails'
+
+gem "less-rails"
+
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+

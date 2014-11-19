@@ -1,7 +1,26 @@
-<section>
+<div class="login-page">
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-sm-push-3">
+        <% if @user.errors %>
+            <% @user.errors.full_messages.each do |m| %>
+                <% if m.include?("Name") %>
+                    <h2 class="red-color"><%= m.gsub("Name", "用户名") %></h2>
+                <% elsif m.include?("Password") %>
+                    <% if m.include?("confirmation") %>
+                        <h2 class="red-color"><%= m.gsub("Password", "密码").gsub("confirmation", "确认密码") %></h2>
+                    <% else %>
+                        <h2 class="red-color"><%= m.gsub("Password", "密码") %></h2>
+                    <% end %>
+                <% elsif m.include?("Phone") %>
+                    <h2 class="red-color"><%= m.gsub("Phone", "手机号") %></h2>
+                <% elsif m.include?("Email") %>
+                    <h2 class="red-color"><%= m.gsub("Email", "邮箱") %></h2>
+                <% else %>
+                    <h2 class="red-color"><%= m %></h2>
+                <% end %>
+            <% end %>
+        <% end %>
         <form class="signup-form" accept-charset="UTF-8" action="/users" method="post">
           <div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
           <%= tag(:input, :type => "hidden", :name =>
@@ -10,31 +29,36 @@
           <h2>用户注册</h2>
 
           <div class="form-group">
-            <input class="form-control input-lg" id="user_name" name="user[name]" placeholder="Name" type="text">
+            <input class="form-control input-lg" id="user_name" name="user[name]" placeholder="用户名" type="text">
           </div>
           <div class="form-group">
-            <input class="form-control input-lg" id="user_email" name="user[email]" placeholder="Email" type="text">
+            <input class="form-control input-lg" id="user_email" name="user[email]" placeholder="邮件" type="text">
           </div>
           <div class="form-group">
-            <input class="form-control input-lg" id="user_phone" name="user[phone]" placeholder="Phone number" type="text">
+            <input class="form-control input-lg" id="user_phone" name="user[phone]" placeholder="手机号" type="text">
           </div>
           <div class="form-group">
-            <input class="form-control input-lg" id="user_password" name="user[password]" placeholder="Password" type="password">
+            <input class="form-control input-lg" id="user_password" name="user[password]" placeholder="密码" type="password">
           </div>
           <div class="form-group">
-            <input class="form-control input-lg" id="user_password_confirmation" name="user[password_confirmation]" placeholder="Repeat Password" type="password">
+            <input class="form-control input-lg" id="user_password_confirmation" name="user[password_confirmation]" placeholder="重复密码" type="password">
           </div>
 
           <div class="signup-feedback alert alert-danger hidden"></div>
-          <div class="form-group">
-
-            <button class="btn btn-lg btn-success" type="submit">
-              注册
-            </button>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="submit" value="注册" class="form-control input-lg btn-success">
+              </div>
+            </div>
+            <div class="col-sm-6"><%= link_to "返回",new_session_path,class:"form-control input-lg btn-success text-center" %></div>
           </div>
         </form>
       </div>
+
     </div>
+
   </div>
-</section>
+</div>
+
 

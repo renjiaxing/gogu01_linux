@@ -8,12 +8,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save!
+    if @user.save
 #      @user.send_confirmation
       @user.update_column(:email_confirmed, true)
       redirect_to new_session_path, notice: "User Registered successfully"
     else
-      redirect_to new_user_path
+#      redirect_to new_user_path
+      render 'new'
     end
   end
 
@@ -60,6 +61,32 @@ class UsersController < ApplicationController
 
   def unread_msg
     @microposts=current_user.unreadmicroposts.where("unread!=0").order(updated_at: :desc).page(params[:page]).per(6)
+  end
+
+  def  pre_update_passwd
+    @user=current_user
+  end
+
+  def update_passwd
+    @user=current_user
+    if @user.update_attributes(user_params)
+      redirect_to user_path(current_user), notice: "密码更新成功"
+    else
+      render "pre_update_passwd"
+    end
+  end
+
+  def pre_update_inform
+    @user=current_user
+  end
+
+  def update_inform
+    @user=current_user
+    if @user.update_attributes(user_params)
+      redirect_to user_path(current_user), notice: "信息修改成功"
+    else
+      render "pre_update_inform"
+    end
   end
 
   private

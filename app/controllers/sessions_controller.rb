@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       session_create user.id
       redirect_to user_path(current_user)
     else
-      flash.now.alert = "Invalid Email or Password"
+      flash.now.alert = "用户名或者密码错误！"
       render 'new'
     end
   end

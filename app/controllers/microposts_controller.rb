@@ -8,11 +8,13 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    if @micropost.save
-      flash[:success] = "Micropost created!"
+    if params[:micropost][:stock_id].nil?|| params[:micropost][:stock_id]==""
+      flash.now.notice = "请从下拉框中选择正确的股票代码"
+      render 'new'
+    elsif @micropost.save
       redirect_to user_path(current_user)
     else
-      render user_path(current_user)
+      render 'new'
     end
   end
 

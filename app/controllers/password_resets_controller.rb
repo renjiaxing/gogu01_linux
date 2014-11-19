@@ -9,7 +9,7 @@ class PasswordResetsController < ApplicationController
       flash.now.alert = "Email has been sent with reset password instructions"
       redirect_to new_session_path
     else
-      flash.now.alert = "This email is not registered with us."
+      flash.now.alert = "您输入的邮箱有误，请重新输入！"
       render "new"
     end
   end

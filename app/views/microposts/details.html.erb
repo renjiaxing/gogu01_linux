@@ -1,80 +1,73 @@
-<section class="intro yellow">
-  <div class="container">
-    <div class="row">
-      <h1 class="has-subtitle">
-        <div class="col-sm-6 col-sm-push-2 msg">
-          <a><%= @micropost.content %></a>
-
-          <p class="subtitle"><%= time_ago_in_words @micropost.created_at %></p>
-        </div>
-      </h1>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="row">
-      <h1 class="has-subtitle">
+<div class="container1">
+  <div class="bg-yellow">
+    <div class="container">
+      <div class="row">
         <div class="col-sm-8 col-sm-push-2 msg">
-          <%= simple_form_for @micropost.comments.build, class: "contact-form" do |m| %>
-              <input id="micrpost_id" name="comment[mid]" value=<%= @micropost.id %> hidden="hidden"/>
-
-              <div class="form-group">
-                <%= m.input :msg, label: false, placeholder: "填写评论", input_html: {class: 'form-control input-lg', rows: '4'} %>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <%= link_to "返回",user_path(current_user), class: 'form-control input-lg btn-success' %>
-                  </div>
-                </div>
-              </div>
-
-          <% end %>
+          <p class="micropost-details"><%= @micropost.content %></p>
+          <p class="subtitle"><%= time_ago_in_words @micropost.created_at %>以前</p>
         </div>
-      </h1>
+      </div>
     </div>
   </div>
-</section>
+</div>
+
+
+<div class="cm-yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-push-2 msg">
+        <%= simple_form_for @micropost.comments.build, class: "contact-form" do |m| %>
+            <input id="micrpost_id" name="comment[mid]" value=<%= @micropost.id %> hidden="hidden"/>
+
+            <div class="form-group">
+              <%= m.input :msg, label: false, placeholder: "填写评论", input_html: {class: 'form-control input-lg', rows: '4'} %>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%=link_back %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <% if @comments %>
-    <section>
-      <div class="container comments">
+    <div class="cm-title-yellow">
+      <div class="container">
         <div class="row ">
-          <h1 class="has-subtitle">
-            <div class="col-sm-6 col-sm-push-2 msg">
-              <h1>评论</h1>
-            </div>
-          </h1>
+          <div class="col-sm-8 col-sm-push-2">
+            <h1>评论</h1>
+          </div>
         </div>
       </div>
 
-    </section>
+    </div>
     <% @comments.each_with_index do |c, i| %>
 
-        <section
-        <% if i%2==0 %>class="light"
-        <% else %>class="yellow"
+        <div
+        <% if i%2==0 %>class="cm-white"
+        <% else %>class="cm-yellow"
         <% end %>>
-          <div class="container comments">
+          <div class="container">
             <div class="row ">
-              <h1 class="has-subtitle">
-                <div class="col-sm-6 col-sm-push-2 msg">
-                  <a><%= c.msg %></a>
+              <div class="col-sm-8 col-sm-push-2 msg">
+                <h1><%= c.msg %></h1>
 
-                  <p class="subtitle"><%= time_ago_in_words c.created_at %></p>
-                </div>
-              </h1>
+                <p class="subtitle"><%= time_ago_in_words c.created_at %>以前</p>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
 
     <% end %>
 <% end %>

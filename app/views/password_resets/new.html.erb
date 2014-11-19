@@ -1,15 +1,31 @@
-<h4>Forgot Password </h4>
-<%= form_tag password_resets_path do %>
-    <div class="field">
-      <%= label_tag :email %>
-      <%= text_field_tag :email, params[:email], :placeholder => "Email address" %>
+<div class="login-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-push-3">
+        <% if flash[:alert] %>
+            <h2 class="red-color"> <%= flash[:alert] %></h2>
+        <% end %>
+        <%= form_tag password_resets_path do %>
+            <h2>忘记密码</h2>
+
+            <div class="form-group">
+              <%= text_field_tag :email, params[:email], :class => "form-control input-lg", :placeholder => "请输入邮件地址" %>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= submit_tag :recover, :class => "form-control input-lg btn-success", value: "提交" %>
+                </div>
+              </div>
+        <% end %>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%=link_back %>
+          </div>
+        </div>
+        </div>
+      </div>
     </div>
-    <div class="actions">
-      <%= submit_tag :recover, value: "Recover" %>
-    </div>
-    <div class="messages">
-      <% flash.each do |name,msg| %>
-          <%= content_tag :div, msg, id: "flash_#{name}", class: "notification" %>
-      <% end %>
-    </div>
-<% end %>
+  </div>
+</div>
+

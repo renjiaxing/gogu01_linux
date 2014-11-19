@@ -1,35 +1,33 @@
 <% microposts.each_with_index do |m, i| %>
     <section
-    <% if i%2==0 %>class="intro yellow"
-    <% else %>class="intro light"
+    <% if i%2==0 %>class="bg-yellow"
+    <% else %>class="bg-white"
     <% end %>>
       <div class="container">
         <div class="row">
-          <h1 class="has-subtitle">
-            <div class="col-sm-6 col-sm-push-2 msg" >
+          <div class="col-sm-8 col-sm-push-2">
 
-              <% if m.content.size>100 %>
-                  <% msg=m.content[0, 99]+"..." %>
-              <% else %>
-                  <% msg=m.content %>
-              <% end %>
-              <% if m.stock!=nil %>
-                  <%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
-                              method: :post, class: "subtitle marginbottom" %>
-              <% else %>
-                  <p class="subtitle marginbottom">无公司绑定</p>
-              <% end %>
-              <%= link_to msg, details_micropost_path(m) %>
-              <p class="subtitle"><%= time_ago_in_words m.created_at %> ago</p>
+            <% if m.content.size>100 %>
+                <% msg=m.content[0, 99]+"..." %>
+            <% else %>
+                <% msg=m.content %>
+            <% end %>
+            <% if m.stock!=nil %>
+                <%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
+                            method: :post, class: "subtitle" %>
+            <% else %>
+                <p class="subtitle">无公司绑定</p>
+            <% end %>
+            <%= link_to msg, details_micropost_path(m), class: "micropost-details" %>
+            <p class="subtitle"><%= time_ago_in_words m.created_at %>以前</p>
 
-              <div class="row">
-                <div class="col-sm-6"> <%= link_to "回复："+m.comments.size.to_s, details_micropost_path(m), class: "subtitle marginbottom" %></div>
-                <div class="col-sm-6" id="good<%=m.id.to_s%>">
-                  <%=render partial: "goodform",locals: {m:m} %>
-                </div>
+            <div class="row">
+              <div class="col-sm-6"> <%= link_to "回复："+m.comments.size.to_s, details_micropost_path(m), class: "subtitle" %></div>
+              <div class="col-sm-6" id="good<%= m.id.to_s %>">
+                <%= render partial: "goodform", locals: {m: m} %>
               </div>
             </div>
-          </h1>
+          </div>
         </div>
       </div>
     </section>

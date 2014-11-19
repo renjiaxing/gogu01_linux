@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   resources :users do
     collection do
-      get 'my_msg','unread_msg'
+      get 'my_msg','unread_msg','pre_update_passwd','pre_update_inform'
+      post 'update_passwd','update_inform'
     end
   end
 

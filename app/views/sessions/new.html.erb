@@ -1,7 +1,10 @@
-<section>
+<div class="login-page">
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-sm-push-3">
+        <% if flash[:alert] %>
+           <h2 class="red-color"> <%= flash[:alert] %></h2>
+        <% end %>
         <form class="signup-form" accept-charset="UTF-8" action="/sessions" method="post">
           <div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
           <%= tag(:input, :type => "hidden", :name =>
@@ -29,18 +32,18 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <a class="form-control input-lg btn-success register_color" href="/users/new">注册</a>
+              <a class="form-control input-lg btn-success text-center" href="/users/new">注册</a>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <a class="form-control input-lg btn-success register_color" href="/password_resets/new">忘记密码</a>
+              <a class="form-control input-lg btn-success text-center" href="/password_resets/new">忘记密码</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 

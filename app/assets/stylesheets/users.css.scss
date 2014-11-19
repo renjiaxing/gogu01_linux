@@ -1,3 +1,223 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+*{
+  font-family: "Microsoft YaHei" ! important;
+  color:#364247;
+}
+
+
+.root-title{
+  background-color: #F7F4ED;
+}
+
+.root-title h1{
+  font-size: 45px;
+  border-bottom: 1px solid #EAE3D1;
+  padding-bottom: 40px;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+
+
+.root-title h3{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.circle {
+  background: none repeat scroll 0 0 #5983AB;
+  border-radius: 100px 100px 100px 100px;
+  color: #355069;
+  display: inline-block;
+  height: 100px;
+  text-align: center;
+  width: 100px;
+}
+
+.circle.circle-green {
+  background-color: #95AB63;
+  color: #5E6D3B;
+}
+
+.circle.circle-orange {
+  background-color: #D39E4C;
+  color: #946925;
+}
+
+.circle-left {
+  border: 1px solid transparent;
+  margin: 50px 0;
+  padding-left: 140px;
+  position: relative;
+}
+
+.circle-left .circle {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.circle-left h3{
+  text-align: left;
+}
+
+.circle-left .circlesingle{
+  margin-top: 30px;
+}
+
+.root-title.root-title-white{
+  background-color: #ffffff;
+}
+
+img{
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.root-title h5{
+  font-size: 20px;
+  line-height: 2;
+}
+
+.testimonial {
+  border: medium none;
+  margin: 40px;
+  padding: 1em 0;
+  position: relative;
+  text-align: center;
+}
+
+.testimonial img {
+  border-radius: 50% 50% 50% 50%;
+  display: block;
+  margin: 0 auto;
+  width: 120px;
+}
+
+.testimonial q {
+  display: block;
+  font-size: 30px;
+  margin: 40px 0 0 20px;
+}
+
+footer .copyright {
+  font-size: 16px;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.login-page{
+  padding-top: 80px;
+  padding-bottom: 40px;
+  background-color: #F7F4ED;
+}
+
+.input-lg {
+  border-radius: 6px 6px 6px 6px;
+  font-size: 20px;
+  height: 69px;
+  line-height: 1.33;
+  padding: 20px;
+}
+
+.radio, .checkbox {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  min-height: 25px;
+  padding-left: 20px;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.container1{
+  padding-top: 40px;
+}
+
+.bg-yellow{
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: #F7F4ED;
+}
+
+.bg-white{
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: #FFFFFF;
+}
+
+.subtitle {
+  display: block;
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.micropost-details{
+  color:#364247;
+  display: block;
+  font-size:48px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.cm-yellow{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #F7F4ED;
+}
+
+.cm-white{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #FFFFFF;
+}
+
+.cm-title-yellow{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #F7F4ED;
+}
+
+.cm-title-yellow h1{
+  font-size: 40px;
+  border-bottom: 1px solid #EAE3D1;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.cm-yellow h1{
+  font-size: 40px;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.cm-white h1{
+  font-size: 40px;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.red-color{
+  color: #cc0000;
+}
+
+
+
