@@ -2,17 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-*{
+* {
   font-family: "Microsoft YaHei" ! important;
-  color:#364247;
+  color: #364247;
 }
 
-
-.root-title{
+.root-title {
   background-color: #F7F4ED;
 }
 
-.root-title h1{
+.root-title h1 {
   font-size: 45px;
   border-bottom: 1px solid #EAE3D1;
   padding-bottom: 40px;
@@ -21,8 +20,7 @@
   margin-bottom: 40px;
 }
 
-
-.root-title h3{
+.root-title h3 {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -62,24 +60,24 @@
   top: 0;
 }
 
-.circle-left h3{
+.circle-left h3 {
   text-align: left;
 }
 
-.circle-left .circlesingle{
+.circle-left .circlesingle {
   margin-top: 30px;
 }
 
-.root-title.root-title-white{
+.root-title.root-title-white {
   background-color: #ffffff;
 }
 
-img{
+img {
   max-width: 100%;
   vertical-align: middle;
 }
 
-.root-title h5{
+.root-title h5 {
   font-size: 20px;
   line-height: 2;
 }
@@ -112,7 +110,7 @@ footer .copyright {
   text-align: center;
 }
 
-.login-page{
+.login-page {
   padding-top: 80px;
   padding-bottom: 40px;
   background-color: #F7F4ED;
@@ -134,21 +132,21 @@ footer .copyright {
   padding-left: 20px;
 }
 
-.text-center{
+.text-center {
   text-align: center;
 }
 
-.container1{
+.container1 {
   padding-top: 40px;
 }
 
-.bg-yellow{
+.bg-yellow {
   padding-top: 80px;
   padding-bottom: 80px;
   background-color: #F7F4ED;
 }
 
-.bg-white{
+.bg-white {
   padding-top: 80px;
   padding-bottom: 80px;
   background-color: #FFFFFF;
@@ -156,7 +154,7 @@ footer .copyright {
 
 .subtitle {
   display: block;
-  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: 300;
   margin: 0;
@@ -164,33 +162,33 @@ footer .copyright {
   text-align: center;
 }
 
-.micropost-details{
-  color:#364247;
+.micropost-details {
+  color: #364247;
   display: block;
-  font-size:48px;
+  font-size: 48px;
   text-align: center;
   line-height: 1.6;
 }
 
-.cm-yellow{
+.cm-yellow {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #F7F4ED;
 }
 
-.cm-white{
+.cm-white {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #FFFFFF;
 }
 
-.cm-title-yellow{
+.cm-title-yellow {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #F7F4ED;
 }
 
-.cm-title-yellow h1{
+.cm-title-yellow h1 {
   font-size: 40px;
   border-bottom: 1px solid #EAE3D1;
   padding-bottom: 20px;
@@ -199,7 +197,7 @@ footer .copyright {
   margin-bottom: 20px;
 }
 
-.cm-yellow h1{
+.cm-yellow h1 {
   font-size: 40px;
   padding-bottom: 20px;
   text-align: center;
@@ -207,7 +205,7 @@ footer .copyright {
   margin-bottom: 20px;
 }
 
-.cm-white h1{
+.cm-white h1 {
   font-size: 40px;
   padding-bottom: 20px;
   text-align: center;
@@ -215,8 +213,22 @@ footer .copyright {
   margin-bottom: 20px;
 }
 
-.red-color{
+.red-color {
   color: #cc0000;
+}
+
+#btn-top {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  right: 30px;
+  bottom: 10px;
+  display: none;
+  background: url("/img/top_bg.png") no-repeat left top;
+}
+
+#btn-top:hover {
+  background: url("/img/top_bg.png") no-repeat 0 -39px;
 }
 
 

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get 'reg_json', to: 'apijson#reg_json'
   get 'micropost_good_json', to: 'apijson#micropost_good_json'
   get 'micropost_nogood_json', to: 'apijson#micropost_nogood_json'
+  get 'get_version', to: 'apijson#get_version_json'
 
   get 'account_confirmation', to: 'users#account_confirmation'
 

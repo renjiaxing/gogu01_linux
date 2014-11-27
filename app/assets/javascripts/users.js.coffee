@@ -10,3 +10,4 @@
 #    itemSelector: ".container1 section .msg" # selector for all items you'll retrieve
 #  $(".container1").infinitescroll('bind')
 #  $(window).scroll()
+

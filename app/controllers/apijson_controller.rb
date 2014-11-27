@@ -1,5 +1,11 @@
 class ApijsonController < ApplicationController
-  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json]
+  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json,:get_version_json]
+
+  def get_version_json
+    tmp={}
+    tmp["version"]=1
+    render json:tmp
+  end
 
   def microposts_json
 
