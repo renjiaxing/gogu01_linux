@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-
+  mount_uploader :image, ImageUploader
   validates :content, presence: true
 
   belongs_to :user
@@ -14,4 +14,5 @@ class Micropost < ActiveRecord::Base
   has_many :comments
   validates :user_id,presence: true
   validates :content,presence: true,length: {maximum: 500}
+
 end

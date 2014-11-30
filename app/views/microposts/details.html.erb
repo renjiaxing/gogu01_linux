@@ -4,6 +4,7 @@
       <div class="row">
         <div class="col-sm-8 col-sm-push-2 msg">
           <p class="micropost-details"><%= @micropost.content %></p>
+
           <p class="subtitle"><%= time_ago_in_words @micropost.created_at %>以前</p>
         </div>
       </div>
@@ -31,7 +32,7 @@
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <%=link_back %>
+                  <%= link_back %>
                 </div>
               </div>
             </div>
@@ -62,7 +63,12 @@
             <div class="row ">
               <div class="col-sm-8 col-sm-push-2 msg">
                 <h1><%= c.msg %></h1>
-
+                <% if c.user==current_user %>
+                    <div class="row">
+                      <div class="col-sm-push-3 col-sm-3"><%= link_to "删除", delete_flag_comment_path(c), class: "subtitle" %></div>
+                      <div class="col-sm-push-3 col-sm-3"><%= link_to "修改", edit_comment_path(c), class: "subtitle" %></div>
+                    </div>
+                <% end %>
                 <p class="subtitle"><%= time_ago_in_words c.created_at %>以前</p>
               </div>
             </div>

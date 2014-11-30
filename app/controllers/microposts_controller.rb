@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
   before_action :check_signed_in
-  before_action :find_micropost,only: [:details,:add_good,:cancel_good ]
+  before_action :find_micropost,only: [:details,:add_good,:cancel_good,:edit,:update,:delete_flag ]
 
   def new
     @micropost=current_user.microposts.build
@@ -18,8 +18,31 @@ class MicropostsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @micropost.update(micropost_params)
+        format.html {  redirect_to user_path, notice: 'Mciropost was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+  def delete_flag
+    @micropost.visible=false;
+    if @micropost.save
+      flash[:success] = "micropost delete created!"
+    else
+      flash[:alert] = "micropost delete failed!"
+    end
+    redirect_to user_path
+  end
+
   def details
-    @comments=@micropost.comments.order(:updated_at)
+    @comments=@micropost.comments.where(visible:true).order(:updated_at)
     @unreadmicropost=current_user.unreadrelations.find_by_unreadmicropost_id(@micropost.id)
     if !@unreadmicropost.nil?
       @unreadmicropost.unread=0
@@ -40,7 +63,7 @@ class MicropostsController < ApplicationController
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content,:stock_id)
+    params.require(:micropost).permit(:content,:stock_id,:image)
   end
 
   def find_micropost

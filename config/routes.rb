@@ -19,11 +19,15 @@ Rails.application.routes.draw do
 
   resources :microposts do
     member do
-      get 'details','add_good','cancel_good'
+      get 'details','add_good','cancel_good','delete_flag'
     end
   end
 
-  resources :comments
+  resources :comments do
+    member do
+      get 'delete_flag'
+    end
+  end
 
   get 'choose_stock',to: 'stocks#choose_stock',as: :choose_stock
   post 'show_stock_microposts',to: 'stocks#show_stock_microposts',as: :show_stock_microposts

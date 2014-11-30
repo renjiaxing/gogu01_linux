@@ -1,3 +1,42 @@
+<% if !@top_micropost.nil? %>
+    <section class="bg-oracle">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-sm-push-2">
+
+            <% if @top_micropost.content.size>100 %>
+                <% msg=@top_micropost.content[0, 99]+"..." %>
+            <% else %>
+                <% msg=@top_micropost.content %>
+            <% end %>
+
+            <% if @top_micropost.stock!=nil %>
+                <%= link_to @top_micropost.stock.name, show_stock_microposts_path(stock: {id: @top_micropost.stock.id.to_s}),
+                            method: :post, class: "subtitle" %>
+            <% else %>
+                <p class="subtitle">无公司绑定</p>
+            <% end %>
+            <%= link_to msg, details_micropost_path(@top_micropost), class: "micropost-details" %>
+            <% if  @top_micropost.user==current_user %>
+                <div class="row">
+                  <div class="col-sm-push-3 col-sm-3"><%= link_to "删除", delete_flag_comment_path(@top_micropost), class: "subtitle" %></div>
+                  <div class="col-sm-push-3 col-sm-3"><%= link_to "修改", edit_comment_path(@top_micropost), class: "subtitle" %></div>
+                </div>
+            <% end %>
+            <p class="subtitle"><%= time_ago_in_words @top_micropost.created_at %>以前</p>
+
+            <div class="row">
+              <div class="col-sm-6"> <%= link_to "回复："+@top_micropost.comments.size.to_s, details_micropost_path( @top_micropost), class: "subtitle" %></div>
+              <div class="col-sm-6" id="good<%= @top_micropost.id.to_s %>">
+                <%= render partial: "goodform", locals: {m:  @top_micropost} %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<% end %>
+
 <div class="container1">
   <%= render partial: "showform", locals: {microposts: @microposts} %>
 </div>
@@ -37,32 +76,32 @@
     }).call(this);
 
     (function () {
-        var obtn=document.getElementById('btn-top');
+        var obtn = document.getElementById('btn-top');
         var clientheight = document.documentElement.clientHeight;
         var isTop = true;
         var timer;
 
-        window.onscroll = function() {
-            var osTop=document.documentElement.scrollTop || document.body.scrollTop;
-            if(osTop >= clientheight) {
+        window.onscroll = function () {
+            var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (osTop >= clientheight) {
                 obtn.style.display = 'block';
-            }else
-            {
-                obtn.style.display = 'none';}
-            if(!isTop) {
+            } else {
+                obtn.style.display = 'none';
+            }
+            if (!isTop) {
                 clearInterval(timer);
             }
             isTop = false;
         }
 
-        obtn.onclick = function() {
-            timer=setInterval(function() {
-                        var osTop=document.documentElement.scrollTop || document.body.scrollTop;
+        obtn.onclick = function () {
+            timer = setInterval(function () {
+                        var osTop = document.documentElement.scrollTop || document.body.scrollTop;
                         isTop = true;
                         var ispeed = Math.floor(osTop / 6);
                         document.documentElement.scrollTop = document.body.scrollTop = osTop - ispeed;
-                        if(osTop == 0)
-                        { clearInterval(timer);
+                        if (osTop == 0) {
+                            clearInterval(timer);
                         }
                     },
                     30

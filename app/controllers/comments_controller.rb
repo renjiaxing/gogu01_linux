@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :set_comment, only: [:update,:edit,:delete_flag]
+
   def new
   end
 
@@ -9,9 +11,9 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:success] = "comment created!"
       if current_user!=@micropost.user
-        @unread=Unreadrelation.find_by(unreaduser_id:@micropost.user.id,unreadmicropost_id:@micropost.id)
-        if(@unread.nil?)
-          @unread=Unreadrelation.create(unreaduser_id:@micropost.user.id,unreadmicropost_id:@micropost.id,unread:0)
+        @unread=Unreadrelation.find_by(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id)
+        if (@unread.nil?)
+          @unread=Unreadrelation.create(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id, unread: 0)
         end
         @unread.unread+=1
         @unread.save
@@ -25,9 +27,37 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html {  redirect_to details_micropost_path(@micropost), notice: 'Comment was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+  def delete_flag
+    @comment.visible=false;
+    if @comment.save
+      flash[:success] = "comment delete created!"
+    else
+      flash[:alert] = "comment delete failed!"
+    end
+    redirect_to details_micropost_path(@micropost)
+  end
+
   private
   def comment_params
     params.require(:comment).permit(:msg)
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+    @micropost=@comment.micropost
   end
 
   def check_signed_in

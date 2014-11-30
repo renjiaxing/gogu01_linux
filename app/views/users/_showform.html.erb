@@ -6,19 +6,43 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-8 col-sm-push-2">
-
             <% if m.content.size>100 %>
                 <% msg=m.content[0, 99]+"..." %>
             <% else %>
                 <% msg=m.content %>
             <% end %>
+
             <% if m.stock!=nil %>
-                <%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
-                            method: :post, class: "subtitle" %>
+                <div class="row">
+                  <%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
+                              method: :post, class: "subtitle" %>
+                </div>
             <% else %>
-                <p class="subtitle">无公司绑定</p>
+                <div class="row">
+                  <p class="subtitle">无公司绑定</p>
+                </div>
             <% end %>
+            <div class="row">
+            <% if m.image.to_s!="" %>
+
+                  <div class="col-sm-4">
+                    <%= image_tag m.image_url %>
+                  </div>
+                  <div class="col-sm-8">
+            <% end %>
+
             <%= link_to msg, details_micropost_path(m), class: "micropost-details" %>
+
+            <% if m.image.to_s!="" %>
+                </div>
+            <% end %>
+            </div>
+            <% if m.user==current_user %>
+                <div class="row">
+                  <div class="col-sm-push-3 col-sm-3"><%= link_to "删除", delete_flag_micropost_path(m), class: "subtitle" %></div>
+                  <div class="col-sm-push-3 col-sm-3"><%= link_to "修改", edit_micropost_path(m), class: "subtitle" %></div>
+                </div>
+            <% end %>
             <p class="subtitle"><%= time_ago_in_words m.created_at %>以前</p>
 
             <div class="row">

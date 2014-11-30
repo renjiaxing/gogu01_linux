@@ -1,0 +1,28 @@
+<div class="bg-yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-push-2 msg">
+        <%= simple_form_for @comment, class: "contact-form" do |m| %>
+            <input id="micrpost_id" name="comment[mid]" value=<%= @micropost.id %> hidden="hidden"/>
+            <h2>请用户修改评论</h2>
+            <div class="form-group">
+              <%= m.input :msg, label: false, input_html: {class: 'form-control input-lg', rows: '4'} %>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= link_back %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

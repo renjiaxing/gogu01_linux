@@ -137,7 +137,7 @@ footer .copyright {
 }
 
 .container1 {
-  padding-top: 40px;
+  padding-top: 0px;
 }
 
 .bg-yellow {
@@ -165,9 +165,11 @@ footer .copyright {
 .micropost-details {
   color: #364247;
   display: block;
-  font-size: 48px;
+  font-size: 36px;
   text-align: center;
   line-height: 1.6;
+  word-wrap: break-word;
+  word-break: normal;
 }
 
 .cm-yellow {
@@ -231,5 +233,10 @@ footer .copyright {
   background: url("/img/top_bg.png") no-repeat 0 -39px;
 }
 
+.bg-oracle {
+  padding-top: 120px;
+  padding-bottom: 80px;
+  background-color: #f7c6a5;
+}
 
 

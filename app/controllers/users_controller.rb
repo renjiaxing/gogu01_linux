@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :check_signed_in, except: [:new, :create, :account_confirmation,:root_page]
+  before_action :check_signed_in, except: [:new, :create, :account_confirmation, :root_page]
 
   def new
     @user = User.new
@@ -19,8 +19,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @microposts=Micropost.order(updated_at: :desc).page(params[:page]).per(6)
-    if(!params[:micropost_id].nil?)
+    user=User.find_by_admin(true)
+    if !user.nil?
+      @top_micropost=user.microposts.order(created_at: :desc).limit(1)[0]
+    end
+    @microposts=Micropost.where(visible: true).order(updated_at: :desc).page(params[:page]).per(6)
+    if (!params[:micropost_id].nil?)
       @micropost=Micropost.find(params[:micropost_id])
     end
     respond_to do |format|
@@ -42,7 +46,7 @@ class UsersController < ApplicationController
 
   def account_confirmation
     @user = User.find_by_password_reset_token(params[:token])
-    if(@user)
+    if (@user)
       @user.update_column(:email_confirmed, true)
       @user.update_column(:password_reset_token, nil)
       redirect_to new_session_url, :notice => "Account confirmed"
@@ -56,14 +60,14 @@ class UsersController < ApplicationController
   end
 
   def my_msg
-    @microposts=Micropost.where("user_id=?",current_user.id).order(updated_at: :desc).page(params[:page]).per(6)
+    @microposts=Micropost.where("user_id=? AND visible=?", current_user.id, true).order(updated_at: :desc).page(params[:page]).per(6)
   end
 
   def unread_msg
-    @microposts=current_user.unreadmicroposts.where("unread!=0").order(updated_at: :desc).page(params[:page]).per(6)
+    @microposts=current_user.unreadmicroposts.where("unread!=0 AND visible=true").order(updated_at: :desc).page(params[:page]).per(6)
   end
 
-  def  pre_update_passwd
+  def pre_update_passwd
     @user=current_user
   end
 
@@ -91,7 +95,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name,:email,:phone,:password,:password_confirmation)
+    params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation)
   end
 
   def check_signed_in

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104083118) do
+ActiveRecord::Schema.define(version: 20141130032718) do
 
   create_table "comments", force: true do |t|
     t.text     "msg"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141104083118) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.boolean  "visible",      default: true
   end
 
   create_table "goodrelations", force: true do |t|
@@ -36,6 +37,8 @@ ActiveRecord::Schema.define(version: 20141104083118) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stock_id"
+    t.boolean  "visible",    default: true
+    t.string   "image"
   end
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
@@ -73,6 +76,7 @@ ActiveRecord::Schema.define(version: 20141104083118) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "mobile_toke"
+    t.boolean  "admin",                default: false
   end
 
 end
