@@ -5,26 +5,19 @@
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/gogu01_development</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfd8dfc5dfc5dfde</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails gogu01: test" uuid="fb334b13-2298-4985-8dc4-f67496c3c19a">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/gogu01_test</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfd8dfc5dfc5dfde</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails gogu01: production" uuid="135453ef-df31-421a-80d5-787c490e5a02">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/gogu01_production</jdbc-url>
-      <user-name>gogu01</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfeddfe5dfeddfffdf9adf9bdff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
       <libraries />
     </data-source>
   </component>
 </project>
-

@@ -5,7 +5,7 @@
         <% if flash[:notice] %>
             <h2 class="red-color"> <%= flash[:notice] %></h2>
         <% end %>
-        <%= simple_form_for @micropost, class: "contact-form" do |m| %>
+        <%= simple_form_for @micropost, class:"contact-form" do |m| %>
             <h2>修改内容</h2>
 
             <div class="form-group">

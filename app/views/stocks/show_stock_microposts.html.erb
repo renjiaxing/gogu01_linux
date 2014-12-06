@@ -1,24 +1,74 @@
-<% @microposts.each_with_index do |m, i| %>
-    <section
-    <% if i%2==0 %>class="intro yellow"
-    <% else %>class="intro light"
-    <% end %>>
-      <div class="container">
-        <div class="row">
-          <h1 class="has-subtitle">
-            <div class="col-sm-6 col-sm-push-2 msg">
 
-              <% if m.content.size>100 %>
-                  <% msg=m.content[0, 99]+"..." %>
-              <% else %>
-                  <% msg=m.content %>
-              <% end %>
-              <%= link_to msg, details_micropost_path(m) %>
-              <p class="subtitle"><%= time_ago_in_words m.created_at %></p>
 
-            </div>
-          </h1>
-        </div>
-      </div>
-    </section>
-<% end %>
+<div class="container1">
+  <%= render partial: "showform", locals: {microposts: @microposts} %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h4 class="has-subtitle text-center">
+      <%= paginate @microposts %>
+    </h4>
+  </div>
+</div>
+
+<a href="javascript:;" id="btn-top" title="回到顶部"></a>
+
+<script>
+    (function () {
+        $(document).ready(function () {
+            $(".container1").infinitescroll({
+                loading: {
+                    finished: undefined,
+                    finishedMsg: "<div class='text-center'>没有更多消息了～～</div>",
+                    img: null,
+                    msg: null,
+                    msgText: "<div class='text-center'>努力加载中～～</div>",
+                    selector: null,
+                    speed: 'fast',
+                    start: undefined
+                },
+                debug: true,
+                navSelector: "nav.pagination",
+                nextSelector: "nav.pagination a[rel=next]",
+                itemSelector: ".container1 section"
+            });
+
+            return $(window).scroll();
+        });
+    }).call(this);
+
+    (function () {
+        var obtn = document.getElementById('btn-top');
+        var clientheight = document.documentElement.clientHeight;
+        var isTop = true;
+        var timer;
+
+        window.onscroll = function () {
+            var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (osTop >= clientheight) {
+                obtn.style.display = 'block';
+            } else {
+                obtn.style.display = 'none';
+            }
+            if (!isTop) {
+                clearInterval(timer);
+            }
+            isTop = false;
+        }
+
+        obtn.onclick = function () {
+            timer = setInterval(function () {
+                        var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+                        isTop = true;
+                        var ispeed = Math.floor(osTop / 6);
+                        document.documentElement.scrollTop = document.body.scrollTop = osTop - ispeed;
+                        if (osTop == 0) {
+                            clearInterval(timer);
+                        }
+                    },
+                    30
+            );
+        }
+    }).call(this);
+</script>

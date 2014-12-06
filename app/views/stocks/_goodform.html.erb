@@ -1,0 +1,7 @@
+<% if current_user.begoods.exists?(m) %>
+    <%= link_to m.goods.size.to_s+"个赞 取消赞", cancel_good_micropost_path(m),
+                remote:true,class: "subtitle" %>
+<% else %>
+    <%= link_to m.goods.size.to_s+"个赞 点赞", add_good_micropost_path(m),
+                remote:true,class: "subtitle" %>
+<% end %>

@@ -68,7 +68,7 @@ class StocksController < ApplicationController
 
   def show_stock_microposts
     @stock=Stock.find(params[:stock][:id])
-    @microposts=@stock.microposts.order(updated_at: :desc)
+    @microposts=@stock.microposts.order(updated_at: :desc).page(params[:page]).per(6)
   end
 
   def stock_json
