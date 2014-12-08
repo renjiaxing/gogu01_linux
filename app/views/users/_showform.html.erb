@@ -23,19 +23,19 @@
                 </div>
             <% end %>
             <div class="row">
-            <% if m.image.to_s!="" %>
+              <% if m.image.to_s!="" %>
 
                   <div class="col-sm-4">
                     <%= image_tag m.image_url %>
                   </div>
                   <div class="col-sm-8">
-            <% end %>
+              <% end %>
 
-            <%= link_to msg, details_micropost_path(m), class: "micropost-details" %>
+              <%= link_to msg, details_micropost_path(m), class: "micropost-details" %>
 
-            <% if m.image.to_s!="" %>
-                </div>
-            <% end %>
+              <% if m.image.to_s!="" %>
+                  </div>
+              <% end %>
             </div>
             <% if m.user==current_user %>
                 <div class="row">
@@ -46,10 +46,11 @@
             <p class="subtitle"><%= time_ago_in_words m.created_at %>以前</p>
 
             <div class="row">
-              <div class="col-sm-6"> <%= link_to "回复："+m.comments.size.to_s, details_micropost_path(m), class: "subtitle" %></div>
-              <div class="col-sm-6" id="good<%= m.id.to_s %>">
+              <div class="col-sm-4"> <%= link_to "回复："+m.comments.size.to_s, details_micropost_path(m), class: "subtitle" %></div>
+              <div class="col-sm-4" id="good<%= m.id.to_s %>">
                 <%= render partial: "goodform", locals: {m: m} %>
               </div>
+              <div class="col-sm-4"> <%= link_to "私信",new_pmsg_path(mid:m), class: "subtitle" %></div>
             </div>
           </div>
         </div>

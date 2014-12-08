@@ -1,0 +1,44 @@
+<div class="container2">
+  <% if @msgs %>
+      <div class="cm-title-yellow">
+        <div class="container">
+          <div class="row ">
+            <div class="col-sm-8 col-sm-push-2">
+              <h1>我的私信</h1>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <% @msgs.each_with_index do |c, i| %>
+
+          <div
+          <% if i%2==0 %>class="cm-white"
+          <% else %>class="cm-yellow"
+          <% end %>>
+            <div class="container">
+              <div class="row ">
+                <div class="col-sm-8 col-sm-push-2 msg">
+                  <% if c.touser_id==c.fromuser_id %>
+                      <p class="subtitle">我对自己说</p>
+                  <% elsif c.fromuser_id==current_user.id %>
+                      <p class="subtitle">我对<%=link_to "匿名用户"+c.anonnum.to_s,new_pmsg_path(uid: c.touser_id)%>说</p>
+                  <% elsif c.touser_id==current_user.id %>
+                      <p class="subtitle"><%=link_to "匿名用户"+c.anonnum.to_s,new_pmsg_path(uid: c.touser_id)%>对我说</p>
+                  <% end %>
+                  <h1><%= c.msg %></h1>
+
+                  <div class="row">
+                    <div class="col-sm-push-3 col-sm-3"><%= link_to "删除", delete_flag_comment_path(c), class: "subtitle" %></div>
+                    <div class="col-sm-push-3 col-sm-3"><%= link_to "修改", edit_comment_path(c), class: "subtitle" %></div>
+                  </div>
+
+                  <p class="subtitle"><%= time_ago_in_words c.created_at %>以前</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      <% end %>
+  <% end %>
+</div>

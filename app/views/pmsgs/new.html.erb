@@ -1,0 +1,36 @@
+<div class="login-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-push-3">
+        <% if flash[:notice] %>
+            <h2 class="red-color"> <%= flash[:notice] %></h2>
+        <% end %>
+        <%= simple_form_for @pmsg, class: "contact-form" do |m| %>
+            <h2>发送私信</h2>
+
+            <div class="form-group">
+              <%= m.input :msg, placeholder: "请输入内容", label: false, input_html: {class: 'form-control input-lg', rows: '8'} %>
+            </div>
+             <%= m.input :fromuser_id,label:false,as: :hidden,input_html:{ value:current_user.id}%>
+             <%= m.input :touser_id,label:false,as: :hidden ,input_html:{value:@touser.id}%>
+
+            <div class="row">
+              <div class="col-sm-6" >
+                <div class="form-group">
+                  <%= m.submit "提交",class: 'form-control input-lg btn-success'%>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%=link_back %>
+                </div>
+              </div>
+            </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

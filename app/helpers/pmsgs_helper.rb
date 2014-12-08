@@ -1,0 +1,2 @@
+module PmsgsHelper
+end

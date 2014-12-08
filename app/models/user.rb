@@ -24,6 +24,12 @@ class User < ActiveRecord::Base
   has_many :goodrelations,foreign_key: "good_id"
   has_many :begoods, through: :goodrelations,source: :begood
 
+  has_many :anons,foreign_key: "anonuser_id"
+  has_many :anonmicroposts,through: :anons,source: :anonmicropost
+
+  has_many :pmsgs,foreign_key: "fromuser_id"
+  has_many :tousers,through: :pmsgs,source: :touser
+
   has_many :unreadrelations,foreign_key: "unreaduser_id"
   has_many :unreadmicroposts,through: :unreadrelations,source: :unreadmicropost
 

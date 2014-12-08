@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :tests
 
+  resources :pmsgs
+
   get 'static_pages/index'
 
   resources :users do

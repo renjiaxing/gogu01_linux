@@ -26,10 +26,12 @@
             <p class="subtitle"><%= time_ago_in_words @top_micropost.created_at %>以前</p>
 
             <div class="row">
-              <div class="col-sm-6"> <%= link_to "回复："+@top_micropost.comments.size.to_s, details_micropost_path( @top_micropost), class: "subtitle" %></div>
-              <div class="col-sm-6" id="good<%= @top_micropost.id.to_s %>">
+              <div class="col-sm-4"> <%= link_to "回复："+@top_micropost.comments.size.to_s, details_micropost_path( @top_micropost), class: "subtitle" %></div>
+              <div class="col-sm-4" id="good<%= @top_micropost.id.to_s %>">
                 <%= render partial: "goodform", locals: {m:  @top_micropost} %>
+                <div class="col-sm-4"> <%= link_to "回复："+@top_micropost.comments.size.to_s, details_micropost_path( @top_micropost), class: "subtitle" %></div>
               </div>
+              <div class="col-sm-4"> <%= link_to "私信：", new_pmsg_path, class: "subtitle" %></div>
             </div>
           </div>
         </div>

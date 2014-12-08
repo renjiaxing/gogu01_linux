@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141130032718) do
+ActiveRecord::Schema.define(version: 20141208110639) do
+
+  create_table "anons", force: true do |t|
+    t.integer  "anonuser_id"
+    t.integer  "anonmicropost_id"
+    t.integer  "anonnum"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.text     "msg"
@@ -39,9 +47,20 @@ ActiveRecord::Schema.define(version: 20141130032718) do
     t.integer  "stock_id"
     t.boolean  "visible",    default: true
     t.string   "image"
+    t.integer  "anonnum",    default: 1
   end
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
+
+  create_table "pmsgs", force: true do |t|
+    t.integer  "fromuser_id"
+    t.integer  "touser_id"
+    t.text     "msg"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "anonnum"
+    t.integer  "anontonum"
+  end
 
   create_table "stocks", force: true do |t|
     t.string   "code"
@@ -77,6 +96,7 @@ ActiveRecord::Schema.define(version: 20141130032718) do
     t.datetime "updated_at"
     t.string   "mobile_toke"
     t.boolean  "admin",                default: false
+    t.integer  "anonnum",              default: 1
   end
 
 end

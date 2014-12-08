@@ -64,6 +64,7 @@
           <% if signed_in? %>
               <li><%= link_to "新建信息", new_micropost_path %></li>
               <li> <%= link_to "我的信息", my_msg_users_path %></li>
+              <li> <%= link_to "我的私信", pmsgs_path %></li>
               <% if @unread==true %>
                   <li><%= link_to "您有未读回复", unread_msg_users_path %></li>
               <% end %>

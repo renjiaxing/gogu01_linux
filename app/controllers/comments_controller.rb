@@ -10,6 +10,16 @@ class CommentsController < ApplicationController
     @comment.user=current_user
     if @comment.save
       flash[:success] = "comment created!"
+      anon=@micropost.anons.find_by_anonuser_id(current_user.id)
+      if(anon.nil?)
+        @micropost.anonusers.push(current_user)
+        anon=@micropost.anons.find_by_anonuser_id(current_user)
+        anon.anonnum=@micropost.anonnum
+        if anon.save
+          @micropost.anonnum=@micropost.anonnum+1
+          @micropost.save
+        end
+      end
       if current_user!=@micropost.user
         @unread=Unreadrelation.find_by(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id)
         if (@unread.nil?)

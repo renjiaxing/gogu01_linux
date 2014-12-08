@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     if !user.nil?
       @top_micropost=user.microposts.order(created_at: :desc).limit(1)[0]
     end
-    @microposts=Micropost.where(visible: true).order(updated_at: :desc).page(params[:page]).per(6)
+    @microposts=Micropost.where(visible: true).order(created_at:  :desc).page(params[:page]).per(6)
     if (!params[:micropost_id].nil?)
       @micropost=Micropost.find(params[:micropost_id])
     end

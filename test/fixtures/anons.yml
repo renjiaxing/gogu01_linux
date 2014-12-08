@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  anonuser_id: 1
+  anonmicropost_id: 1
+  anonnum: 1
+
+two:
+  anonuser_id: 1
+  anonmicropost_id: 1
+  anonnum: 1
