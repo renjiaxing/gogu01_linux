@@ -24,7 +24,7 @@
                   <% elsif c.fromuser_id==current_user.id %>
                       <p class="subtitle">我对<%=link_to "匿名用户"+c.anonnum.to_s,new_pmsg_path(uid: c.touser_id)%>说</p>
                   <% elsif c.touser_id==current_user.id %>
-                      <p class="subtitle"><%=link_to "匿名用户"+c.anonnum.to_s,new_pmsg_path(uid: c.fromuser_id)%>对我说</p>
+                      <p class="subtitle"><%=link_to "匿名用户"+c.anontonum.to_s,new_pmsg_path(uid: c.fromuser_id)%>对我说</p>
                   <% end %>
                   <h1><%= c.msg %></h1>
 
