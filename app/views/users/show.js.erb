@@ -1,2 +1,2 @@
-$(".container1").append("#{<%= escape_javascript(render partial: "showform",locals: { microposts: @microposts }) %>}");
+//$(".container1").append("#{<%= escape_javascript(render partial: "showform",locals: { microposts: @microposts }) %>}");
 $("#good<%=@micropost.id%> .subtitle").replaceWith("<%= escape_javascript(render partial: "goodform",locals: {m:@micropost} ) %>")
