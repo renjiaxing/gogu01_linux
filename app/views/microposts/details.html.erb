@@ -62,13 +62,18 @@
           <div class="container">
             <div class="row ">
               <div class="col-sm-8 col-sm-push-2 msg">
-                <p class="subtitle">匿名用户<%= c.micropost.anons.find_by_anonuser_id(c.user.id).anonnum%></p>
+                <p class="subtitle"><%=link_to "匿名用户"+c.micropost.anons.find_by_anonuser_id(c.user.id).anonnum.to_s,new_pmsg_path(uid:c.user.id) %></p>
+
                 <h1><%= c.msg %></h1>
                 <% if c.user==current_user %>
                     <div class="row">
                       <div class="col-sm-push-3 col-sm-2"><%= link_to "删除", delete_flag_comment_path(c), class: "subtitle" %></div>
                       <div class="col-sm-push-3 col-sm-2"><%= link_to "修改", edit_comment_path(c), class: "subtitle" %></div>
-                      <div class="col-sm-push-3 col-sm-2"><%= link_to "私信", new_pmsg_path(@micropost), class: "subtitle" %></div>
+                      <div class="col-sm-push-3 col-sm-2"><%= link_to "私信", new_pmsg_path(uid: c.user.id), class: "subtitle" %></div>
+                    </div>
+                <% else %>
+                    <div class="row">
+                      <%= link_to "私信", new_pmsg_path(uid: c.user.id), class: "subtitle" %>
                     </div>
                 <% end %>
                 <p class="subtitle"><%= time_ago_in_words c.created_at %>以前</p>
