@@ -24,14 +24,19 @@
                   <% elsif c.fromuser_id==current_user.id %>
                       <p class="subtitle">我对<%=link_to "匿名用户"+c.anonnum.to_s,new_pmsg_path(uid: c.touser_id)%>说</p>
                   <% elsif c.touser_id==current_user.id %>
-                      <p class="subtitle"><%=link_to "匿名用户"+c.anonnum.to_s,new_pmsg_path(uid: c.touser_id)%>对我说</p>
+                      <p class="subtitle"><%=link_to "匿名用户"+c.anonnum.to_s,new_pmsg_path(uid: c.fromuser_id)%>对我说</p>
                   <% end %>
                   <h1><%= c.msg %></h1>
 
                   <div class="row">
                     <div class="col-sm-push-3 col-sm-2"><%= link_to "删除", delete_flag_comment_path(c), class: "subtitle" %></div>
                     <div class="col-sm-push-3 col-sm-2"><%= link_to "修改", edit_comment_path(c), class: "subtitle" %></div>
-                    <div class="col-sm-push-3 col-sm-2"><%= link_to "私信", new_pmsg_path(uid: c.touser_id), class: "subtitle" %></div>
+                    <% if c.fromuser_id==current_user.id %>
+                        <div class="col-sm-push-3 col-sm-2"><%= link_to "私信", new_pmsg_path(uid: c.touser_id), class: "subtitle" %></div>
+                    <% elsif c.touser_id==current_user.id %>
+                        <div class="col-sm-push-3 col-sm-2"><%= link_to "私信", new_pmsg_path(uid: c.fromuser_id), class: "subtitle" %></div>
+                    <% end %>
+
 
                   </div>
 

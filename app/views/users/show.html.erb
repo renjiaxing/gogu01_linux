@@ -31,7 +31,7 @@
                 <%= render partial: "goodform", locals: {m:  @top_micropost} %>
                 <div class="col-sm-4"> <%= link_to "回复："+@top_micropost.comments.size.to_s, details_micropost_path( @top_micropost), class: "subtitle" %></div>
               </div>
-              <div class="col-sm-4"> <%= link_to "私信：", new_pmsg_path, class: "subtitle" %></div>
+              <div class="col-sm-4"> <%= link_to "私信：", new_pmsg_path(mid:@top_micropost), class: "subtitle" %></div>
             </div>
           </div>
         </div>
