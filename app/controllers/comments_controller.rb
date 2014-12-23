@@ -20,6 +20,8 @@ class CommentsController < ApplicationController
           @micropost.save
         end
       end
+      @comment.anonid=@micropost.anons.find_by_anonuser_id(@comment.user.id).anonnum.to_s
+      @comment.save
       if current_user!=@micropost.user
         @unread=Unreadrelation.find_by(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id)
         if (@unread.nil?)

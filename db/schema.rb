@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208110639) do
+ActiveRecord::Schema.define(version: 20141221063040) do
 
   create_table "anons", force: true do |t|
     t.integer  "anonuser_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141208110639) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "visible",      default: true
+    t.string   "anonid",       default: "0"
   end
 
   create_table "goodrelations", force: true do |t|
@@ -71,6 +72,14 @@ ActiveRecord::Schema.define(version: 20141208110639) do
 
   create_table "tests", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "unreadmsgs", force: true do |t|
+    t.integer  "msgfrom_id"
+    t.integer  "msgto_id"
+    t.integer  "msgunread",  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -48,6 +48,12 @@ Rails.application.routes.draw do
   get 'micropost_good_json', to: 'apijson#micropost_good_json'
   get 'micropost_nogood_json', to: 'apijson#micropost_nogood_json'
   get 'get_version', to: 'apijson#get_version_json'
+  get 'micropost_del_json', to: 'apijson#micropost_del_json'
+  get 'micropost_change_json', to: 'apijson#micropost_change_json'
+  get 'del_comment_json', to: 'apijson#del_comment_json'
+  get 'messages_json',to:'apijson#messages_json'
+  get 'new_message_json',to:'apijson#new_message_json'
+  get 'message_user_json',to:'apijson#message_user_json'
 
   get 'account_confirmation', to: 'users#account_confirmation'
 

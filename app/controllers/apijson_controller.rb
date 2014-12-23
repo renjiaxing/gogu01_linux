@@ -1,26 +1,26 @@
 class ApijsonController < ApplicationController
-  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json,:get_version_json]
+  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json, :get_version_json]
 
   def get_version_json
     tmp={}
     tmp["version"]=1
-    render json:tmp
+    render json: tmp
   end
 
   def microposts_json
 
     if params[:stock_id].nil? and params[:my_id].nil?
-      @microposts=Micropost.order("created_at desc").limit(6)
+      @microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
     elsif !params[:stock_id].nil? and params[:my_id].nil?
-      @microposts=Micropost.where("stock_id=?", params[:stock_id]).order("created_at desc").limit(6)
+      @microposts=Micropost.where("stock_id=? and visible=?", params[:stock_id], true).order("created_at desc").limit(6)
     elsif params[:stock_id].nil? and !params[:my_id].nil?
       user=User.find(params[:my_id])
-      @microposts=user.microposts.order("created_at desc").limit(6)
+      @microposts=user.microposts.where(visible: true).order("created_at desc").limit(6)
     end
-    @microposts_a=[]
+    microposts_a=[]
     @microposts.each do |m|
       tmp=m.attributes
-      tmp["comment_number"]=m.comments.size
+      tmp["comment_number"]=m.comments.where(visible: true).size
       if (!m.goods.find_by_id(params[:uid]).nil?)
         tmp["good"]="true"
       else
@@ -32,24 +32,34 @@ class ApijsonController < ApplicationController
       else
         tmp["stock_name"]="无"
       end
-      @microposts_a.push(tmp)
+      unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
+      if unread.empty?
+        tmp["unread"]=0
+      else
+        tmp["unread"]=unread[0].unread
+      end
+      microposts_a.push(tmp)
     end
-    render json: @microposts_a
+
+    @result={}
+    @result["microposts"]=microposts_a
+    @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
+    render json: @result
   end
 
   def down_microposts_json
     if params[:stock_id].nil? and params[:my_id].nil?
-      @microposts=Micropost.where("id < ?", params[:down]).order("created_at desc").limit(6)
+      @microposts=Micropost.where("id < ? and visible=?", params[:down], true).order("created_at desc").limit(6)
     elsif !params[:stock_id].nil? and params[:my_id].nil?
-      @microposts=Micropost.where("stock_id=? AND id < ?", params[:stock_id], params[:down]).order("created_at desc").limit(6)
+      @microposts=Micropost.where("stock_id=? AND id < ? and visible=?", params[:stock_id], params[:down], true).order("created_at desc").limit(6)
     elsif params[:stock_id].nil? and !params[:my_id].nil?
       user=User.find(params[:my_id])
-      @microposts=user.microposts.where("id < ?", params[:down]).order("created_at desc").limit(6)
+      @microposts=user.microposts.where("id < ? and visible=?", params[:down], true).order("created_at desc").limit(6)
     end
-    @microposts_a=[]
+    microposts_a=[]
     @microposts.each do |m|
       tmp=m.attributes
-      tmp["comment_number"]=m.comments.size
+      tmp["comment_number"]=m.comments.where(visible: true).size
       if (!m.goods.find_by_id(params[:uid]).nil?)
         tmp["good"]="true"
       else
@@ -61,24 +71,33 @@ class ApijsonController < ApplicationController
       else
         tmp["stock_name"]="无"
       end
-      @microposts_a.push(tmp)
+      unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
+      if unread.empty?
+        tmp["unread"]=0
+      else
+        tmp["unread"]=unread[0].unread
+      end
+      microposts_a.push(tmp)
     end
-    render json: @microposts_a
+    @result={}
+    @result["microposts"]=microposts_a
+    @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
+    render json: @result
   end
 
   def up_microposts_json
     if params[:stock_id].nil? and params[:my_id].nil?
-      @microposts=Micropost.where("id > ?", params[:up]).order("created_at").limit(6)
+      @microposts=Micropost.where("id > ? and visible=?", params[:up], true).order("created_at").limit(6)
     elsif !params[:stock_id].nil? and params[:my_id].nil?
-      @microposts=Micropost.where("stock_id=? AND id > ?", params[:stock_id], params[:up]).order("created_at").limit(6)
+      @microposts=Micropost.where("stock_id=? AND id and visible=? > ?", params[:stock_id], params[:up], true).order("created_at").limit(6)
     elsif params[:stock_id].nil? and !params[:my_id].nil?
       user=User.find(params[:my_id])
-      @microposts=user.microposts.where("id > ?", params[:up]).order("created_at desc").limit(6)
+      @microposts=user.microposts.where("id > ? and visible=?", params[:up], true).order("created_at desc").limit(6)
     end
-    @microposts_a=[]
+    microposts_a=[]
     @microposts.each do |m|
       tmp=m.attributes
-      tmp["comment_number"]=m.comments.size
+      tmp["comment_number"]=m.comments.where(visible: true).size
       if (!m.goods.find_by_id(params[:uid]).nil?)
         tmp["good"]="true"
       else
@@ -90,14 +109,23 @@ class ApijsonController < ApplicationController
       else
         tmp["stock_name"]="无"
       end
-      @microposts_a.push(tmp)
+      unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
+      if unread.empty?
+        tmp["unread"]=0
+      else
+        tmp["unread"]=unread[0].unread
+      end
+      microposts_a.push(tmp)
     end
-    render json: @microposts_a
+    @result={}
+    @result["microposts"]=microposts_a
+    @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
+    render json: @result
   end
 
   def detail_micropost_json
     @micropost=Micropost.find(params[:mid])
-    @comments=@micropost.comments.order(updated_at: :desc)
+    @comments=@micropost.comments.where(visible: true).order(updated_at: :desc)
     @micropost.comments=@comments
     render json: @micropost.to_json(include: :comments, order: "updated_at desc");
   end
@@ -117,13 +145,39 @@ class ApijsonController < ApplicationController
     render json: @resp
   end
 
+  def micropost_change_json
+    @micropost=Micropost.find(params[:mid])
+    @micropost.content=params[:content]
+    stock=Stock.find_by_code(params[:stock].to_s.split(",")[0])
+    @micropost.stock=stock
+    @resp={}
+    if @micropost.save
+      @resp["result"]="ok"
+    else
+      @resp["result"]="nook"
+    end
+    render json: @resp
+  end
+
   def new_comment_json
     @micropost=Micropost.find(params[:mid])
     user=User.find(params[:uid])
-    comment=@micropost.comments.create(msg: params[:msg])
+    comment=@micropost.comments.build(msg: params[:msg])
     comment.user=user
     @resp={}
     if comment.save
+      anon=@micropost.anons.find_by_anonuser_id(user.id)
+      if (anon.nil?)
+        @micropost.anonusers.push(user)
+        anon=@micropost.anons.find_by_anonuser_id(user)
+        anon.anonnum=@micropost.anonnum
+        if anon.save
+          @micropost.anonnum=@micropost.anonnum+1
+          @micropost.save
+        end
+      end
+      comment.anonid=@micropost.anons.find_by_anonuser_id(comment.user.id).anonnum.to_s
+      comment.save
       if user!=@micropost.user
         @unread=Unreadrelation.find_by(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id)
         if (@unread.nil?)
@@ -133,7 +187,20 @@ class ApijsonController < ApplicationController
         @unread.save
       end
       @resp["result"]="ok"
-      @resp["comments"]=Micropost.find(params[:mid]).comments
+      @resp["comments"]=Micropost.find(params[:mid]).comments.where(visible: true)
+    else
+      @resp["result"]="nook"
+    end
+    render json: @resp
+  end
+
+  def del_comment_json
+    comment=Comment.find(params[:cid])
+    comment.visible=false
+    @resp={};
+    if comment.save
+      @resp["result"]="ok"
+      @resp["comments"]=comment.micropost.comments.where(visible: true)
     else
       @resp["result"]="nook"
     end
@@ -183,7 +250,7 @@ class ApijsonController < ApplicationController
       @resp["checkemail"]="ok"
 
       if @user.save!
-        @user.upte_column(:email_confirmed, true)
+        @user.update_column(:email_confirmed, true)
         @resp["result"]="ok"
       else
         @resp["result"]="nook"
@@ -201,6 +268,18 @@ class ApijsonController < ApplicationController
     render json: @resp
   end
 
+  def micropost_del_json
+    micropost=Micropost.find(params[:mid])
+    micropost.visible=false
+    @resp={}
+    if micropost.save
+      @resp["result"]="ok"
+    else
+      @resp["result"]="nook"
+    end
+    render json: @resp
+  end
+
   def micropost_nogood_json
     user=User.find(params[:uid])
     micropost=Micropost.find(params[:mid])
@@ -208,6 +287,111 @@ class ApijsonController < ApplicationController
     @resp={}
     @resp["result"]="ok"
     render json: @resp
+  end
+
+  def messages_json
+    @resp={}
+    messages=Pmsg.where("(fromuser_id=? AND touser_id=?) OR (fromuser_id=? AND touser_id=?)", params[:from_id], params[:to_id],
+                        params[:to_id], params[:from_id]).order("created_at")
+    unreadmsg=Unreadmsg.where("msgfrom_id=? and msgto_id=?", params[:from_id], params[:to_id])[0]
+    unreadmsg.msgunread=0
+    unreadmsg.save
+    if messages.empty?
+      @resp["result"]="ok"
+      @resp["msgArray"]="[]"
+    else
+      @resp["result"]="ok"
+      @resp["msgArray"]=messages
+    end
+    render json: @resp
+  end
+
+  def new_message_json
+    @resp={}
+    pmsg=Pmsg.new
+    pmsg.fromuser_id=params[:from_id]
+    pmsg.touser_id=params[:to_id]
+    pmsg.msg=params[:msg]
+    p1=Pmsg.where("fromuser_id=? and touser_id=?", params[:from_id], params[:to_id])
+    p2=Pmsg.where("fromuser_id=? and touser_id=?", params[:to_id], params[:from_id])
+    if !p1.empty?
+      anonnum=p1[0].anonnum
+      anontonum=p1[0].anontonum
+    elsif !p2.empty?
+      anonnum=p2[0].anontonum
+      anontonum=p2[0].anonnum
+    elsif p1.empty? and p2.empty?
+      to_user=User.find(params[:to_id])
+      currentuser=User.find(params[:uid])
+      if currentuser!=to_user
+        anonnum=currentuser.anonnum
+        currentuser.update_column(:anonnum, anonnum+1)
+        anontonum=to_user.anonnum
+        to_user.update_column(:anonnum, anontonum+1)
+      else
+        anontonum=anonnum=0
+      end
+    end
+    pmsg.anonnum=anonnum
+    pmsg.anontonum=anontonum
+    if pmsg.save
+      unreadmsg=Unreadmsg.where("msgfrom_id=? and msgto_id=?", params[:to_id], params[:from_id])
+      if unreadmsg.empty?
+        unreadmsg=Unreadmsg.create(msgfrom_id: params[:to_id], msgto_id: params[:from_id])
+      else
+        unreadmsg=unreadmsg[0]
+      end
+      if params[:from_id]!=params[:to_id]
+        unreadmsg.msgunread+=1
+      end
+      if unreadmsg.save
+        @resp["result"]="ok"
+        @resp["msg"]=pmsg
+      else
+        @resp["result"]="nook"
+      end
+    else
+      @resp["result"]="nook"
+    end
+    render json: @resp
+  end
+
+
+  def message_user_json
+    p1=Pmsg.where("fromuser_id=?", params[:uid])
+    p2=Pmsg.where("touser_id=?", params[:uid])
+
+    tmp1=[]
+    p1.each do |p|
+      t={}
+      t["touser"]=p.touser_id
+      t["anon"]=p.anonnum
+      tmp1<<t
+    end
+
+    tmp2=[]
+    p2.each do |p|
+      t={}
+      t["touser"]=p.fromuser_id
+      t["anon"]=p.anontonum
+      tmp2<<t
+    end
+    @msginfo=tmp1|tmp2
+
+    @msginfo.each do |t|
+      unread=Unreadmsg.where("msgfrom_id=? and msgto_id=?", params[:uid], t["touser"])
+      if !unread.empty?
+        t["unreadnum"]=unread[0].msgunread
+        t["updated_at"]=unread[0].updated_at
+      else
+        t["unreadnum"]=0
+        t["updated_at"]=Pmsg.where("(fromuser_id=? and touser_id=?) or (touser_id=? and fromuser_id=?)", t["touser"], params[:uid], t["touser"], params[:uid])[0].created_at
+      end
+    end
+
+    @msginfo=@msginfo.sort_by { |t| t["updated_at"] }.reverse
+
+    render json: @msginfo
   end
 
   private

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  msgfrom_id: 1
+  msgto_id: 1
+  msgunread: 1
+
+two:
+  msgfrom_id: 1
+  msgto_id: 1
+  msgunread: 1
