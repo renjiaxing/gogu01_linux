@@ -66,8 +66,11 @@
           <div class="container">
             <div class="row ">
               <div class="col-sm-8 col-sm-push-2 msg">
-                <p class="subtitle"><%= link_to "匿名用户"+c.micropost.anons.find_by_anonuser_id(c.user.id).anonnum.to_s, new_pmsg_path(uid: c.user.id) %></p>
-
+                <% if current_user.nil? %>
+                    <p class="subtitle"><%= link_to "匿名用户"+c.micropost.anons.find_by_anonuser_id(c.user.id).anonnum.to_s,new_session_path %></p>
+                <% else %>
+                    <p class="subtitle"><%= link_to "匿名用户"+c.micropost.anons.find_by_anonuser_id(c.user.id).anonnum.to_s, new_pmsg_path(uid: c.user.id) %></p>
+                <% end %>
                 <h1><%= c.msg %></h1>
                 <% if c.user==current_user %>
                     <div class="row">
