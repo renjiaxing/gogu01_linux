@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
-  before_action :check_signed_in
-  before_action :find_micropost,only: [:details,:add_good,:cancel_good,:edit,:update,:delete_flag ]
+  before_action :check_signed_in, except: [:details]
+  before_action :find_micropost, only: [:details, :add_good, :cancel_good, :edit, :update, :delete_flag]
 
   def new
     @micropost=current_user.microposts.build
@@ -24,7 +24,7 @@ class MicropostsController < ApplicationController
   def update
     respond_to do |format|
       if @micropost.update(micropost_params)
-        format.html {  redirect_to user_path, notice: 'Mciropost was successfully updated.' }
+        format.html { redirect_to user_path, notice: 'Mciropost was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -42,28 +42,30 @@ class MicropostsController < ApplicationController
   end
 
   def details
-    @comments=@micropost.comments.where(visible:true).order(:updated_at)
-    @unreadmicropost=current_user.unreadrelations.find_by_unreadmicropost_id(@micropost.id)
-    if !@unreadmicropost.nil?
-      @unreadmicropost.unread=0
-      @unreadmicropost.save
+    @comments=@micropost.comments.where(visible: true).order(:updated_at)
+    if !current_user.nil?
+      @unreadmicropost=current_user.unreadrelations.find_by_unreadmicropost_id(@micropost.id)
+      if !@unreadmicropost.nil?
+        @unreadmicropost.unread=0
+        @unreadmicropost.save
+      end
     end
   end
 
   def add_good
     current_user.begoods<<@micropost
-    redirect_to action:"show",controller:'users',id:current_user.id,micropost_id:@micropost.id
+    redirect_to action: "show", controller: 'users', id: current_user.id, micropost_id: @micropost.id
   end
 
   def cancel_good
     current_user.begoods.delete(@micropost)
-    redirect_to action:"show",controller:"users",id:current_user.id,micropost_id:@micropost.id
+    redirect_to action: "show", controller: "users", id: current_user.id, micropost_id: @micropost.id
   end
 
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content,:stock_id,:image)
+    params.require(:micropost).permit(:content, :stock_id, :image)
   end
 
   def find_micropost

@@ -11,8 +11,12 @@
             <% end %>
 
             <% if @top_micropost.stock!=nil %>
-                <%= link_to @top_micropost.stock.name, show_stock_microposts_path(stock: {id: @top_micropost.stock.id.to_s}),
-                            method: :post, class: "subtitle" %>
+                <% if current_user.nil? %>
+                    <%= link_to @top_micropost.stock.name, new_session_path, class: "subtitle" %>
+                <% else %>
+                    <%= link_to @top_micropost.stock.name, show_stock_microposts_path(stock: {id: @top_micropost.stock.id.to_s}),
+                                method: :post, class: "subtitle" %>
+                <% end %>
             <% else %>
                 <p class="subtitle">无公司绑定</p>
             <% end %>
@@ -26,12 +30,16 @@
             <p class="subtitle"><%= time_ago_in_words @top_micropost.created_at %>以前</p>
 
             <div class="row">
-              <div class="col-sm-4"> <%= link_to "回复："+@top_micropost.comments.size.to_s, details_micropost_path( @top_micropost), class: "subtitle" %></div>
+              <div class="col-sm-4"> <%= link_to "回复："+@top_micropost.comments.size.to_s, details_micropost_path(@top_micropost), class: "subtitle" %></div>
               <div class="col-sm-4" id="good<%= @top_micropost.id.to_s %>">
-                <%= render partial: "goodform", locals: {m:  @top_micropost} %>
-                <div class="col-sm-4"> <%= link_to "回复："+@top_micropost.comments.size.to_s, details_micropost_path( @top_micropost), class: "subtitle" %></div>
+                <%= render partial: "goodform", locals: {m: @top_micropost} %>
               </div>
-              <div class="col-sm-4"> <%= link_to "私信：", new_pmsg_path(mid:@top_micropost), class: "subtitle" %></div>
+              <% if current_user.nil? %>
+                  <div class="col-sm-4"> <%= link_to "私信：", new_session_path, class: "subtitle" %></div>
+              <% else %>
+                  <div class="col-sm-4"> <%= link_to "私信：", new_pmsg_path(mid: @top_micropost), class: "subtitle" %></div>
+              <% end %>
+
             </div>
           </div>
         </div>

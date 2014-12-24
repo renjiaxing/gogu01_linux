@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :check_signed_in, except: [:new, :create, :account_confirmation, :root_page]
+  before_action :check_signed_in, except: [:new, :create, :account_confirmation, :root_page,:show]
 
   def new
     @user = User.new

@@ -47,7 +47,7 @@
                 </ul>
               </li>
           <% else %>
-              <li><%= link_to "全部信息", new_session_path %></li>
+              <li><%= link_to "全部信息", user_path(0) %></li>
           <% end %>
         </ul>
         <% if signed_in? %>

@@ -13,9 +13,14 @@
             <% end %>
 
             <% if m.stock!=nil %>
+
                 <div class="row">
-                  <%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
-                              method: :post, class: "subtitle" %>
+                  <% if  current_user.nil? %>
+                      <%= link_to m.stock.name, new_session_path, class: "subtitle" %>
+                  <% else %>
+                      <%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
+                                  method: :post, class: "subtitle" %>
+                  <% end %>
                 </div>
             <% else %>
                 <div class="row">
@@ -50,7 +55,11 @@
               <div class="col-sm-4" id="good<%= m.id.to_s %>">
                 <%= render partial: "goodform", locals: {m: m} %>
               </div>
-              <div class="col-sm-4"> <%= link_to "私信",new_pmsg_path(mid:m), class: "subtitle" %></div>
+              <% if current_user.nil? %>
+                  <div class="col-sm-4"> <%= link_to "私信", new_session_path, class: "subtitle" %></div>
+              <% else %>
+                  <div class="col-sm-4"> <%= link_to "私信", new_pmsg_path(mid: m), class: "subtitle" %></div>
+              <% end %>
             </div>
           </div>
         </div>
