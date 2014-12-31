@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   resources :pmsgs
 
+  resources :chatmsgs
+
   get 'static_pages/index'
+  post 'static_pages/index'
 
   resources :users do
     collection do
@@ -54,6 +57,7 @@ Rails.application.routes.draw do
   get 'messages_json',to:'apijson#messages_json'
   get 'new_message_json',to:'apijson#new_message_json'
   get 'message_user_json',to:'apijson#message_user_json'
+  get 'api_add_chat',to:'apijson#api_add_chat'
 
   get 'account_confirmation', to: 'users#account_confirmation'
 

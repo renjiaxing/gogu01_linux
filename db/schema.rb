@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141221063040) do
+ActiveRecord::Schema.define(version: 20141231140206) do
 
   create_table "anons", force: true do |t|
     t.integer  "anonuser_id"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20141221063040) do
     t.integer  "anonnum"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "chatmsgs", force: true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "topshow"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "msgtype"
   end
 
   create_table "comments", force: true do |t|

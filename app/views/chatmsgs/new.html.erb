@@ -1,0 +1,34 @@
+<div class="bg-yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-push-2 msg">
+        <%= simple_form_for @chatmsg, class: "contact-form" do |m| %>
+            <div class="form-group">
+              <%= m.input :title, label: false, placeholder: "标题", input_html: {class: 'form-control input-lg'} %>
+            </div>
+
+            <div class="form-group">
+              <%= m.input :content, label: false, placeholder: "内容", input_html: {class: 'form-control input-lg'} %>
+            </div>
+
+            <div class="form-group">
+              <%= m.input :topshow, label: false, placeholder: "顶部信息", input_html: {class: 'form-control input-lg'} %>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= link_back %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

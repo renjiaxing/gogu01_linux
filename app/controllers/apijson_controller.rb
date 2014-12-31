@@ -1,5 +1,5 @@
 class ApijsonController < ApplicationController
-  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json, :get_version_json]
+  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json, :get_version_json,:api_add_chat]
 
   def get_version_json
     tmp={}
@@ -392,6 +392,12 @@ class ApijsonController < ApplicationController
     @msginfo=@msginfo.sort_by { |t| t["updated_at"] }.reverse
 
     render json: @msginfo
+  end
+
+  def api_add_chat
+    @resp={}
+    $redis.publish('static',params[:msg].to_s);
+    render json:@resp
   end
 
   private

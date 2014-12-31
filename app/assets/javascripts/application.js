@@ -16,6 +16,9 @@
 //= require turbolinks
 //= require jquery.ui.autocomplete
 //= require jquery.infinitescroll
+//= require socket.io
+//= require wice_grid
+//= require jquery.ui.datepicker
 //= require_tree .
 
 //$(document).ready(function(){

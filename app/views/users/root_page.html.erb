@@ -2,6 +2,7 @@
   <div class="container">
 
     <h1><strong>股刺网</strong></h1>
+
     <h3><strong>最专业的匿名金融点评网站</strong></h3>
 
     <div class="row">
@@ -9,16 +10,19 @@
 
         <div class="circle-left">
           <span class="circle"></span>
+
           <h3>股价突然插水5%，出了什么事？打开股刺看看又有什么猛料出现！</h3>
         </div>
 
         <div class="circle-left">
           <span class="circle circle-green "></span>
+
           <h3>受限机构身份，对公司评论欲言又止？匿名点评让你敞开心扉！</h3>
         </div>
 
         <div class="circle-left">
-	    <span class="circle circle-orange"></span>
+          <span class="circle circle-orange"></span>
+
           <h3 class="circlesingle">市场先生在哪里？股刺告诉你!</h3>
         </div>
 
@@ -55,6 +59,14 @@
           <q>股刺网：投资者最锋利的风控利器！</q>
         </div>
       </div>
+      <div class="col-sm-4 col-sm-push-4">
+        <div class="form-group">
+          <%= link_to 'Andriod客户端下载', "/file/gogu02.apk", class: 'form-control input-lg btn-success text-center' %>
+        </div>
+        <div class="download">
+          <q>适用于 Android4.0 及以上版本！</q>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -62,35 +74,35 @@
 
 <script>
     (function () {
-        var obtn=document.getElementById('btn-top');
+        var obtn = document.getElementById('btn-top');
         var clientheight = document.documentElement.clientHeight;
         var isTop = true;
         var timer;
 
-        window.onscroll = function() {
-            var osTop=document.documentElement.scrollTop || document.body.scrollTop;
-            if(osTop >= clientheight) {
+        window.onscroll = function () {
+            var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (osTop >= clientheight) {
                 obtn.style.display = 'block';
-            }else
-            {
-                obtn.style.display = 'none';}
-            if(!isTop) {
+            } else {
+                obtn.style.display = 'none';
+            }
+            if (!isTop) {
                 clearInterval(timer);
             }
             isTop = false;
         }
 
-        obtn.onclick = function() {
-            timer=setInterval(function() {
-                    var osTop=document.documentElement.scrollTop || document.body.scrollTop;
-                    isTop = true;
-                    var ispeed = Math.floor(osTop / 6);
-                    document.documentElement.scrollTop = document.body.scrollTop = osTop - ispeed;
-                    if(osTop == 0)
-                    { clearInterval(timer);
-                    }
-                },
-                30
+        obtn.onclick = function () {
+            timer = setInterval(function () {
+                        var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+                        isTop = true;
+                        var ispeed = Math.floor(osTop / 6);
+                        document.documentElement.scrollTop = document.body.scrollTop = osTop - ispeed;
+                        if (osTop == 0) {
+                            clearInterval(timer);
+                        }
+                    },
+                    30
             );
         }
     }).call(this);

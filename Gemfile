@@ -51,6 +51,8 @@ gem 'simple_form'
 
 gem 'kaminari'
 
+gem 'redis'
+
 gem 'therubyracer'
 
 gem 'execjs'
@@ -63,4 +65,8 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 
 gem "mini_magick"
 gem "carrierwave"
+
+gem 'socket.io-rails'
+
+gem "wice_grid"
 

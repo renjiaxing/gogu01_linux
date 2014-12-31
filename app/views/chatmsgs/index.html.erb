@@ -1,0 +1,33 @@
+<div class="bg-yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <%=link_to '新建推送信息',new_chatmsg_path,class:'form-control btn-success text-center' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <%= grid(@grid_chatmsgs) do |g|
+
+        g.column name: '序号', attribute: 'id' do |task|
+          task.id
+        end
+
+        g.column name: '标题', attribute: 'title' do |task|
+          task.title
+        end
+
+        g.column name: '内容', attribute: 'content' do |task|
+          task.content
+        end
+
+        g.column name: '顶部信息', attribute: 'topshow' do |task|
+          task.topshow
+        end
+
+      end -%>
+    </div>
+  </div>
+</div>
