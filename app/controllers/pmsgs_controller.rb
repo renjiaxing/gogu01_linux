@@ -38,10 +38,33 @@ class PmsgsController < ApplicationController
     @pmsg.anonnum=anonnum
     @pmsg.anontonum=anontonum
     if @pmsg.save
-      redirect_to pmsgs_path
+      unreadmsg=Unreadmsg.where("msgfrom_id=? and msgto_id=?", params[:pmsg][:touser_id], params[:pmsg][:fromuser_id])
+      if unreadmsg.empty?
+        unreadmsg=Unreadmsg.create(msgfrom_id: params[:pmsg][:touser_id], msgto_id: params[:pmsg][:fromuser_id])
+      else
+        unreadmsg=unreadmsg[0]
+      end
+      if params[:pmsg][:fromuser_id]!=params[:pmsg][:touser_id]
+        unreadmsg.msgunread+=1
+      end
+      if unreadmsg.save
+        @msg={}
+        @msg["msgtype"]="3"
+        @msg["user_id"]=params[:pmsg][:touser_id]
+        @msg["title"]="你有新的私信～"
+        @msg["content"]="你有新的私信～"
+        @msg["topshow"]="你有新的私信～"
+        $redis.publish('static', @msg.to_json);
+        redirect_to pmsgs_path
+      else
+        redirect_to :new
+      end
+    else
+      redirect_to :new
     end
 
   end
+
 
   private
 

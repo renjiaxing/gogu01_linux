@@ -31,6 +31,14 @@ class CommentsController < ApplicationController
         @unread.save
       end
       @comments=@micropost.comments.order(:update_at)
+      @msg={}
+      @msg["msgtype"]="2"
+      @msg["user_id"]=@micropost.user_id.to_s
+      @msg["title"]="你有新的回复～"
+      @msg["content"]="你有新的回复～"
+      @msg["topshow"]="你有新的回复～"
+      @msg["user_id"]=@micropost.user_id
+      $redis.publish('static',@msg.to_json);
       redirect_to details_micropost_path(@micropost)
     else
       flash[:alert] = "comment failed!"

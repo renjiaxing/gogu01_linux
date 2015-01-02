@@ -188,6 +188,14 @@ class ApijsonController < ApplicationController
       end
       @resp["result"]="ok"
       @resp["comments"]=Micropost.find(params[:mid]).comments.where(visible: true)
+      @msg={}
+      @msg["msgtype"]="2"
+      @msg["user_id"]=@micropost.user_id.to_s
+      @msg["title"]="你有新的回复～"
+      @msg["content"]="你有新的回复～"
+      @msg["topshow"]="你有新的回复～"
+      @msg["user_id"]=@micropost.user_id
+      $redis.publish('static',@msg.to_json);
     else
       @resp["result"]="nook"
     end
@@ -347,6 +355,13 @@ class ApijsonController < ApplicationController
       if unreadmsg.save
         @resp["result"]="ok"
         @resp["msg"]=pmsg
+        @msg={}
+        @msg["msgtype"]="3"
+        @msg["user_id"]=params[:to_id]
+        @msg["title"]="你有新的私信～"
+        @msg["content"]="你有新的私信～"
+        @msg["topshow"]="你有新的私信～"
+        $redis.publish('static',@msg.to_json);
       else
         @resp["result"]="nook"
       end

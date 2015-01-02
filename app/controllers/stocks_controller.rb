@@ -72,7 +72,12 @@ class StocksController < ApplicationController
   end
 
   def stock_json
-    @stocks=Stock.where("(code LIKE ?) OR (name LIKE ?)","%"+params[:code]+"%","%"+params[:code]+"%").limit(params[:maxRows])
+    if params[:code].include?(",")
+      code=params[:code].split(",")[0]
+    else
+      code=params[:code]
+    end
+    @stocks=Stock.where("(code LIKE ?) OR (name LIKE ?)","%"+code+"%","%"+code+"%").limit(params[:maxRows])
     render json: @stocks
   end
 
