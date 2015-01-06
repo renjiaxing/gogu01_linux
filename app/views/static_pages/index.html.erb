@@ -69,8 +69,15 @@
 //        $('#m').val('');
 //        return false;
 //    });
+
+    socket.emit('subscribe',{"room":"2"});
+
     socket.on('chat message', function (msg) {
         $('#messages').append($('<li>').text(msg));
+    });
+
+    socket.on('disconnect',function(msg){
+        socket.emit('unsubscribe',{"room":"2"});
     });
 </script>
 </body>

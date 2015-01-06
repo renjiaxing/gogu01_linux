@@ -3,7 +3,7 @@ class ApijsonController < ApplicationController
 
   def get_version_json
     tmp={}
-    tmp["version"]=1
+    tmp["version"]=2
     render json: tmp
   end
 
@@ -44,6 +44,7 @@ class ApijsonController < ApplicationController
     @result={}
     @result["microposts"]=microposts_a
     @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
+    @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?",params[:uid]).sum("unread")
     render json: @result
   end
 
@@ -82,6 +83,7 @@ class ApijsonController < ApplicationController
     @result={}
     @result["microposts"]=microposts_a
     @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
+    @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?",params[:uid]).sum("unread")
     render json: @result
   end
 
@@ -120,6 +122,7 @@ class ApijsonController < ApplicationController
     @result={}
     @result["microposts"]=microposts_a
     @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
+    @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?",params[:uid]).sum("unread")
     render json: @result
   end
 
@@ -127,6 +130,11 @@ class ApijsonController < ApplicationController
     @micropost=Micropost.find(params[:mid])
     @comments=@micropost.comments.where(visible: true).order(updated_at: :desc)
     @micropost.comments=@comments
+    unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?",params[:uid],params[:mid])
+    if !unread.empty?
+      unread[0].unread=0
+      unread[0].save
+    end
     render json: @micropost.to_json(include: :comments, order: "updated_at desc");
   end
 
