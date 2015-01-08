@@ -49,6 +49,11 @@ class MicropostsController < ApplicationController
         @unreadmicropost.unread=0
         @unreadmicropost.save
       end
+      unreply=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", current_user.id,@micropost.id)
+      if !unreply.empty?
+        unreply[0].replyunread=0
+        unreply[0].save
+      end
     end
   end
 

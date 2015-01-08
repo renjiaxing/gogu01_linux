@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   has_many :unreadmsgs,foreign_key: "msgfrom_id"
   has_many :msgtos,through: :unreadmsgs,source: :msgto
 
+  has_many :replyrelationships,foreign_key: "replyuser_id"
+  has_many :replymicroposts,through: :replyrelationships,source: :replymicropost
+
   def self.authenticate_user(email, password)
     user = find_by_email(email)
     if user && user.authenticate(password)

@@ -15,6 +15,10 @@ class Micropost < ActiveRecord::Base
   has_many :unreadusers,through: :unreadrelations,source: :unreaduser
 
   has_many :comments
+
+  has_many :replyrelationships,foreign_key: "replymicropost_id"
+  has_many :replyusers,through: :replyrelationships,source: :replyuser
+
   validates :user_id,presence: true
   validates :content,presence: true,length: {maximum: 500}
 

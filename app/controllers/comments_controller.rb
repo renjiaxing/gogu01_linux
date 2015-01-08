@@ -30,10 +30,29 @@ class CommentsController < ApplicationController
         @unread.unread+=1
         @unread.save
       end
-      @comments=@micropost.comments.order(:update_at)
+
+      reply=Replyrelationship.find_by(replyuser_id:current_user.id,replymicropost_id:@micropost.id)
+      if reply.nil?
+        reply=Replyrelationship.create(replyuser_id:current_user.id,replymicropost_id:@micropost.id,replyunread:0)
+      end
+      otherreplies=Replyrelationship.where(replymicropost_id: @micropost.id)
+
       @msg={}
+
+
+      otherreplies.each do |r|
+        r.replyunread+=1
+        r.save
+        @msg["title"]="你回复的帖子有新的回复～"
+        @msg["content"]="你回复的帖子有新的回复～"
+        @msg["topshow"]="你回复的帖子有新的回复～"
+        @msg["msgtype"]="4"
+        @msg["user_id"]=r.replyuser_id
+        $redis.publish('static',@msg.to_json)
+      end
+      @comments=@micropost.comments.order(:update_at)
+
       @msg["msgtype"]="2"
-      @msg["user_id"]=@micropost.user_id.to_s
       @msg["title"]="你有新的回复～"
       @msg["content"]="你有新的回复～"
       @msg["topshow"]="你有新的回复～"

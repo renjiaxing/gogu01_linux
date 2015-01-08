@@ -1,5 +1,5 @@
 class ApijsonController < ApplicationController
-  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json, :get_version_json,:api_add_chat]
+  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json, :get_version_json, :api_add_chat]
 
   def get_version_json
     tmp={}
@@ -9,7 +9,12 @@ class ApijsonController < ApplicationController
 
   def microposts_json
 
-    if params[:stock_id].nil? and params[:my_id].nil?
+    if !params[:my_reply_id].nil?
+      tmp_c=Comment.where("user_id=?", params[:my_reply_id]).select("micropost_id").distinct
+      c_arr=[]
+      tmp_c.each { |t| c_arr.push(t.micropost_id) }
+      @microposts=Micropost.where(id: c_arr, visible: true).order("updated_at desc").limit(6)
+    elsif params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
     elsif !params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("stock_id=? and visible=?", params[:stock_id], true).order("created_at desc").limit(6)
@@ -32,24 +37,41 @@ class ApijsonController < ApplicationController
       else
         tmp["stock_name"]="无"
       end
-      unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
-      if unread.empty?
-        tmp["unread"]=0
+
+      if !params[:my_reply_id].nil?
+        unread=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", params[:uid], m.id)
+        if unread.empty?
+          tmp["unread"]=0
+        else
+          tmp["unread"]=unread[0].replyunread
+        end
       else
-        tmp["unread"]=unread[0].unread
+        unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
+        if unread.empty?
+          tmp["unread"]=0
+        else
+          tmp["unread"]=unread[0].unread
+        end
       end
+
       microposts_a.push(tmp)
     end
 
     @result={}
     @result["microposts"]=microposts_a
     @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
-    @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?",params[:uid]).sum("unread")
+    @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?", params[:uid]).sum("unread")
+    @result["unreplymicro"]=Replyrelationship.where("replyuser_id=?",params[:uid]).sum("replyunread")
     render json: @result
   end
 
   def down_microposts_json
-    if params[:stock_id].nil? and params[:my_id].nil?
+    if !params[:my_reply_id].nil?
+      tmp_c=Comment.where("user_id=? and micropost_id<?", params[:my_reply_id],params[:down]).select("micropost_id").distinct
+      c_arr=[]
+      tmp_c.each { |t| c_arr.push(t.micropost_id) }
+      @microposts=Micropost.where(id: c_arr, visible: true).order("updated_at desc").limit(6)
+    elsif params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("id < ? and visible=?", params[:down], true).order("created_at desc").limit(6)
     elsif !params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("stock_id=? AND id < ? and visible=?", params[:stock_id], params[:down], true).order("created_at desc").limit(6)
@@ -72,23 +94,38 @@ class ApijsonController < ApplicationController
       else
         tmp["stock_name"]="无"
       end
-      unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
-      if unread.empty?
-        tmp["unread"]=0
+      if !params[:my_reply_id].nil?
+        unread=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", params[:uid], m.id)
+        if unread.empty?
+          tmp["unread"]=0
+        else
+          tmp["unread"]=unread[0].replyunread
+        end
       else
-        tmp["unread"]=unread[0].unread
+        unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
+        if unread.empty?
+          tmp["unread"]=0
+        else
+          tmp["unread"]=unread[0].unread
+        end
       end
       microposts_a.push(tmp)
     end
     @result={}
     @result["microposts"]=microposts_a
     @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
-    @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?",params[:uid]).sum("unread")
+    @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?", params[:uid]).sum("unread")
+    @result["unreplymicro"]=Replyrelationship.where("replyuser_id=?",params[:uid]).sum("replyunread")
     render json: @result
   end
 
   def up_microposts_json
-    if params[:stock_id].nil? and params[:my_id].nil?
+    if !params[:my_reply_id].nil?
+      tmp_c=Comment.where("user_id=? and micropost_id>?", params[:my_reply_id],params[:up]).select("micropost_id").distinct
+      c_arr=[]
+      tmp_c.each { |t| c_arr.push(t.micropost_id) }
+      @microposts=Micropost.where(id: c_arr, visible: true).order("updated_at desc").limit(6)
+    elsif params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("id > ? and visible=?", params[:up], true).order("created_at").limit(6)
     elsif !params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("stock_id=? AND id and visible=? > ?", params[:stock_id], params[:up], true).order("created_at").limit(6)
@@ -111,18 +148,28 @@ class ApijsonController < ApplicationController
       else
         tmp["stock_name"]="无"
       end
-      unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
-      if unread.empty?
-        tmp["unread"]=0
+      if !params[:my_reply_id].nil?
+        unread=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", params[:uid], m.id)
+        if unread.empty?
+          tmp["unread"]=0
+        else
+          tmp["unread"]=unread[0].replyunread
+        end
       else
-        tmp["unread"]=unread[0].unread
+        unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
+        if unread.empty?
+          tmp["unread"]=0
+        else
+          tmp["unread"]=unread[0].unread
+        end
       end
       microposts_a.push(tmp)
     end
     @result={}
     @result["microposts"]=microposts_a
     @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
-    @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?",params[:uid]).sum("unread")
+    @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?", params[:uid]).sum("unread")
+    @result["unreplymicro"]=Replyrelationship.where("replyuser_id=?",params[:uid]).sum("replyunread")
     render json: @result
   end
 
@@ -130,10 +177,15 @@ class ApijsonController < ApplicationController
     @micropost=Micropost.find(params[:mid])
     @comments=@micropost.comments.where(visible: true).order(updated_at: :desc)
     @micropost.comments=@comments
-    unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?",params[:uid],params[:mid])
+    unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], params[:mid])
     if !unread.empty?
       unread[0].unread=0
       unread[0].save
+    end
+    unreply=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", params[:uid], params[:mid])
+    if !unreply.empty?
+      unreply[0].replyunread=0
+      unreply[0].save
     end
     render json: @micropost.to_json(include: :comments, order: "updated_at desc");
   end
@@ -194,16 +246,35 @@ class ApijsonController < ApplicationController
         @unread.unread+=1
         @unread.save
       end
+
+      reply=Replyrelationship.find_by(replyuser_id:params[:uid],replymicropost_id:params[:mid])
+      if reply.nil?
+        reply=Replyrelationship.create(replyuser_id:params[:uid],replymicropost_id:params[:mid],replyunread:0)
+      end
+      otherreplies=Replyrelationship.where(replymicropost_id: params[:mid])
+
+      @msg={}
+
+      otherreplies.each do |r|
+        r.replyunread+=1
+        r.save
+        @msg["title"]="你回复的帖子有新的回复～"
+        @msg["content"]="你回复的帖子有新的回复～"
+        @msg["topshow"]="你回复的帖子有新的回复～"
+        @msg["user_id"]=r.replyuser_id
+        @msg["msgtype"]="4"
+        $redis.publish('static',@msg.to_json)
+      end
       @resp["result"]="ok"
       @resp["comments"]=Micropost.find(params[:mid]).comments.where(visible: true)
-      @msg={}
+
       @msg["msgtype"]="2"
-      @msg["user_id"]=@micropost.user_id.to_s
+      # @msg["user_id"]=@micropost.user_id.to_s
       @msg["title"]="你有新的回复～"
       @msg["content"]="你有新的回复～"
       @msg["topshow"]="你有新的回复～"
       @msg["user_id"]=@micropost.user_id
-      $redis.publish('static',@msg.to_json);
+      $redis.publish('static', @msg.to_json)
     else
       @resp["result"]="nook"
     end
@@ -369,7 +440,7 @@ class ApijsonController < ApplicationController
         @msg["title"]="你有新的私信～"
         @msg["content"]="你有新的私信～"
         @msg["topshow"]="你有新的私信～"
-        $redis.publish('static',@msg.to_json);
+        $redis.publish('static', @msg.to_json);
       else
         @resp["result"]="nook"
       end
@@ -419,8 +490,8 @@ class ApijsonController < ApplicationController
 
   def api_add_chat
     @resp={}
-    $redis.publish('static',params[:msg].to_s);
-    render json:@resp
+    $redis.publish('static', params[:msg].to_s);
+    render json: @resp
   end
 
   private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141231140206) do
+ActiveRecord::Schema.define(version: 20150107122815) do
 
   create_table "anons", force: true do |t|
     t.integer  "anonuser_id"
@@ -70,6 +70,14 @@ ActiveRecord::Schema.define(version: 20141231140206) do
     t.datetime "updated_at"
     t.integer  "anonnum"
     t.integer  "anontonum"
+  end
+
+  create_table "replyrelationships", force: true do |t|
+    t.integer  "replyuser_id"
+    t.integer  "replymicropost_id"
+    t.integer  "replyunread"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stocks", force: true do |t|
