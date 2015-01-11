@@ -3,7 +3,7 @@ class ApijsonController < ApplicationController
 
   def get_version_json
     tmp={}
-    tmp["version"]=3
+    tmp["version"]=4
     render json: tmp
   end
 
