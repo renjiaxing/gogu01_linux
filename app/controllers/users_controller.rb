@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.randint=rand(100)
     if @user.save
 #      @user.send_confirmation
       @user.update_column(:email_confirmed, true)
@@ -95,7 +96,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation,:randint)
   end
 
   def check_signed_in

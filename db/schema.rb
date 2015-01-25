@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107122815) do
+ActiveRecord::Schema.define(version: 20150125120515) do
 
   create_table "anons", force: true do |t|
     t.integer  "anonuser_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150107122815) do
     t.boolean  "visible",    default: true
     t.string   "image"
     t.integer  "anonnum",    default: 1
+    t.integer  "randint",    default: 0
   end
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
@@ -123,6 +124,7 @@ ActiveRecord::Schema.define(version: 20150107122815) do
     t.string   "mobile_toke"
     t.boolean  "admin",                default: false
     t.integer  "anonnum",              default: 1
+    t.integer  "randint",              default: 0
   end
 
 end

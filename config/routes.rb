@@ -58,8 +58,12 @@ Rails.application.routes.draw do
   get 'new_message_json',to:'apijson#new_message_json'
   get 'message_user_json',to:'apijson#message_user_json'
   get 'api_add_chat',to:'apijson#api_add_chat'
+  get 'add_micropost_test_api',to:'apijson#add_micropost_test_api'
+
+  post 'add_micropost_test_api',to:'apijson#add_micropost_test_api'
 
   get 'account_confirmation', to: 'users#account_confirmation'
+
 
   get 'root_page' , to:'users#root_page'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -8,6 +8,7 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
+    @micropost.randint=rand(100)
     if params[:micropost][:stock_id].nil?|| params[:micropost][:stock_id]==""
       flash.now.notice = "请从下拉框中选择正确的股票代码"
       render 'new'
@@ -70,7 +71,7 @@ class MicropostsController < ApplicationController
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content, :stock_id, :image)
+    params.require(:micropost).permit(:content, :stock_id, :image,:randint)
   end
 
   def find_micropost
