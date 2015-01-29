@@ -77,7 +77,7 @@ class StocksController < ApplicationController
     else
       code=params[:code]
     end
-    @stocks=Stock.where("(code LIKE ?) OR (name LIKE ?)","%"+code+"%","%"+code+"%").limit(params[:maxRows])
+    @stocks=Stock.where("(code LIKE ?) OR (name LIKE ?) OR (shortname LIKE ?)","%"+code+"%","%"+code+"%","%"+code+"%").limit(params[:maxRows])
     render json: @stocks
   end
 

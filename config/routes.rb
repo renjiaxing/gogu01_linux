@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :advices
+
   resources :stocks
 
   resources :tests
@@ -59,6 +61,8 @@ Rails.application.routes.draw do
   get 'message_user_json',to:'apijson#message_user_json'
   get 'api_add_chat',to:'apijson#api_add_chat'
   get 'add_micropost_test_api',to:'apijson#add_micropost_test_api'
+  get 'forgetpwd_json',to:'apijson#forgetpwd_json'
+  get 'advice_new_json', to: 'apijson#advice_new_json'
 
   post 'add_micropost_test_api',to:'apijson#add_micropost_test_api'
 

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125120515) do
+ActiveRecord::Schema.define(version: 20150128091843) do
+
+  create_table "advices", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "anons", force: true do |t|
     t.integer  "anonuser_id"
@@ -86,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150125120515) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "shortname",  default: ""
   end
 
   create_table "tests", force: true do |t|

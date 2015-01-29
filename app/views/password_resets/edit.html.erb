@@ -1,21 +1,37 @@
-<h4>Enter new password</h4>
-<%= form_for @user, url: password_reset_path(params[:id]) do |f| %>
-    <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+<div class="login-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-push-3">
+        <% if flash[:alert] %>
+            <h2 class="red-color"> <%= flash[:alert] %></h2>
+        <% end %>
+        <%= simple_form_for @user,url: password_reset_path(params[:id]) do |f| %>
+            <h2>重置密码</h2>
+
+            <div class="form-group">
+              <%= f.input :password, label:false,  input_html: {class: 'form-control input-lg'}, :placeholder => "请输入重置密码" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.input :password_confirmation, label:false, input_html: {class: 'form-control input-lg'}, :placeholder => "请再次输入密码" %>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6" >
+                <div class="form-group">
+                  <%= f.submit "提交",class: 'form-control input-lg btn-success','data-disable-with' =>"提交中"%>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%=link_back %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Update Password" %>
-    </div>
-    <div class="messages">
-      <% if @user.errors.any? %>
-          <% for message in @user.errors.full_messages %>
-              <%= message %>
-          <% end %>
-      <% end %>
-    </div>
-<% end %>
+  </div>
+</div>
+

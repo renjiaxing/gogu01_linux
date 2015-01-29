@@ -70,3 +70,7 @@ gem 'socket.io-rails'
 
 gem "wice_grid"
 
+gem 'settingslogic'
+
+gem 'grape'
+

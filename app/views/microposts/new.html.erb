@@ -22,7 +22,7 @@
             <div class="row">
               <div class="col-sm-6" >
                 <div class="form-group">
-                  <%= m.submit "提交",class: 'form-control input-lg btn-success'%>
+                  <%= m.submit "提交",class: 'form-control input-lg btn-success','data-disable-with' =>"提交中"%>
                 </div>
               </div>
               <div class="col-sm-6">
@@ -52,7 +52,7 @@
                     success: function(data) {
                         response($.map(data, function(item) {
                             return {
-                                label: item.code+ ", " + item.name,
+                                label: item.code+ ", " + item.name+ ", " + item.shortname,
                                 value: item.id
 
                             }

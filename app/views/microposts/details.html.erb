@@ -30,7 +30,7 @@
                   <% if current_user.nil? %>
                       <%= link_to "提交", new_session_path, class: 'form-control input-lg btn-success text-center' %>
                   <% else %>
-                      <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
+                      <%= m.submit "提交", class: 'form-control input-lg btn-success','data-disable-with' =>"提交中" %>
                   <% end %>
                 </div>
               </div>

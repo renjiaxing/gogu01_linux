@@ -1,0 +1,23 @@
+<div class="bg-yellow">
+  <div class="container">
+
+    <div class="row">
+
+      <%= grid(@grid_advices) do |g|
+
+        g.column name: '序号', attribute: 'id' do |task|
+          task.id
+        end
+
+        g.column name: '标题', attribute: 'title' do |task|
+          task.title
+        end
+
+        g.column name: '内容', attribute: 'content' do |task|
+          task.content
+        end
+
+      end -%>
+    </div>
+  </div>
+</div>

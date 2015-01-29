@@ -1,0 +1,11 @@
+defaults: &defaults
+  base_url: "http://192.168.110.141"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,11 +1,42 @@
 class ApijsonController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json, :get_version_json, :api_add_chat,:add_micropost_test_api]
+  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json, :get_version_json,
+                                      :api_add_chat,:add_micropost_test_api,:forgetpwd_json]
 
   def get_version_json
     tmp={}
     tmp["version"]=6
     render json: tmp
+  end
+
+  def advice_new_json
+    advice=Advice.new
+    advice.title=params[:title]
+    advice.content=params[:content]
+
+    @resp={}
+    if advice.save
+      @resp["result"]="ok"
+    else
+      @resp["result"]="nook"
+    end
+
+    render json:@resp
+
+  end
+
+  def forgetpwd_json
+    user=User.find_by_email(params[:email])
+    result={}
+    if !user.nil?
+      user.send_password_reset
+      result["checkemail"]="ok"
+      result["result"]="ok"
+    else
+      result["checkemail"]="nook"
+      result["result"]="nook"
+    end
+    render json:result
   end
 
   def add_micropost_test_api

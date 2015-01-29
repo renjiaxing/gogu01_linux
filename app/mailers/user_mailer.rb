@@ -3,11 +3,11 @@ class UserMailer < ActionMailer::Base
 
   def send_confirmation_mail(user)
     @user = user
-    mail(to: @user.email, subject: 'User Registration confirmation')
+    mail(to: @user.email, subject: '用户注册确认')
   end
 
   def send_password_reset_mail(user)
     @user = user
-    mail(to: user.email, subject: 'Password Reset')
+    mail(to: user.email, subject: '密码重置')
   end
 end

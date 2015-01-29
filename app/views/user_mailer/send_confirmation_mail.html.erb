@@ -4,17 +4,16 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 </head>
 <body>
-Welcome, <%= @user.name %>
+欢迎, <%= @user.name %>
 <p>
-  You have successfully signed up.
-  your username is: <%= @user.email %>.<br/>
+  你已经成功注册！
+  用户名是: <%= @user.email %>.<br/>
 </p>
 
 <p>
-  To login to the site, just follow this
-  link: <%= link_to 'confirm', account_confirmation_url(token: @user.password_reset_token) %>
+ 如果需要注册，请点击确认: <%= link_to '点击确定', Setting.base_url+account_confirmation_url(token: @user.password_reset_token) %>
 </p>
 
-<p>Thanks for joining and have a great day!</p>
+<p>非常感谢你的加入!</p>
 </body>
 </html>
