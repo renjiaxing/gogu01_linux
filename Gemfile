@@ -74,3 +74,8 @@ gem 'settingslogic'
 
 gem 'grape'
 
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+gem 'capistrano-rbenv'
+
