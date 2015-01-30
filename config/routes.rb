@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  require 'api'
+
   resources :advices
 
   resources :stocks
@@ -15,8 +17,8 @@ Rails.application.routes.draw do
 
   resources :users do
     collection do
-      get 'my_msg','unread_msg','pre_update_passwd','pre_update_inform'
-      post 'update_passwd','update_inform'
+      get 'my_msg', 'unread_msg', 'pre_update_passwd', 'pre_update_inform'
+      post 'update_passwd', 'update_inform'
     end
   end
 
@@ -26,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :microposts do
     member do
-      get 'details','add_good','cancel_good','delete_flag'
+      get 'details', 'add_good', 'cancel_good', 'delete_flag'
     end
   end
 
@@ -36,8 +38,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'choose_stock',to: 'stocks#choose_stock',as: :choose_stock
-  post 'show_stock_microposts',to: 'stocks#show_stock_microposts',as: :show_stock_microposts
+  get 'choose_stock', to: 'stocks#choose_stock', as: :choose_stock
+  post 'show_stock_microposts', to: 'stocks#show_stock_microposts', as: :show_stock_microposts
 
   get 'stock_json', to: 'stocks#stock_json'
 
@@ -56,20 +58,23 @@ Rails.application.routes.draw do
   get 'micropost_del_json', to: 'apijson#micropost_del_json'
   get 'micropost_change_json', to: 'apijson#micropost_change_json'
   get 'del_comment_json', to: 'apijson#del_comment_json'
-  get 'messages_json',to:'apijson#messages_json'
-  get 'new_message_json',to:'apijson#new_message_json'
-  get 'message_user_json',to:'apijson#message_user_json'
-  get 'api_add_chat',to:'apijson#api_add_chat'
-  get 'add_micropost_test_api',to:'apijson#add_micropost_test_api'
-  get 'forgetpwd_json',to:'apijson#forgetpwd_json'
+  get 'messages_json', to: 'apijson#messages_json'
+  get 'new_message_json', to: 'apijson#new_message_json'
+  get 'message_user_json', to: 'apijson#message_user_json'
+  get 'api_add_chat', to: 'apijson#api_add_chat'
+  get 'add_micropost_test_api', to: 'apijson#add_micropost_test_api'
+  get 'forgetpwd_json', to: 'apijson#forgetpwd_json'
   get 'advice_new_json', to: 'apijson#advice_new_json'
 
-  post 'add_micropost_test_api',to:'apijson#add_micropost_test_api'
+  post 'add_micropost_test_api', to: 'apijson#add_micropost_test_api'
+  post 'changepwd_api', to: 'apijson#changepwd_api'
 
   get 'account_confirmation', to: 'users#account_confirmation'
 
 
-  get 'root_page' , to:'users#root_page'
+  mount Gogu::API => "/"
+
+  get 'root_page', to: 'users#root_page'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

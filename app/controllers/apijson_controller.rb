@@ -9,6 +9,23 @@ class ApijsonController < ApplicationController
     render json: tmp
   end
 
+  def changepwd_api
+    user=User.find(params[:uid])
+    @resp={}
+    if user.authenticate(params[:oldpwd])
+      user.password=params[:newpwd]
+      user.password_confirmation=params[:newpwd]
+      if user.save
+        @resp["result"]="ok"
+      else
+        @resp["result"]="nook"
+      end
+    else
+      @resp["result"]="pwdnook"
+    end
+    render json:@resp
+  end
+
   def advice_new_json
     advice=Advice.new
     advice.title=params[:title]

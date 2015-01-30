@@ -73,9 +73,11 @@ gem "wice_grid"
 gem 'settingslogic'
 
 gem 'grape'
+gem 'grape-entity'
 
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
 gem 'capistrano-rbenv'
+gem 'capistrano-rvm', github: 'capistrano/rvm'
 
