@@ -1,0 +1,7 @@
+命名规则
+
+class module 采用HelloWorld
+
+method 变量  采用hello_world 其中 先动词后名词 follow_comment
+
+json 用json结尾

@@ -10,54 +10,56 @@ class CommentsController < ApplicationController
     @comment.user=current_user
     if @comment.save
       flash[:success] = "comment created!"
-      anon=@micropost.anons.find_by_anonuser_id(current_user.id)
-      if(anon.nil?)
-        @micropost.anonusers.push(current_user)
-        anon=@micropost.anons.find_by_anonuser_id(current_user)
-        anon.anonnum=@micropost.anonnum
-        if anon.save
-          @micropost.anonnum=@micropost.anonnum+1
-          @micropost.save
-        end
-      end
-      @comment.anonid=@micropost.anons.find_by_anonuser_id(@comment.user.id).anonnum.to_s
-      @comment.save
-      if current_user!=@micropost.user
-        @unread=Unreadrelation.find_by(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id)
-        if (@unread.nil?)
-          @unread=Unreadrelation.create(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id, unread: 0)
-        end
-        @unread.unread+=1
-        @unread.save
-      end
+      Comment.save_comment(@micropost,current_user,@comment)
+      # anon=@micropost.anons.find_by_anonuser_id(current_user.id)
+      # if(anon.nil?)
+      #   @micropost.anonusers.push(current_user)
+      #   anon=@micropost.anons.find_by_anonuser_id(current_user)
+      #   anon.anonnum=@micropost.anonnum
+      #   if anon.save
+      #     @micropost.anonnum=@micropost.anonnum+1
+      #     @micropost.save
+      #   end
+      # end
+      # @comment.anonid=@micropost.anons.find_by_anonuser_id(@comment.user.id).anonnum.to_s
+      # @comment.save
+      # if current_user!=@micropost.user
+      #   @unread=Unreadrelation.find_by(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id)
+      #   if (@unread.nil?)
+      #     @unread=Unreadrelation.create(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id, unread: 0)
+      #   end
+      #   @unread.unread+=1
+      #   @unread.save
+      # end
+      #
+      # reply=Replyrelationship.find_by(replyuser_id:current_user.id,replymicropost_id:@micropost.id)
+      # if reply.nil?
+      #   reply=Replyrelationship.create(replyuser_id:current_user.id,replymicropost_id:@micropost.id,replyunread:0)
+      # end
+      # otherreplies=Replyrelationship.where(replymicropost_id: @micropost.id)
+      #
+      # @msg={}
+      #
+      #
+      # otherreplies.each do |r|
+      #   r.replyunread+=1
+      #   r.save
+      #   @msg["title"]="你回复的帖子有新的回复～"
+      #   @msg["content"]="你回复的帖子有新的回复～"
+      #   @msg["topshow"]="你回复的帖子有新的回复～"
+      #   @msg["msgtype"]="4"
+      #   @msg["user_id"]=r.replyuser_id
+      #   $redis.publish('static',@msg.to_json)
+      # end
+      # @comments=@micropost.comments.order(:update_at)
+      #
+      # @msg["msgtype"]="2"
+      # @msg["title"]="你有新的回复～"
+      # @msg["content"]="你有新的回复～"
+      # @msg["topshow"]="你有新的回复～"
+      # @msg["user_id"]=@micropost.user_id
+      # $redis.publish('static',@msg.to_json);
 
-      reply=Replyrelationship.find_by(replyuser_id:current_user.id,replymicropost_id:@micropost.id)
-      if reply.nil?
-        reply=Replyrelationship.create(replyuser_id:current_user.id,replymicropost_id:@micropost.id,replyunread:0)
-      end
-      otherreplies=Replyrelationship.where(replymicropost_id: @micropost.id)
-
-      @msg={}
-
-
-      otherreplies.each do |r|
-        r.replyunread+=1
-        r.save
-        @msg["title"]="你回复的帖子有新的回复～"
-        @msg["content"]="你回复的帖子有新的回复～"
-        @msg["topshow"]="你回复的帖子有新的回复～"
-        @msg["msgtype"]="4"
-        @msg["user_id"]=r.replyuser_id
-        $redis.publish('static',@msg.to_json)
-      end
-      @comments=@micropost.comments.order(:update_at)
-
-      @msg["msgtype"]="2"
-      @msg["title"]="你有新的回复～"
-      @msg["content"]="你有新的回复～"
-      @msg["topshow"]="你有新的回复～"
-      @msg["user_id"]=@micropost.user_id
-      $redis.publish('static',@msg.to_json);
       redirect_to details_micropost_path(@micropost)
     else
       flash[:alert] = "comment failed!"

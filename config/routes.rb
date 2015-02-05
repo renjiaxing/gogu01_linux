@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  require 'api'
+  resources :userconfig do
+    collection do
+      get 'show_code','update_code'
+    end
+  end
+
+  # require 'api'
 
   resources :advices
 
@@ -41,38 +47,35 @@ Rails.application.routes.draw do
   get 'choose_stock', to: 'stocks#choose_stock', as: :choose_stock
   post 'show_stock_microposts', to: 'stocks#show_stock_microposts', as: :show_stock_microposts
 
+  resources :apijson do
+    collection do
+      get 'version_json','forget_password_json','microposts_json','up_microposts_json','down_microposts_json',
+          'detail_micropost_json','del_micropost_json','login_json','login_token_json','del_comment_json'
+      post 'change_password_json','new_advice_json','new_micropost_json',"change_micropost_json",'new_comment_json',
+           'reg_json'
+    end
+  end
+
   get 'stock_json', to: 'stocks#stock_json'
 
-  get 'microposts_json', to: 'apijson#microposts_json'
-  get 'down_microposts_json', to: 'apijson#down_microposts_json'
-  get 'up_microposts_json', to: 'apijson#up_microposts_json'
-  get 'new_micropost_json', to: 'apijson#new_micropost_json'
-  get 'detail_micropost_json', to: 'apijson#detail_micropost_json'
-  get 'new_comment_json', to: 'apijson#new_comment_json'
-  get 'login_json', to: 'apijson#login_json'
-  get 'login_token_json', to: 'apijson#login_token_json'
-  get 'reg_json', to: 'apijson#reg_json'
   get 'micropost_good_json', to: 'apijson#micropost_good_json'
   get 'micropost_nogood_json', to: 'apijson#micropost_nogood_json'
-  get 'get_version', to: 'apijson#get_version_json'
   get 'micropost_del_json', to: 'apijson#micropost_del_json'
   get 'micropost_change_json', to: 'apijson#micropost_change_json'
-  get 'del_comment_json', to: 'apijson#del_comment_json'
+
   get 'messages_json', to: 'apijson#messages_json'
   get 'new_message_json', to: 'apijson#new_message_json'
   get 'message_user_json', to: 'apijson#message_user_json'
   get 'api_add_chat', to: 'apijson#api_add_chat'
   get 'add_micropost_test_api', to: 'apijson#add_micropost_test_api'
   get 'forgetpwd_json', to: 'apijson#forgetpwd_json'
-  get 'advice_new_json', to: 'apijson#advice_new_json'
 
   post 'add_micropost_test_api', to: 'apijson#add_micropost_test_api'
-  post 'changepwd_api', to: 'apijson#changepwd_api'
 
   get 'account_confirmation', to: 'users#account_confirmation'
 
 
-  mount Gogu::API => "/"
+  # mount Gogu::API => "/"
 
   get 'root_page', to: 'users#root_page'
   # The priority is based upon order of creation: first created -> highest priority.

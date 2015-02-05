@@ -21,6 +21,9 @@
                 <% end %>
             <% end %>
         <% end %>
+        <% if flash.alert %>
+            <h2 class="red-color"><%=flash.alert%></h2>
+        <% end %>
         <form class="signup-form" accept-charset="UTF-8" action="/users" method="post">
           <div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
           <%= tag(:input, :type => "hidden", :name =>
@@ -28,9 +31,6 @@
                           form_authenticity_token) %>
           <h2>用户注册</h2>
 
-          <div class="form-group">
-            <input class="form-control input-lg" id="user_name" name="user[name]" placeholder="用户名" type="text">
-          </div>
           <div class="form-group">
             <input class="form-control input-lg" id="user_email" name="user[email]" placeholder="邮件" type="text">
           </div>
@@ -43,6 +43,9 @@
           <div class="form-group">
             <input class="form-control input-lg" id="user_password_confirmation" name="user[password_confirmation]" placeholder="重复密码" type="password">
           </div>
+          <div class="form-group">
+            <input class="form-control input-lg" id="user_name" name="code" placeholder="验证码" type="text">
+          </div>
 
           <div class="signup-feedback alert alert-danger hidden"></div>
           <div class="row">
@@ -51,7 +54,7 @@
                 <input type="submit" value="注册" class="form-control input-lg btn-success">
               </div>
             </div>
-            <div class="col-sm-6"><%= link_to "返回",new_session_path,class:"form-control input-lg btn-success text-center" %></div>
+            <div class="col-sm-6"><%= link_to "返回", new_session_path, class: "form-control input-lg btn-success text-center" %></div>
           </div>
         </form>
       </div>

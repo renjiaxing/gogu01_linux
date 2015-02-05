@@ -9,7 +9,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.randint=rand(100)
-    if @user.save
+    if params[:code]!=Userconfig.find_by_name("code").value
+      flash[:alert]="邀请码错误～"
+      render 'new'
+    elsif @user.save
 #      @user.send_confirmation
       @user.update_column(:email_confirmed, true)
       redirect_to new_session_path, notice: "User Registered successfully"

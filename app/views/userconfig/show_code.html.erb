@@ -1,0 +1,11 @@
+<div class="login-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-push-3 text-center">
+        <h1>验证码</h1>
+        <h1><%=@code.value %></h1>
+        <%=link_to "新生成注册吗",update_code_userconfig_index_path,class:"form-control input-lg btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>

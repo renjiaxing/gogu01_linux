@@ -72,8 +72,8 @@ gem "wice_grid"
 
 gem 'settingslogic'
 
-gem 'grape'
-gem 'grape-entity'
+# gem 'grape'
+# gem 'grape-entity'
 
 gem 'capistrano'
 gem 'capistrano-bundler'

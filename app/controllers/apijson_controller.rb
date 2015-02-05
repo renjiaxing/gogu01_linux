@@ -1,15 +1,15 @@
 class ApijsonController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json, :get_version_json,
-                                      :api_add_chat,:add_micropost_test_api,:forgetpwd_json]
+  before_action :checktoken, except: [:login_json, :login_token_json, :reg_json, :version_json,
+                                      :api_add_chat, :forget_password_json]
 
-  def get_version_json
+  def version_json
     tmp={}
-    tmp["version"]=7
+    tmp["version"]=8
     render json: tmp
   end
 
-  def changepwd_api
+  def change_password_json
     user=User.find(params[:uid])
     @resp={}
     if user.authenticate(params[:oldpwd])
@@ -23,10 +23,10 @@ class ApijsonController < ApplicationController
     else
       @resp["result"]="pwdnook"
     end
-    render json:@resp
+    render json: @resp
   end
 
-  def advice_new_json
+  def new_advice_json
     advice=Advice.new
     advice.title=params[:title]
     advice.content=params[:content]
@@ -38,11 +38,11 @@ class ApijsonController < ApplicationController
       @resp["result"]="nook"
     end
 
-    render json:@resp
+    render json: @resp
 
   end
 
-  def forgetpwd_json
+  def forget_password_json
     user=User.find_by_email(params[:email])
     result={}
     if !user.nil?
@@ -53,10 +53,10 @@ class ApijsonController < ApplicationController
       result["checkemail"]="nook"
       result["result"]="nook"
     end
-    render json:result
+    render json: result
   end
 
-  def add_micropost_test_api
+  def new_micropost_json
     @micropost = Micropost.new(micropost_params)
     @micropost.randint=rand(100)
     @micropost.stock_id=Stock.find_by_code(params[:micropost][:stock_id]).id
@@ -66,176 +66,164 @@ class ApijsonController < ApplicationController
     else
       @resp["result"]="nook"
     end
-    render json:@resp.to_json
+    render json: @resp.to_json
   end
 
   def microposts_json
 
     if !params[:my_reply_id].nil?
-      tmp_c=Comment.where("user_id=?", params[:my_reply_id]).select("micropost_id").distinct
+      tmp_c=Replyrelationship.where("replyuser_id=? and replyunread!=?", params[:my_reply_id], 0).order("updated_at desc")
       c_arr=[]
-      tmp_c.each { |t| c_arr.push(t.micropost_id) }
-      @microposts=Micropost.where(id: c_arr, visible: true).order("updated_at desc").limit(6)
+      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      tmp_c=Replyrelationship.where("replyuser_id=? and replyunread=?", params[:my_reply_id], 0).order("updated_at desc")
+      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      @microposts=[]
+      if c_arr.size>6
+        i=0
+        while i<6 do
+          @microposts.push(c_arr[i])
+          i+=1
+        end
+      else
+        c_arr.each do |t|
+          @microposts.push(t)
+        end
+      end
+      # @microposts=Micropost.where(id: c_arr, visible: true).limit(6)
     elsif params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
     elsif !params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("stock_id=? and visible=?", params[:stock_id], true).order("created_at desc").limit(6)
     elsif params[:stock_id].nil? and !params[:my_id].nil?
-      user=User.find(params[:my_id])
-      @microposts=user.microposts.where(visible: true).order("created_at desc").limit(6)
+      # user=User.find(params[:my_id])
+      # @microposts=user.microposts.where(visible: true).order("created_at desc").limit(6)
+
+      allunreadmicro=Unreadrelation.where("unreaduser_id=? AND unread!=?", params[:my_id], 0)
+      unreadmicroid=[]
+      allunreadmicro.each { |t| unreadmicroid<<t.unreadmicropost_id }
+      unreadmicro=allunreadmicro.order("updated_at desc").limit(6)
+      @microposts=[]
+      unreadmicro.each { |t| @microposts<<t.unreadmicropost if t.unreadmicropost.visible==true }
+      if unreadmicro.size<6
+        difsize=6-unreadmicro.size
+        readmicro=Micropost.where("user_id=? AND id not in(?) and visible=?", params[:my_id], unreadmicroid, true).order("updated_at desc").limit(difsize)
+        @microposts=@microposts|readmicro
+      end
     end
-    # microposts_a=[]
-    # @microposts.each do |m|
-    #   tmp=m.attributes
-    #   tmp["comment_number"]=m.comments.where(visible: true).size
-    #   if (!m.goods.find_by_id(params[:uid]).nil?)
-    #     tmp["good"]="true"
-    #   else
-    #     tmp["good"]="false"
-    #   end
-    #   tmp["good_number"]=m.goods.size
-    #   if (!m.stock.nil?)
-    #     tmp["stock_name"]=m.stock.name
-    #   else
-    #     tmp["stock_name"]="无"
-    #   end
-    #
-    #   if !params[:my_reply_id].nil?
-    #     unread=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", params[:uid], m.id)
-    #     if unread.empty?
-    #       tmp["unread"]=0
-    #     else
-    #       tmp["unread"]=unread[0].replyunread
-    #     end
-    #   else
-    #     unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
-    #     if unread.empty?
-    #       tmp["unread"]=0
-    #     else
-    #       tmp["unread"]=unread[0].unread
-    #     end
-    #   end
-    #
-    #   microposts_a.push(tmp)
-    # end
-    #
-    # @result={}
-    # @result["microposts"]=microposts_a
-    # @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
-    # @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?", params[:uid]).sum("unread")
-    # @result["unreplymicro"]=Replyrelationship.where("replyuser_id=?",params[:uid]).sum("replyunread")
-    @result=render_microposts_api_json(@microposts,params[:uid],params[:my_reply_id])
+
+    @result=render_microposts_api_json(@microposts, params[:uid], params[:my_reply_id])
     render json: @result
   end
 
   def down_microposts_json
     if !params[:my_reply_id].nil?
-      tmp_c=Comment.where("user_id=? and micropost_id<?", params[:my_reply_id],params[:down]).select("micropost_id").distinct
+      tmp_c=Replyrelationship.where("replyuser_id=? and replyunread!=?", params[:my_reply_id], 0).order("updated_at desc")
       c_arr=[]
-      tmp_c.each { |t| c_arr.push(t.micropost_id) }
-      @microposts=Micropost.where(id: c_arr, visible: true).order("updated_at desc").limit(6)
+      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      tmp_c=Replyrelationship.where("replyuser_id=? and replyunread=?", params[:my_reply_id], 0).order("updated_at desc")
+      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      i=0
+      c_arr.each_with_index do |t, index|
+        if t.id==params[:down].to_i
+          i=index
+          break
+        end
+      end
+      c_arr=c_arr[i+1..c_arr.size]
+      @microposts=[]
+      if c_arr.size>6
+        i=0
+        while i<6 do
+          @microposts.push(c_arr[i])
+          i+=1
+        end
+      else
+        c_arr.each do |t|
+          @microposts.push(t)
+        end
+      end
+      # tmp_c=Comment.where("user_id=? and micropost_id<? and visible=?", params[:my_reply_id],params[:down],true).select("micropost_id").distinct
+      # c_arr=[]
+      # tmp_c.each { |t| c_arr.push(t.micropost_id) }
+      # @microposts=Micropost.where(id: c_arr, visible: true).order("updated_at desc").limit(6)
     elsif params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("id < ? and visible=?", params[:down], true).order("created_at desc").limit(6)
     elsif !params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("stock_id=? AND id < ? and visible=?", params[:stock_id], params[:down], true).order("created_at desc").limit(6)
     elsif params[:stock_id].nil? and !params[:my_id].nil?
-      user=User.find(params[:my_id])
-      @microposts=user.microposts.where("id < ? and visible=?", params[:down], true).order("created_at desc").limit(6)
+      # user=User.find(params[:my_id])
+      # @microposts=user.microposts.where("id < ? and visible=?", params[:down], true).order("created_at desc").limit(6)
+      allunreadmicro=Unreadrelation.where("unreaduser_id=? AND unread!=?", params[:my_id], 0)
+      unreadmicroid=[]
+      allunreadmicro.each { |t| unreadmicroid<<t.unreadmicropost_id }
+      find_down=Unreadrelation.where("unreaduser_id=? AND unread!=? AND unreadmicropost_id=?", params[:my_id], 0, params[:down]).first
+      if !find_down.nil?
+        unreadmicro=Unreadrelation.where("unreaduser_id=? AND unread!=? AND updated_at<?", params[:my_id], 0, find_down.updated_at).order("updated_at desc").limit(6)
+        @microposts=[]
+        unreadmicro.each { |t| @microposts<<t.unreadmicropost if t.unreadmicropost.visible==true }
+        if unreadmicro.size<6
+
+          difsize=6-unreadmicro.size
+          readmicro=Micropost.where("user_id=? AND id not in(?) AND visible=?", params[:my_id], unreadmicroid, true).order("updated_at desc").limit(difsize)
+          @microposts=@microposts|readmicro
+        end
+      else
+        find_down=Micropost.find(params[:down])
+        @microposts=Micropost.where("user_id=? AND id not in(?) AND visible=? AND updated_at<?", params[:my_id],
+                                    unreadmicroid, true, find_down.updated_at).order("updated_at desc").limit(6)
+      end
+
     end
-    # microposts_a=[]
-    # @microposts.each do |m|
-    #   tmp=m.attributes
-    #   tmp["comment_number"]=m.comments.where(visible: true).size
-    #   if (!m.goods.find_by_id(params[:uid]).nil?)
-    #     tmp["good"]="true"
-    #   else
-    #     tmp["good"]="false"
-    #   end
-    #   tmp["good_number"]=m.goods.size
-    #   if (!m.stock.nil?)
-    #     tmp["stock_name"]=m.stock.name
-    #   else
-    #     tmp["stock_name"]="无"
-    #   end
-    #   if !params[:my_reply_id].nil?
-    #     unread=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", params[:uid], m.id)
-    #     if unread.empty?
-    #       tmp["unread"]=0
-    #     else
-    #       tmp["unread"]=unread[0].replyunread
-    #     end
-    #   else
-    #     unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
-    #     if unread.empty?
-    #       tmp["unread"]=0
-    #     else
-    #       tmp["unread"]=unread[0].unread
-    #     end
-    #   end
-    #   microposts_a.push(tmp)
-    # end
-    # @result={}
-    # @result["microposts"]=microposts_a
-    # @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
-    # @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?", params[:uid]).sum("unread")
-    # @result["unreplymicro"]=Replyrelationship.where("replyuser_id=?",params[:uid]).sum("replyunread")
-    @result=render_microposts_api_json(@microposts,params[:uid],params[:my_reply_id])
+
+    @result=render_microposts_api_json(@microposts, params[:uid], params[:my_reply_id])
     render json: @result
 
   end
 
   def up_microposts_json
     if !params[:my_reply_id].nil?
-      tmp_c=Comment.where("user_id=? and micropost_id>?", params[:my_reply_id],params[:up]).select("micropost_id").distinct
+      tmp_c=Replyrelationship.where("replyuser_id=? and replyunread!=?", params[:my_reply_id], 0).order("updated_at desc")
       c_arr=[]
-      tmp_c.each { |t| c_arr.push(t.micropost_id) }
-      @microposts=Micropost.where(id: c_arr, visible: true).order("updated_at desc").limit(6)
+      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      tmp_c=Replyrelationship.where("replyuser_id=? and replyunread=?", params[:my_reply_id], 0).order("updated_at desc")
+      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      @microposts=[]
+      if c_arr.size>=6
+        i=0
+        while i<6 do
+          @microposts.push(c_arr[i])
+          i+=1
+        end
+      else
+        c_arr.each do |t|
+          @microposts.push(t)
+        end
+      end
+      # tmp_c=Comment.where("user_id=? and micropost_id>? and visible=?", params[:my_reply_id],params[:up],true).select("micropost_id").distinct
+      # c_arr=[]
+      # tmp_c.each { |t| c_arr.push(t.micropost_id) }
+      # @microposts=Micropost.where(id: c_arr, visible: true).order("updated_at desc").limit(6)
     elsif params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("id > ? and visible=?", params[:up], true).order("created_at").limit(6)
     elsif !params[:stock_id].nil? and params[:my_id].nil?
       @microposts=Micropost.where("stock_id=? AND id and visible=? > ?", params[:stock_id], params[:up], true).order("created_at").limit(6)
     elsif params[:stock_id].nil? and !params[:my_id].nil?
-      user=User.find(params[:my_id])
-      @microposts=user.microposts.where("id > ? and visible=?", params[:up], true).order("created_at desc").limit(6)
+      # user=User.find(params[:my_id])
+      # @microposts=user.microposts.where("id > ? and visible=?", params[:up], true).order("created_at desc").limit(6)
+      allunreadmicro=Unreadrelation.where("unreaduser_id=? AND unread!=?", params[:my_id], 0)
+      unreadmicroid=[]
+      allunreadmicro.each { |t| unreadmicroid<<t.unreadmicropost_id }
+      unreadmicro=allunreadmicro.order("updated_at desc").limit(6)
+      @microposts=[]
+      unreadmicro.each { |t| @microposts<<t.unreadmicropost if t.unreadmicropost.visible==true }
+      if unreadmicro.size<6
+        difsize=6-unreadmicro.size
+        readmicro=Micropost.where("user_id=? AND id not in(?) and visible=?", params[:my_id], unreadmicroid, true).order("updated_at desc").limit(difsize)
+        @microposts=@microposts|readmicro
+      end
     end
-    # microposts_a=[]
-    # @microposts.each do |m|
-    #   tmp=m.attributes
-    #   tmp["comment_number"]=m.comments.where(visible: true).size
-    #   if (!m.goods.find_by_id(params[:uid]).nil?)
-    #     tmp["good"]="true"
-    #   else
-    #     tmp["good"]="false"
-    #   end
-    #   tmp["good_number"]=m.goods.size
-    #   if (!m.stock.nil?)
-    #     tmp["stock_name"]=m.stock.name
-    #   else
-    #     tmp["stock_name"]="无"
-    #   end
-    #   if !params[:my_reply_id].nil?
-    #     unread=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", params[:uid], m.id)
-    #     if unread.empty?
-    #       tmp["unread"]=0
-    #     else
-    #       tmp["unread"]=unread[0].replyunread
-    #     end
-    #   else
-    #     unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], m.id)
-    #     if unread.empty?
-    #       tmp["unread"]=0
-    #     else
-    #       tmp["unread"]=unread[0].unread
-    #     end
-    #   end
-    #   microposts_a.push(tmp)
-    # end
-    # @result={}
-    # @result["microposts"]=microposts_a
-    # @result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
-    # @result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?", params[:uid]).sum("unread")
-    # @result["unreplymicro"]=Replyrelationship.where("replyuser_id=?",params[:uid]).sum("replyunread")
-    @result=render_microposts_api_json(@microposts,params[:uid],params[:my_reply_id])
+
+    @result=render_microposts_api_json(@microposts, params[:uid], params[:my_reply_id])
     render json: @result
 
   end
@@ -244,42 +232,24 @@ class ApijsonController < ApplicationController
     @micropost=Micropost.find(params[:mid])
     @comments=@micropost.comments.where(visible: true).order(updated_at: :desc)
     @micropost.comments=@comments
-    unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], params[:mid])
-    if !unread.empty?
-      unread[0].unread=0
-      unread[0].save
+    unread=Unreadrelation.where("unreaduser_id=? and unreadmicropost_id=?", params[:uid], params[:mid]).first
+    if !unread.nil?
+      unread.unread=0
+      unread.save
     end
-    unreply=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", params[:uid], params[:mid])
-    if !unreply.empty?
-      unreply[0].replyunread=0
-      unreply[0].save
+    unreply=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", params[:uid], params[:mid]).first
+    if !unreply.nil?
+      unreply.replyunread=0
+      unreply.save
     end
     render json: @micropost.to_json(include: :comments, order: "updated_at desc");
   end
 
-  def new_micropost_json
-    user=User.find(params[:uid]);
-    @micropost = user.microposts.new
-    @micropost.content=params[:content]
-    @micropost.randint=rand(100)
-    stock=Stock.find_by_code(params[:stock].to_s.split(",")[0])
-    @micropost.stock=stock
+  def change_micropost_json
+    micropost=Micropost.find(params[:mid])
+    params[:micropost][:stock_id]=Stock.find_by_code(params[:micropost][:stock_id]).id
     @resp={}
-    if @micropost.save
-      @resp["result"]="ok"
-    else
-      @resp["result"]="nook"
-    end
-    render json: @resp
-  end
-
-  def micropost_change_json
-    @micropost=Micropost.find(params[:mid])
-    @micropost.content=params[:content]
-    stock=Stock.find_by_code(params[:stock].to_s.split(",")[0])
-    @micropost.stock=stock
-    @resp={}
-    if @micropost.save
+    if micropost.update_attributes(micropost_params)
       @resp["result"]="ok"
     else
       @resp["result"]="nook"
@@ -294,55 +264,10 @@ class ApijsonController < ApplicationController
     comment.user=user
     @resp={}
     if comment.save
-      anon=@micropost.anons.find_by_anonuser_id(user.id)
-      if (anon.nil?)
-        @micropost.anonusers.push(user)
-        anon=@micropost.anons.find_by_anonuser_id(user)
-        anon.anonnum=@micropost.anonnum
-        if anon.save
-          @micropost.anonnum=@micropost.anonnum+1
-          @micropost.save
-        end
-      end
-      comment.anonid=@micropost.anons.find_by_anonuser_id(comment.user.id).anonnum.to_s
-      comment.save
-      if user!=@micropost.user
-        @unread=Unreadrelation.find_by(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id)
-        if (@unread.nil?)
-          @unread=Unreadrelation.create(unreaduser_id: @micropost.user.id, unreadmicropost_id: @micropost.id, unread: 0)
-        end
-        @unread.unread+=1
-        @unread.save
-      end
+      Comment.save_comment(@micropost, user, comment)
 
-      reply=Replyrelationship.find_by(replyuser_id:params[:uid],replymicropost_id:params[:mid])
-      if reply.nil?
-        reply=Replyrelationship.create(replyuser_id:params[:uid],replymicropost_id:params[:mid],replyunread:0)
-      end
-      otherreplies=Replyrelationship.where(replymicropost_id: params[:mid])
-
-      @msg={}
-
-      otherreplies.each do |r|
-        r.replyunread+=1
-        r.save
-        @msg["title"]="你回复的帖子有新的回复～"
-        @msg["content"]="你回复的帖子有新的回复～"
-        @msg["topshow"]="你回复的帖子有新的回复～"
-        @msg["user_id"]=r.replyuser_id
-        @msg["msgtype"]="4"
-        $redis.publish('static',@msg.to_json)
-      end
       @resp["result"]="ok"
       @resp["comments"]=Micropost.find(params[:mid]).comments.where(visible: true)
-
-      @msg["msgtype"]="2"
-      # @msg["user_id"]=@micropost.user_id.to_s
-      @msg["title"]="你有新的回复～"
-      @msg["content"]="你有新的回复～"
-      @msg["topshow"]="你有新的回复～"
-      @msg["user_id"]=@micropost.user_id
-      $redis.publish('static', @msg.to_json)
     else
       @resp["result"]="nook"
     end
@@ -393,7 +318,10 @@ class ApijsonController < ApplicationController
   def reg_json
     user=User.find_by_email(params[:email])
     @resp={}
-    if user
+    if params[:code]!=Userconfig.find_by_name("code").value
+      @resp["checkcode"]="nook"
+    elsif user
+      @resp["checkcode"]="ok"
       @resp["checkemail"]="nook"
     else
       @user = User.new()
@@ -403,10 +331,11 @@ class ApijsonController < ApplicationController
       @user.phone=params[:phone]
 
       @resp["checkemail"]="ok"
+      @resp["checkcode"]="ok"
 
       if @user.save
         @user.update_column(:email_confirmed, true)
-        @user.update_column(:randint,rand(100))
+        @user.update_column(:randint, rand(100))
         @resp["result"]="ok"
       else
         @resp["result"]="nook"
@@ -449,9 +378,12 @@ class ApijsonController < ApplicationController
     @resp={}
     messages=Pmsg.where("(fromuser_id=? AND touser_id=?) OR (fromuser_id=? AND touser_id=?)", params[:from_id], params[:to_id],
                         params[:to_id], params[:from_id]).order("created_at")
-    unreadmsg=Unreadmsg.where("(msgfrom_id=? and msgto_id=?) OR (msgto_id=? and msgfrom_id=?)", params[:from_id], params[:to_id], params[:from_id], params[:to_id])[0]
-    unreadmsg.msgunread=0
-    unreadmsg.save
+    unreadmsg=Unreadmsg.where("(msgfrom_id=? and msgto_id=?) OR (msgto_id=? and msgfrom_id=?)", params[:from_id], params[:to_id], params[:from_id], params[:to_id])
+    unreadmsg.each do |m|
+      m.msgunread=0
+      m.save
+    end
+    # unreadmsg.save
     if messages.empty?
       @resp["result"]="ok"
       @resp["msgArray"]="[]"
@@ -542,20 +474,33 @@ class ApijsonController < ApplicationController
     end
     @msginfo=tmp1|tmp2
 
+    tmp_unread=[]
+    tmp_read=[]
+
     @msginfo.each do |t|
-      unread=Unreadmsg.where("msgfrom_id=? and msgto_id=?", params[:uid], t["touser"])
-      if !unread.empty?
-        t["unreadnum"]=unread[0].msgunread
-        t["updated_at"]=unread[0].updated_at
+      unread=Unreadmsg.where("msgfrom_id=? and msgto_id=?", params[:uid], t["touser"]).first
+      t["msg"]=Pmsg.where("(fromuser_id=? and touser_id=?) or (touser_id=? and fromuser_id=?)", t["touser"], params[:uid], t["touser"], params[:uid]).order("created_at desc")[0].msg
+      t["randint"]=u.randint
+      if !unread.nil?
+        t["unreadnum"]=unread.msgunread
+        t["updated_at"]=unread.updated_at
+        if unread.msgunread==0
+          tmp_read<<t
+        else
+          tmp_unread<<t
+        end
+
       else
         t["unreadnum"]=0
         t["updated_at"]=Pmsg.where("(fromuser_id=? and touser_id=?) or (touser_id=? and fromuser_id=?)", t["touser"], params[:uid], t["touser"], params[:uid])[0].created_at
+        tmp_read<<t
       end
-      t["msg"]=Pmsg.where("(fromuser_id=? and touser_id=?) or (touser_id=? and fromuser_id=?)", t["touser"], params[:uid], t["touser"], params[:uid]).order("created_at desc")[0].msg
-      t["randint"]=u.randint
-    end
 
-    @msginfo=@msginfo.sort_by { |t| t["updated_at"] }.reverse
+    end
+    tmp_unread=tmp_unread.sort_by { |t| t["updated_at"] }.reverse
+    tmp_read=tmp_read.sort_by { |t| t["updated_at"] }.reverse
+
+    @msginfo=tmp_unread|tmp_read
 
     render json: @msginfo
   end
@@ -578,28 +523,36 @@ class ApijsonController < ApplicationController
   end
 
   def micropost_params
-    params.require(:micropost).permit(:content,:user_id, :stock_id, :image)
+    params.require(:micropost).permit(:content, :user_id, :stock_id, :image)
   end
 
-  def render_microposts_api_json(microposts,uid,my_reply_id)
+  def render_microposts_api_json(microposts, uid, my_reply_id)
     microposts_a=[]
     microposts.each do |m|
       tmp=m.attributes
+      #评论数量
       tmp["comment_number"]=m.comments.where(visible: true).size
+      #判断用户没有点赞
       if (!m.goods.find_by_id(uid).nil?)
         tmp["good"]="true"
       else
         tmp["good"]="false"
       end
+      #点赞数量
       tmp["good_number"]=m.goods.size
+      #判断股票名字
       if (!m.stock.nil?)
         tmp["stock_name"]=m.stock.name
+        tmp["stock_full_name"]=m.stock.code+","+m.stock.name+","+m.stock.shortname
       else
         tmp["stock_name"]="无"
+        tmp["stock_full_name"]="无"
       end
 
+      #image名字
       tmp["image"]=m.image.to_s
 
+      #判断未读
       if !my_reply_id.nil?
         unread=Replyrelationship.where("replyuser_id=? and replymicropost_id=?", uid, m.id)
         if unread.empty?
@@ -623,7 +576,7 @@ class ApijsonController < ApplicationController
     result["microposts"]=microposts_a
     result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", uid).sum("msgunread")
     result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?", uid).sum("unread")
-    result["unreplymicro"]=Replyrelationship.where("replyuser_id=?",uid).sum("replyunread")
+    result["unreplymicro"]=Replyrelationship.where("replyuser_id=?", uid).sum("replyunread")
     result["randint"]=User.find(uid).randint
 
     return result
