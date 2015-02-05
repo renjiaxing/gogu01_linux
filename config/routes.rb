@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :userconfig do
     collection do
-      get 'show_code','update_code'
+      get 'show_code', 'update_code'
     end
   end
 
@@ -49,14 +49,20 @@ Rails.application.routes.draw do
 
   resources :apijson do
     collection do
-      get 'version_json','forget_password_json','microposts_json','up_microposts_json','down_microposts_json',
-          'detail_micropost_json','del_micropost_json','login_json','login_token_json','del_comment_json'
-      post 'change_password_json','new_advice_json','new_micropost_json',"change_micropost_json",'new_comment_json',
+      get 'version_json', 'forget_password_json', 'microposts_json', 'up_microposts_json', 'down_microposts_json',
+          'detail_micropost_json', 'del_micropost_json', 'login_json', 'login_token_json', 'del_comment_json'
+      post 'change_password_json', 'new_advice_json', 'new_micropost_json', "change_micropost_json", 'new_comment_json',
            'reg_json'
     end
   end
 
   get 'stock_json', to: 'stocks#stock_json'
+
+  get 'version', to: 'apijson#version_json'
+
+  get 'login_json', to: 'apijson#login_json'
+
+  get 'login_token_json', to: 'apijson#login_token_json'
 
   get 'micropost_good_json', to: 'apijson#micropost_good_json'
   get 'micropost_nogood_json', to: 'apijson#micropost_nogood_json'
