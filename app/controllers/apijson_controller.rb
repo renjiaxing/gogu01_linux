@@ -5,7 +5,7 @@ class ApijsonController < ApplicationController
 
   def version_json
     tmp={}
-    tmp["version"]=8
+    tmp["version"]=9
     render json: tmp
   end
 
