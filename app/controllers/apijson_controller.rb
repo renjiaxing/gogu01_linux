@@ -74,9 +74,16 @@ class ApijsonController < ApplicationController
     if !params[:my_reply_id].nil?
       tmp_c=Replyrelationship.where("replyuser_id=? and replyunread!=?", params[:my_reply_id], 0).order("updated_at desc")
       c_arr=[]
-      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      if !tmp_c.empty?
+        tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      end
+
       tmp_c=Replyrelationship.where("replyuser_id=? and replyunread=?", params[:my_reply_id], 0).order("updated_at desc")
-      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+
+      if !tmp_c.empty?
+        tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      end
+
       @microposts=[]
       if c_arr.size>6
         i=0
@@ -100,13 +107,21 @@ class ApijsonController < ApplicationController
 
       allunreadmicro=Unreadrelation.where("unreaduser_id=? AND unread!=?", params[:my_id], 0)
       unreadmicroid=[]
-      allunreadmicro.each { |t| unreadmicroid<<t.unreadmicropost_id }
+      if !allunreadmicro.empty?
+        allunreadmicro.each { |t| unreadmicroid<<t.unreadmicropost_id }
+      end
       unreadmicro=allunreadmicro.order("updated_at desc").limit(6)
       @microposts=[]
-      unreadmicro.each { |t| @microposts<<t.unreadmicropost if t.unreadmicropost.visible==true }
+      if !unreadmicro.empty?
+        unreadmicro.each { |t| @microposts<<t.unreadmicropost if t.unreadmicropost.visible==true }
+      end
       if unreadmicro.size<6
         difsize=6-unreadmicro.size
-        readmicro=Micropost.where("user_id=? AND id not in(?) and visible=?", params[:my_id], unreadmicroid, true).order("updated_at desc").limit(difsize)
+        if unreadmicroid.empty?
+          readmicro=Micropost.where("user_id=? and visible=?", params[:my_id], true).order("updated_at desc").limit(difsize)
+        else
+          readmicro=Micropost.where("user_id=? AND id not in(?) and visible=?", params[:my_id], unreadmicroid, true).order("updated_at desc").limit(difsize)
+        end
         @microposts=@microposts|readmicro
       end
     end
@@ -119,9 +134,13 @@ class ApijsonController < ApplicationController
     if !params[:my_reply_id].nil?
       tmp_c=Replyrelationship.where("replyuser_id=? and replyunread!=?", params[:my_reply_id], 0).order("updated_at desc")
       c_arr=[]
-      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      if !tmp_c.empty?
+        tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      end
       tmp_c=Replyrelationship.where("replyuser_id=? and replyunread=?", params[:my_reply_id], 0).order("updated_at desc")
-      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      if !tmp_c.empty?
+        tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      end
       i=0
       c_arr.each_with_index do |t, index|
         if t.id==params[:down].to_i
@@ -155,16 +174,24 @@ class ApijsonController < ApplicationController
       # @microposts=user.microposts.where("id < ? and visible=?", params[:down], true).order("created_at desc").limit(6)
       allunreadmicro=Unreadrelation.where("unreaduser_id=? AND unread!=?", params[:my_id], 0)
       unreadmicroid=[]
-      allunreadmicro.each { |t| unreadmicroid<<t.unreadmicropost_id }
+      if !allunreadmicro.empty?
+        allunreadmicro.each { |t| unreadmicroid<<t.unreadmicropost_id }
+      end
       find_down=Unreadrelation.where("unreaduser_id=? AND unread!=? AND unreadmicropost_id=?", params[:my_id], 0, params[:down]).first
       if !find_down.nil?
         unreadmicro=Unreadrelation.where("unreaduser_id=? AND unread!=? AND updated_at<?", params[:my_id], 0, find_down.updated_at).order("updated_at desc").limit(6)
         @microposts=[]
-        unreadmicro.each { |t| @microposts<<t.unreadmicropost if t.unreadmicropost.visible==true }
+        if !unreadmicro.empty?
+          unreadmicro.each { |t| @microposts<<t.unreadmicropost if t.unreadmicropost.visible==true }
+        end
         if unreadmicro.size<6
 
           difsize=6-unreadmicro.size
-          readmicro=Micropost.where("user_id=? AND id not in(?) AND visible=?", params[:my_id], unreadmicroid, true).order("updated_at desc").limit(difsize)
+          if unreadmicroid.empty?
+            readmicro=Micropost.where("user_id=? and visible=?", params[:my_id], true).order("updated_at desc").limit(difsize)
+          else
+            readmicro=Micropost.where("user_id=? AND id not in(?) and visible=?", params[:my_id], unreadmicroid, true).order("updated_at desc").limit(difsize)
+          end
           @microposts=@microposts|readmicro
         end
       else
@@ -184,9 +211,13 @@ class ApijsonController < ApplicationController
     if !params[:my_reply_id].nil?
       tmp_c=Replyrelationship.where("replyuser_id=? and replyunread!=?", params[:my_reply_id], 0).order("updated_at desc")
       c_arr=[]
-      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      if !tmp_c.empty?
+        tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      end
       tmp_c=Replyrelationship.where("replyuser_id=? and replyunread=?", params[:my_reply_id], 0).order("updated_at desc")
-      tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      if !tmp_c.empty?
+        tmp_c.each { |t| c_arr.push(t.replymicropost) if t.replymicropost.visible==true }
+      end
       @microposts=[]
       if c_arr.size>=6
         i=0
@@ -212,13 +243,21 @@ class ApijsonController < ApplicationController
       # @microposts=user.microposts.where("id > ? and visible=?", params[:up], true).order("created_at desc").limit(6)
       allunreadmicro=Unreadrelation.where("unreaduser_id=? AND unread!=?", params[:my_id], 0)
       unreadmicroid=[]
-      allunreadmicro.each { |t| unreadmicroid<<t.unreadmicropost_id }
+      if !allunreadmicro.empty?
+        allunreadmicro.each { |t| unreadmicroid<<t.unreadmicropost_id }
+      end
       unreadmicro=allunreadmicro.order("updated_at desc").limit(6)
       @microposts=[]
-      unreadmicro.each { |t| @microposts<<t.unreadmicropost if t.unreadmicropost.visible==true }
+      if !unreadmicro.empty?
+        unreadmicro.each { |t| @microposts<<t.unreadmicropost if t.unreadmicropost.visible==true }
+      end
       if unreadmicro.size<6
         difsize=6-unreadmicro.size
-        readmicro=Micropost.where("user_id=? AND id not in(?) and visible=?", params[:my_id], unreadmicroid, true).order("updated_at desc").limit(difsize)
+        if unreadmicroid.empty?
+          readmicro=Micropost.where("user_id=? and visible=?", params[:my_id], true).order("updated_at desc").limit(difsize)
+        else
+          readmicro=Micropost.where("user_id=? AND id not in(?) and visible=?", params[:my_id], unreadmicroid, true).order("updated_at desc").limit(difsize)
+        end
         @microposts=@microposts|readmicro
       end
     end
