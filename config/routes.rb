@@ -58,7 +58,7 @@ Rails.application.routes.draw do
 
   get 'stock_json', to: 'stocks#stock_json'
 
-  get 'version', to: 'apijson#version_json'
+  get 'get_version', to: 'apijson#version_json'
 
   get 'login_json', to: 'apijson#login_json'
 
