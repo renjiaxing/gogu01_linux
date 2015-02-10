@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def show
     user=User.find_by_admin(true)
     if !user.nil?
-      @top_micropost=user.microposts.order(created_at: :desc).limit(1)[0]
+      @top_micropost=user.microposts.where(visible:true).order(created_at: :desc).limit(1)[0]
     end
     @microposts=Micropost.where(visible: true).order(created_at:  :desc).page(params[:page]).per(6)
     if (!params[:micropost_id].nil?)
