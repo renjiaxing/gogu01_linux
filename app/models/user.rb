@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   has_many :microposts,dependent: :destroy
 
+  has_many :mystocks
+
   has_many :comments
 
   has_many :goodrelations,foreign_key: "good_id"

@@ -18,12 +18,14 @@ Rails.application.routes.draw do
 
   resources :chatmsgs
 
+  resources :mystocks
+
   get 'static_pages/index'
   post 'static_pages/index'
 
   resources :users do
     collection do
-      get 'my_msg', 'unread_msg', 'pre_update_passwd', 'pre_update_inform'
+      get 'my_msg', 'unread_msg', 'pre_update_passwd', 'pre_update_inform','myshow'
       post 'update_passwd', 'update_inform'
     end
   end

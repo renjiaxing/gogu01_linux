@@ -43,7 +43,7 @@
                    data-toggle="dropdown">信息<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><%= link_to "全部信息", user_path(current_user) %></li>
-                  <li><%= link_to "热门信息", user_path(current_user) %></li>
+                  <li><%= link_to "我关注的信息", myshow_users_path %></li>
                 </ul>
               </li>
           <% else %>
@@ -62,23 +62,32 @@
         <% end %>
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
-              <li><%= link_to "新建信息", new_micropost_path %></li>
-              <li> <%= link_to "我的信息", my_msg_users_path %></li>
-              <li> <%= link_to "我的私信", pmsgs_path %></li>
-              <% if @unread==true %>
-                  <li><%= link_to "您有未读回复", unread_msg_users_path %></li>
-              <% end %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 个人信息
+                  <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><%= link_to "新建信息", new_micropost_path %></li>
+                  <li> <%= link_to "我的信息", my_msg_users_path %></li>
+                  <li> <%= link_to "我的私信", pmsgs_path %></li>
+                  <% if @unread==true %>
+                      <li><%= link_to "您有未读回复", unread_msg_users_path %></li>
+                  <% end %>
+                </ul>
+              </li>
+
+              <li><%=link_to "我的股票",mystocks_path%></li>
+
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= current_user.email %>
                   <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><%= link_to "修改密码", pre_update_passwd_users_path %></li>
                   <li><%= link_to "修改信息", pre_update_inform_users_path %></li>
-                  <li><%= link_to "提交建议",new_advice_path %></li>
+                  <li><%= link_to "提交建议", new_advice_path %></li>
                   <% if current_user.admin %>
-                      <li><%= link_to "所有建议",advices_path %></li>
+                      <li><%= link_to "所有建议", advices_path %></li>
                       <li><%= link_to "推送消息", chatmsgs_path %></li>
-                      <li><%= link_to "邀请码",show_code_userconfig_index_path %></li>
+                      <li><%= link_to "邀请码", show_code_userconfig_index_path %></li>
                   <% end %>
                   <li class="divider"></li>
                   <li><%= link_to "退出", session_path(current_user), method: :delete %></li>

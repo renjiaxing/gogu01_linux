@@ -72,6 +72,8 @@ gem "wice_grid"
 
 gem 'settingslogic'
 
+gem 'nokogiri'
+
 # gem 'grape'
 # gem 'grape-entity'
 

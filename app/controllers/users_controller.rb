@@ -37,6 +37,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def myshow
+    user=User.find_by_admin(true)
+    user_stocks=[]
+    current_user.mystocks.each do |t|
+      user_stocks<<t.stock
+    end
+    if !user.nil?
+      @top_micropost=user.microposts.where(visible:true).order(created_at: :desc).limit(1)[0]
+    end
+    @microposts=Micropost.where(stock:user_stocks,visible: true).order(created_at:  :desc).page(params[:page]).per(6)
+    if (!params[:micropost_id].nil?)
+      @micropost=Micropost.find(params[:micropost_id])
+    end
+    render 'show'
+  end
+
   def edit
   end
 

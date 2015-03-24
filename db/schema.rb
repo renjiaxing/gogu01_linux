@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131135104) do
+ActiveRecord::Schema.define(version: 20150324023856) do
 
   create_table "advices", force: true do |t|
     t.string   "title"
@@ -66,9 +66,17 @@ ActiveRecord::Schema.define(version: 20150131135104) do
     t.string   "image"
     t.integer  "anonnum",    default: 1
     t.integer  "randint",    default: 0
+    t.integer  "microtype",  default: 0
   end
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
+
+  create_table "mystocks", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pmsgs", force: true do |t|
     t.integer  "fromuser_id"
