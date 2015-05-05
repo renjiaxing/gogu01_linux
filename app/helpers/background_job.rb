@@ -11,7 +11,7 @@ class BackgroundJob
       end
       stock_content=t.at_css("#hdLine").content
       stock_href="http://www.hkexnews.hk"+t.at_css(".news")["href"]
-      p i.to_s+" "+stock_id+" "+stock_content+" "+stock_href
+      p i.to_s+" "+stock_id+" "+stock_content+" <a href='"+stock_href+"'>点击下载</a>"
       stock_date=t.css("td").first.content
       stock_date.insert(10," ")
 
@@ -23,7 +23,7 @@ class BackgroundJob
         if !stock.nil?
           micropost=Micropost.new
           micropost.stock=stock
-          micropost.content=stock_content+" "+stock_href
+          micropost.content=stock_content+" <a href='"+stock_href+"'>点击下载</a>"
           micropost.user_id=1
           micropost.microtype=1
           micropost.randint=rand(100)
@@ -55,7 +55,7 @@ class BackgroundJob
         if !stock.nil?
           micropost=Micropost.new
           micropost.stock=stock
-          micropost.content=stock_content+" "+stock_href
+          micropost.content=stock_content+" <a href='"+stock_href+"'>点击下载</a>"
           micropost.user_id=1;
           micropost.randint=rand(100)
           micropost.microtype=1

@@ -6,10 +6,14 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-8 col-sm-push-2">
-            <% if m.content.size>100 %>
-                <% msg=m.content[0, 99]+"..." %>
+            <% content=m.content %>
+            <% if !content.index("<a").nil? %>
+                <% content=content[0,content.index("<a")]+" 点击下载" %>
+            <% end %>
+            <% if content.size>100 %>
+                <% msg=content[0, 99]+"..." %>
             <% else %>
-                <% msg=m.content %>
+                <% msg=content %>
             <% end %>
 
             <% if m.stock!=nil %>

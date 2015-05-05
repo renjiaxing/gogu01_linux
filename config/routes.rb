@@ -52,9 +52,10 @@ Rails.application.routes.draw do
   resources :apijson do
     collection do
       get 'version_json', 'forget_password_json', 'microposts_json', 'up_microposts_json', 'down_microposts_json',
-          'detail_micropost_json', 'del_micropost_json', 'login_json', 'login_token_json', 'del_comment_json'
+          'detail_micropost_json', 'del_micropost_json', 'login_json', 'login_token_json', 'del_comment_json',
+          'mystock_json','check_stock_json','main_json'
       post 'change_password_json', 'new_advice_json', 'new_micropost_json', "change_micropost_json", 'new_comment_json',
-           'reg_json'
+           'reg_json','addstock_json','delstock_json'
     end
   end
 
