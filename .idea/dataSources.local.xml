@@ -3,11 +3,9 @@
   <component name="dataSourceStorageLocal">
     <data-source name="Rails gogu01: development" uuid="55f36160-a479-4873-837e-a170e34add97">
       <user-name>root</user-name>
-      <user-password>dfd8dfc5dfc5dfde</user-password>
     </data-source>
     <data-source name="Rails gogu01: test" uuid="fb334b13-2298-4985-8dc4-f67496c3c19a">
       <user-name>root</user-name>
-      <user-password>dfd8dfc5dfc5dfde</user-password>
     </data-source>
     <data-source name="Rails gogu01: production" uuid="135453ef-df31-421a-80d5-787c490e5a02">
       <user-name>gogu01</user-name>

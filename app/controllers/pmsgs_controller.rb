@@ -56,6 +56,21 @@ class PmsgsController < ApplicationController
         @msg["topshow"]="你有新的私信～"
         $redis.publish('static', @msg.to_json);
         redirect_to pmsgs_path
+
+        content={}
+        content_alert={}
+        content_alert["alert"]="你有新的私信～"
+        content["aps"]=content_alert
+
+        req_params={}
+        req_params.merge!({message: content.to_json,
+                           message_type: 1,
+                           account: "account"+params[:pmsg][:touser_id].to_s})
+        begin
+          push_single_account(req_params)
+        rescue Exception => e
+          # push_single_account("1",0,content)
+        end
       else
         redirect_to :new
       end

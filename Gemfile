@@ -77,6 +77,14 @@ gem 'nokogiri'
 # gem 'grape'
 # gem 'grape-entity'
 
+gem 'ruby-for-xinge'
+
+gem 'httparty'
+
+gem 'rails_admin'
+
+gem 'faraday'
+
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'

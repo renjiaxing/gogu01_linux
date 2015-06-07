@@ -1,6 +1,17 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'xinge'
+# require 'Wxxinge'
+# require 'Faraday'
+
+Xinge.configure do |config|
+  # config[:android_accessId] = Your android access id
+  # config[:android_secretKey] = 'Your secret key xxx'
+  config[:ios_accessId] = 2200120344
+  config[:ios_secretKey] = '72371c5e43c99b8a4a845ff995bef03c'
+  config[:env] = Rails.env # if you are not in a rails app, you can set it config[:env]='development' or config[:env]='production', it is 'development' default.
+end
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

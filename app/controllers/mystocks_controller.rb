@@ -4,7 +4,7 @@ class MystocksController < ApplicationController
   # GET /mystocks
   # GET /mystocks.json
   def index
-    @mystocks = initialize_grid(Mystock)
+    @mystocks = initialize_grid(Mystock.where(user_id: current_user))
   end
 
   # GET /mystocks/1
@@ -26,7 +26,7 @@ class MystocksController < ApplicationController
   def create
     @mystock = Mystock.new(mystock_params)
 
-    @existmystock=Mystock.find_by(stock_id:params[:mystock][:stock_id])
+    @existmystock=Mystock.find_by(stock_id:params[:mystock][:stock_id],user_id:current_user)
 
     respond_to do |format|
       if !@existmystock.nil?

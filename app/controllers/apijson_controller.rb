@@ -24,7 +24,7 @@ class ApijsonController < ApplicationController
     # result["unreplymicro"]=Replyrelationship.where("replyuser_id=?", uid).sum("replyunread")
     result["randint"]=User.find(params[:uid]).randint
 
-    render json:result
+    render json: result
   end
 
   def check_stock_json
@@ -33,11 +33,11 @@ class ApijsonController < ApplicationController
     else
       code=params[:code]
     end
-    stocks=Stock.where("(code LIKE ?) OR (name LIKE ?) OR (shortname LIKE ?)","%"+code+"%","%"+code+"%","%"+code+"%").limit(params[:maxRows])
+    stocks=Stock.where("(code LIKE ?) OR (name LIKE ?) OR (shortname LIKE ?)", "%"+code+"%", "%"+code+"%", "%"+code+"%").limit(params[:maxRows])
     result=[]
     stocks.each do |s|
       tmp=s.attributes
-      if s.mystocks.where("user_id=?",params[:uid]).first.nil?
+      if s.mystocks.where("user_id=?", params[:uid]).first.nil?
         tmp["follow"]="false"
       else
         tmp["follow"]="true"
@@ -136,12 +136,21 @@ class ApijsonController < ApplicationController
   def new_micropost_json
     @micropost = Micropost.new(micropost_params)
     @micropost.randint=rand(100)
-    @micropost.stock_id=Stock.find_by_code(params[:micropost][:stock_id]).id
+    if Stock.find_by_code(params[:micropost][:stock_id]).nil?
+      @micropost.stock_id=nil
+    else
+      @micropost.stock_id=Stock.find_by_code(params[:micropost][:stock_id]).id
+    end
     @resp={}
     if @micropost.save
       @resp["result"]="ok"
     else
-      @resp["result"]="nook"
+
+      if @micropost.stock_id.nil?
+        @resp["result"]="stocknook"
+      else
+        @resp["result"]="nook"
+      end
     end
     render json: @resp.to_json
   end
@@ -471,7 +480,7 @@ class ApijsonController < ApplicationController
     user = User.authenticate_user(params[:username], params[:passwd])
     @resp={}
     if user
-      if  user.update_column(:mobile_toke, SecureRandom.urlsafe_base64)
+      if user.update_column(:mobile_toke, SecureRandom.urlsafe_base64)
         @resp["result"]="ok"
         @resp["token"]=user.mobile_toke;
         @resp["user_id"]=user.id
@@ -504,7 +513,7 @@ class ApijsonController < ApplicationController
     #   @resp["checkcode"]="ok"
     #new add
     if user
-    #add
+      #add
       @resp["checkemail"]="nook"
     else
       @user = User.new()
@@ -567,13 +576,15 @@ class ApijsonController < ApplicationController
       m.save
     end
     # unreadmsg.save
-    if messages.empty?
-      @resp["result"]="ok"
-      @resp["msgArray"]="[]"
-    else
-      @resp["result"]="ok"
-      @resp["msgArray"]=messages
-    end
+    # if messages.empty?
+    #   @resp["result"]="ok"
+    #   @resp["msgArray"]="[]"
+    # else
+    #   @resp["result"]="ok"
+    #   @resp["msgArray"]=messages
+    # end
+    @resp["result"]="ok"
+    @resp["msgArray"]=messages
     render json: @resp
   end
 
@@ -625,6 +636,22 @@ class ApijsonController < ApplicationController
         @msg["content"]="你有新的私信～"
         @msg["topshow"]="你有新的私信～"
         $redis.publish('static', @msg.to_json);
+
+        content={}
+        content_alert={}
+        content_alert["alert"]="你有新的私信～"
+        content["aps"]=content_alert
+
+        req_params={}
+        req_params.merge!({message: content.to_json,
+                           message_type: 1,
+                           account: "account"+params[:to_id].to_s})
+        begin
+          push_single_account(req_params)
+        rescue Exception => e
+          # push_single_account("1",0,content)
+        end
+
       else
         @resp["result"]="nook"
       end
