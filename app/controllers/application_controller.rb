@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     req_params.merge!({
                           access_id:2200120344,
                           timestamp:Time.now.to_i,
-                          environment:2  #生产环境用1
+                          environment:1  #生产环境用1
                       })
     p=req_params
     # p.merge!({message: message, message_type: message_type, account: account, access_id: access_id, timestamp: Time.now.to_i, environment: environment}
