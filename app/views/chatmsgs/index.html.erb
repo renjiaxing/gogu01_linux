@@ -1,0 +1,63 @@
+<div class="main">
+  <div class="container">
+    <ol class="breadcrumb margin-top-20">
+      <li class="active"><a href="#">推送信息</a></li>
+    </ol>
+    <div class="row margin-top-20 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-12 col-sm-12 blog-posts margin-top-10 margin-bottom-40">
+              <div class="portlet box red">
+                <div class="portlet-title">
+                  <div class="caption">
+                    推送股票
+                  </div>
+                </div>
+                <div class="portlet-body">
+                  <div class="table-toolbar">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="btn-group  margin-top-20 margin-bottom-20">
+                          <%= link_to '新建推送信息',new_chatmsg_path, class: 'btn btn-primary white-color', 'data-disable-with' => "提交中" %>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                      </div>
+                    </div>
+                  </div>
+                  <div id="sample_1_wrapper margin-bottom-30" class="dataTables_wrapper no-footer">
+                    <div class="table-scrollable">
+                      <%= grid(@grid_chatmsgs) do |g|
+
+                        g.column name: '序号', attribute: 'id' do |task|
+                          task.id
+                        end
+
+                        g.column name: '标题', attribute: 'title' do |task|
+                          task.title
+                        end
+
+                        g.column name: '内容', attribute: 'content' do |task|
+                          task.content
+                        end
+
+                        g.column name: '顶部信息', attribute: 'topshow' do |task|
+                          task.topshow
+                        end
+
+                      end -%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
