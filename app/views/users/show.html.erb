@@ -1,121 +1,55 @@
-<% if !@top_micropost.nil? %>
-    <section class="bg-oracle">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-sm-push-2">
+<div class="main">
+  <div class="container">
+    <ol class="breadcrumb margin-top-10">
+      <% if signed_in? %>
+          <li
+          <% if @item=="show" %> class="active"
+          <% end %>><a href="<%= user_path(current_user) %>">所有信息</a></li>
+          <li
+          <% if @item=="myshow" %> class="active"
+          <% end %>><a href="<%= myshow_users_path %>">我关注的信息</a></li>
+          <li
+          <% if @item=="stockinfo" %> class="active"
+          <% end %>><a href="<%= stockinfo_users_path %>">公告信息</a></li>
+          <li
+          <% if @item=="stocknoinfo" %> class="active"
+          <% end %>><a href="<%= stocknoinfo_users_path %>">非公告信息</a></li>
+      <% else %>
+          <li
+          <% if @item=="show" %> class="active"
+          <% end %>><a href="<%= user_path(0) %>">所有信息</a></li>
+      <% end %>
+    </ol>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-9 col-sm-9 blog-posts">
+              <%= render partial: "users/showform", locals: {microposts: @microposts} %>
 
-            <% if @top_micropost.content.size>100 %>
-                <% msg=@top_micropost.content[0, 99]+"..." %>
-            <% else %>
-                <% msg=@top_micropost.content %>
-            <% end %>
-
-            <% if @top_micropost.stock!=nil %>
-                <% if current_user.nil? %>
-                    <%= link_to @top_micropost.stock.name, new_session_path, class: "subtitle" %>
-                <% else %>
-                    <%= link_to @top_micropost.stock.name, show_stock_microposts_path(stock: {id: @top_micropost.stock.id.to_s}),
-                                method: :post, class: "subtitle" %>
-                <% end %>
-            <% else %>
-                <p class="subtitle">无公司绑定</p>
-            <% end %>
-            <%= link_to msg, details_micropost_path(@top_micropost), class: "micropost-details" %>
-            <% if  @top_micropost.user==current_user %>
-                <div class="row">
-                  <div class="col-sm-push-3 col-sm-3"><%= link_to "删除", delete_flag_comment_path(@top_micropost), class: "subtitle" %></div>
-                  <div class="col-sm-push-3 col-sm-3"><%= link_to "修改", edit_comment_path(@top_micropost), class: "subtitle" %></div>
-                </div>
-            <% end %>
-            <p class="subtitle"><%= time_ago_in_words @top_micropost.created_at %>以前</p>
-
-            <div class="row">
-              <div class="col-sm-4"> <%= link_to "回复："+@top_micropost.comments.size.to_s, details_micropost_path(@top_micropost), class: "subtitle" %></div>
-              <div class="col-sm-4" id="good<%= @top_micropost.id.to_s %>">
-                <%= render partial: "goodform", locals: {m: @top_micropost} %>
-              </div>
-              <% if current_user.nil? %>
-                  <div class="col-sm-4"> <%= link_to "私信：", new_session_path, class: "subtitle" %></div>
-              <% else %>
-                  <div class="col-sm-4"> <%= link_to "私信：", new_pmsg_path(mid: @top_micropost), class: "subtitle" %></div>
-              <% end %>
+              <%= paginate @microposts %>
 
             </div>
+            <!-- END LEFT SIDEBAR -->
+
+            <!-- BEGIN RIGHT SIDEBAR -->
+            <div class="col-md-3 col-sm-3 blog-sidebar">
+              <%= render partial: 'layouts/slider_right' %>
+            </div>
+            <!-- END RIGHT SIDEBAR -->
           </div>
         </div>
       </div>
-    </section>
-<% end %>
-
-<div class="container1">
-  <%= render partial: "showform", locals: {microposts: @microposts} %>
-</div>
-
-<div class="container">
-  <div class="row">
-    <h4 class="has-subtitle text-center">
-      <%= paginate @microposts %>
-    </h4>
+      <!-- END CONTENT -->
+    </div>
+    <!-- END SIDEBAR & CONTENT -->
   </div>
 </div>
 
-<a href="javascript:;" id="btn-top" title="回到顶部"></a>
 
-<script>
-    (function () {
-        $(document).ready(function () {
-            $(".container1").infinitescroll({
-                loading: {
-                    finished: undefined,
-                    finishedMsg: "<div class='text-center'>没有更多消息了～～</div>",
-                    img: null,
-                    msg: null,
-                    msgText: "<div class='text-center'>努力加载中～～</div>",
-                    selector: null,
-                    speed: 'fast',
-                    start: undefined
-                },
-                debug: true,
-                navSelector: "nav.pagination",
-                nextSelector: "nav.pagination a[rel=next]",
-                itemSelector: ".container1 section"
-            });
 
-            return $(window).scroll();
-        });
-    }).call(this);
 
-    (function () {
-        var obtn = document.getElementById('btn-top');
-        var clientheight = document.documentElement.clientHeight;
-        var isTop = true;
-        var timer;
 
-        window.onscroll = function () {
-            var osTop = document.documentElement.scrollTop || document.body.scrollTop;
-            if (osTop >= clientheight) {
-                obtn.style.display = 'block';
-            } else {
-                obtn.style.display = 'none';
-            }
-            if (!isTop) {
-                clearInterval(timer);
-            }
-            isTop = false;
-        }
-
-        obtn.onclick = function () {
-            timer = setInterval(function () {
-                        var osTop = document.documentElement.scrollTop || document.body.scrollTop;
-                        isTop = true;
-                        var ispeed = Math.floor(osTop / 6);
-                        document.documentElement.scrollTop = document.body.scrollTop = osTop - ispeed;
-                        if (osTop == 0) {
-                            clearInterval(timer);
-                        }
-                    },
-                    30
-            );
-        }
-    }).call(this);
-</script>

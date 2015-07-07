@@ -1,36 +1,53 @@
-<div class="login-page">
+<div class="main">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-6 col-sm-push-3">
-        <% if flash[:notice] %>
-            <h2 class="red-color"> <%= flash[:notice] %></h2>
-        <% end %>
-        <%= simple_form_for @pmsg, class: "contact-form" do |m| %>
-            <h2>发送私信</h2>
+    <ol class="breadcrumb margin-top-10">
+      <li><a href="<%= pmsgs_path %>">私信</a></li>
+      <li class="active">私信详情</li>
+      <!--<li class="active">Blog Page</li>-->
+    </ol>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-9 col-sm-9 blog-item">
 
-            <div class="form-group">
-              <%= m.input :msg, placeholder: "请输入内容", label: false, input_html: {class: 'form-control input-lg', rows: '8'} %>
-            </div>
-             <%= m.input :fromuser_id,label:false,as: :hidden,input_html:{ value:current_user.id}%>
-             <%= m.input :touser_id,label:false,as: :hidden ,input_html:{value:@touser.id}%>
+              <h2>私信详情</h2>
 
-            <div class="row">
-              <div class="col-sm-6" >
-                <div class="form-group">
-                  <%= m.submit "提交",class: 'form-control input-lg btn-success','data-disable-with' =>"提交中"%>
-                </div>
+              <div class="comments">
+                <%= render partial: "pmsgs", locals: {pmsgs: @pmsgs} %>
               </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%=link_back %>
-                </div>
+
+              <div class="post-comment padding-top-40">
+                <h3>写私信</h3>
+                <%= simple_form_for @pmsg do |m| %>
+                    <div class="form-group">
+                      <%= m.input :msg, label: false, input_html: {class: 'form-control', rows: '8'} %>
+                      <%= m.input :fromuser_id,label:false,as: :hidden,input_html:{ value:current_user.id}%>
+                      <%= m.input :touser_id,label:false,as: :hidden ,input_html:{value:@touser.id}%>
+                    </div>
+                      <%= m.submit "提交", class: 'btn btn-primary', 'data-disable-with' => "提交中" %>
+                <% end %>
               </div>
             </div>
 
-        <% end %>
+            <!-- END LEFT SIDEBAR -->
+
+            <!-- BEGIN RIGHT SIDEBAR -->
+            <div class="col-md-3 col-sm-3 blog-sidebar">
+              <%= render partial: 'layouts/slider_right' %>
+            </div>
+            <!-- END RIGHT SIDEBAR -->
+          </div>
+        </div>
       </div>
+      <!-- END CONTENT -->
     </div>
+    <!-- END SIDEBAR & CONTENT -->
   </div>
 </div>
+
 
 

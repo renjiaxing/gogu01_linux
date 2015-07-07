@@ -1,11 +1,13 @@
 class StocksController < ApplicationController
   before_action :check_signed_in,except: [:stock_json]
+  before_action :check_admin,only: [:show,:edit,:update,:destroy,:index,:create]
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
   # GET /stocks
   # GET /stocks.json
   def index
     @stocks = Stock.all
+    fresh_when(etag:[@stocks])
   end
 
   # GET /stocks/1
@@ -68,7 +70,12 @@ class StocksController < ApplicationController
 
   def show_stock_microposts
     @stock=Stock.find(params[:stock][:id])
-    @microposts=@stock.microposts.order(updated_at: :desc).page(params[:page]).per(6)
+    @microposts=@stock.microposts.order(updated_at: :desc).page(params[:page]).per(8)
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
+
+    @item="stock"
+
+    render 'users/show'
   end
 
   def stock_json
@@ -100,4 +107,11 @@ class StocksController < ApplicationController
       @user = current_user
     end
   end
+
+  def check_admin
+    if !current_user.admin?
+      redirect_to user_path(current_user)
+    end
+  end
+
 end

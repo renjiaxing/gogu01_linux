@@ -1,33 +1,43 @@
-<div class="login-page">
+<div class="main margin-bottom-80">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-6 col-sm-push-3">
-        <% if flash[:notice] %>
-            <h2 class="red-color"> <%= flash[:notice] %></h2>
-        <% end %>
-        <%= simple_form_for @mystock, class: "contact-form" do |m| %>
-            <h2>添加股票</h2>
-
-            <div class="form-group">
-              <input id="micropost_stock_name" class="form-control input-lg" placeholder="输入股票代码" name="micropost[stock_name]">
-              <input id="micropost_stock_id" type="hidden" name="mystock[stock_id]">
-              <input id="mystock_user_id" type="hidden" value="<%=current_user.id %>" name="mystock[user_id]">
-            </div>
-
-            <div class="row">
-              <div class="col-sm-6" >
-                <div class="form-group">
-                  <%= m.submit "提交",class: 'form-control input-lg btn-success','data-disable-with' =>"提交中"%>
+    <ol class="breadcrumb margin-top-20 margin-bottom-50">
+      <li><a href="<%= user_path(current_user) %>">所有信息</a></li>
+      <li><a href="<%= mystocks_path %>">关注股票</a></li>
+      <li class="active"><a href="#">添加关注股票</a></li>
+    </ol>
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-12 col-sm-12 blog-posts">
+              <div class="portlet box red">
+                <div class="portlet-title">
+                  <div class="caption">
+                    添加关注股票
+                  </div>
+                </div>
+                <div class="portlet-body form">
+                  <%= simple_form_for @mystock do |m| %>
+                      <div class="form-body">
+                        <div class="form-group">
+                          <h3 class="margin-top-10 margin-bottom-10">输入股票代码</h3>
+                          <input id="micropost_stock_name" name="micropost[stock_name]">
+                          <input id="micropost_stock_id" type="hidden" name="mystock[stock_id]">
+                          <input id="mystock_user_id" type="hidden" value="<%=current_user.id %>" name="mystock[user_id]">
+                        </div>
+                      </div>
+                      <div class="form-actions">
+                        <%= m.submit "提交", class: 'btn btn-primary', 'data-disable-with' => "提交中" %>
+                        <%= link_back %>
+                      </div>
+                  <% end %>
                 </div>
               </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%=link_back %>
-                </div>
-              </div>
             </div>
-
-        <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

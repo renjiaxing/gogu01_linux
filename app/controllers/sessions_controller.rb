@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  before_action :check_signed_in, except: :destroy
+  before_action :check_signed_in, except: [:destroy,:show]
 
   def new
   end
@@ -16,6 +16,12 @@ class SessionsController < ApplicationController
       flash.now.alert = "用户名或者密码错误！"
       render 'new'
     end
+  end
+
+  def show
+    sign_out
+    session_destroy
+    redirect_to root_url, notice: "Signed out successfully"
   end
 
   def destroy

@@ -27,7 +27,7 @@ class Comment < ActiveRecord::Base
     p result
   end
 
-  def self.save_comment(micropost, user, comment)
+  def self.save_comment(micropost, user, comment,apple_micro_push,apple_reply_push)
     anon=micropost.anons.find_by_anonuser_id(user.id)
     if anon.nil?
       micropost.anonusers.push(user)
@@ -57,20 +57,24 @@ class Comment < ActiveRecord::Base
       msg["user_id"]=micropost.user_id
       $redis.publish('static', msg.to_json)
 
-      content={}
-      content_alert={}
-      content_alert["alert"]="你有新的回复～"
-      content["aps"]=content_alert
+      # touser=User.find(params[:pmsg][:touser_id])
+      if apple_micro_push
+        content={}
+        content_alert={}
+        content_alert["alert"]="你有新的回复～"
+        content["aps"]=content_alert
 
-      req_params={}
-      req_params.merge!({message: content.to_json,
-                         message_type: 1,
-                         account: "account"+micropost.user_id.to_s})
-      begin
-        self.push_single_account(req_params)
-      rescue Exception => e
-        # push_single_account("1",0,content)
+        req_params={}
+        req_params.merge!({message: content.to_json,
+                           message_type: 1,
+                           account: "account"+micropost.user_id.to_s})
+        begin
+          self.push_single_account(req_params)
+        rescue Exception => e
+          # push_single_account("1",0,content)
+        end
       end
+
     end
 
     reply=Replyrelationship.find_by(replyuser_id: user.id, replymicropost_id: micropost.id)
@@ -96,15 +100,18 @@ class Comment < ActiveRecord::Base
       content_alert["alert"]="你回复的帖子有新的回复～"
       content["aps"]=content_alert
 
-      req_params={}
-      req_params.merge!({message: content.to_json,
-                         message_type: 1,
-                         account: "account"+r.replyuser_id.to_s})
-      begin
-        self.push_single_account(req_params)
-      rescue Exception => e
-        # push_single_account("1",0,content)
+      if apple_reply_push
+        req_params={}
+        req_params.merge!({message: content.to_json,
+                           message_type: 1,
+                           account: "account"+r.replyuser_id.to_s})
+        begin
+          self.push_single_account(req_params)
+        rescue Exception => e
+          # push_single_account("1",0,content)
+        end
       end
+
     end
 
 

@@ -1,72 +1,53 @@
 <% microposts.each_with_index do |m, i| %>
-    <section
-    <% if i%2==0 %>class="bg-yellow"
-    <% else %>class="bg-white"
-    <% end %>>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-sm-push-2">
-            <% content=m.content %>
-            <% if !content.index("<a").nil? %>
-                <% content=content[0,content.index("<a")]+" 点击下载" %>
-            <% end %>
-            <% if content.size>100 %>
-                <% msg=content[0, 99]+"..." %>
-            <% else %>
-                <% msg=content %>
-            <% end %>
+    <div class="row">
+      <% content=m.content %>
+      <% if !content.index("http://www.hkexnews.hk").nil? %>
+          <% content=content[0, content.index("http://www.hkexnews.hk")]+" 点击链接" %>
+      <% end %>
+      <% if content.size>100 %>
+          <% msg=content[0, 99]+"..." %>
+      <% else %>
+          <% msg=content %>
+      <% end %>
 
-            <% if m.stock!=nil %>
+      <div class="col-md-12 col-sm-12">
+        <ul class="blog-info">
+          <% if m.stock!=nil %>
+              <li>
+                <i class="fa fa-tags"></i><%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
+                                                      method: :post %></li>
+          <% else %>
+              <li><i class="fa fa-tags"></i>无公司绑定</li>
+          <% end %>
 
-                <div class="row">
-                  <% if  current_user.nil? %>
-                      <%= link_to m.stock.name, new_session_path, class: "subtitle" %>
-                  <% else %>
-                      <%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
-                                  method: :post, class: "subtitle" %>
-                  <% end %>
-                </div>
-            <% else %>
-                <div class="row">
-                  <p class="subtitle">无公司绑定</p>
-                </div>
-            <% end %>
-            <div class="row">
-              <% if m.image.to_s!="" %>
-
-                  <div class="col-sm-4">
-                    <%= image_tag m.image_url %>
-                  </div>
-                  <div class="col-sm-8">
+        </ul>
+        <h2>
+          <%= content %>
+        </h2>
+        <% if m.image.to_s!="" %>
+            <%= image_tag(m.image_url, size: "50x50") %>
+        <% end %>
+        <ul class="blog-info">
+          <li><i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at %>以前</li>
+          <li><i class="fa fa-comments"></i><%= m.comments.size.to_s %></li>
+          <% if signed_in? %>
+              <li id="good<%= m.id.to_s %>"><%= render partial: "goodform", locals: {m: m} %></li>
+              <li><i class="fa fa-comment"></i>
+                <% if current_user.nil? %>
+                    <%= link_to "私信", new_session_path %>
+                <% else %>
+                    <%= link_to "私信", new_pmsg_path(mid: m) %>
+                <% end %>
+              </li>
+              <% if m.user==current_user %>
+                  <li><i class="fa fa-pencil"></i><%= link_to "修改", edit_micropost_path(m) %></li>
+                  <li><i class="fa fa-trash"></i><%= link_to "删除", delete_flag_micropost_path(m) %></li>
               <% end %>
+          <% end %>
 
-              <%= link_to msg, details_micropost_path(m), class: "micropost-details" %>
-
-              <% if m.image.to_s!="" %>
-                  </div>
-              <% end %>
-            </div>
-            <% if m.user==current_user %>
-                <div class="row">
-                  <div class="col-sm-push-3 col-sm-3"><%= link_to "删除", delete_flag_micropost_path(m), class: "subtitle" %></div>
-                  <div class="col-sm-push-3 col-sm-3"><%= link_to "修改", edit_micropost_path(m), class: "subtitle" %></div>
-                </div>
-            <% end %>
-            <p class="subtitle"><%= time_ago_in_words m.created_at %>以前</p>
-
-            <div class="row">
-              <div class="col-sm-4"> <%= link_to "回复："+m.comments.size.to_s, details_micropost_path(m), class: "subtitle" %></div>
-              <div class="col-sm-4" id="good<%= m.id.to_s %>">
-                <%= render partial: "goodform", locals: {m: m} %>
-              </div>
-              <% if current_user.nil? %>
-                  <div class="col-sm-4"> <%= link_to "私信", new_session_path, class: "subtitle" %></div>
-              <% else %>
-                  <div class="col-sm-4"> <%= link_to "私信", new_pmsg_path(mid: m), class: "subtitle" %></div>
-              <% end %>
-            </div>
-          </div>
-        </div>
+        </ul>
+        <a href="<%= details_micropost_path(m) %>" class="more">查看详情<i class="icon-angle-right"></i></a>
       </div>
-    </section>
+    </div>
+    <hr class="blog-post-sep">
 <% end %>

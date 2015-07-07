@@ -1,6 +1,7 @@
 class MicropostsController < ApplicationController
   before_action :check_signed_in, except: [:details]
-  before_action :find_micropost, only: [:details, :add_good, :cancel_good, :edit, :update, :delete_flag]
+  before_action :find_micropost, only: [:details, :add_good, :cancel_good, :edit, :update, :delete_flag,
+                                        :add_good_micropost, :cancel_good_micropost]
 
   def new
     @micropost=current_user.microposts.build
@@ -44,6 +45,7 @@ class MicropostsController < ApplicationController
 
   def details
     @comments=@micropost.comments.where(visible: true).order(:updated_at)
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
     if !current_user.nil?
       @unreadmicropost=current_user.unreadrelations.find_by_unreadmicropost_id(@micropost.id)
       if !@unreadmicropost.nil?
@@ -56,6 +58,8 @@ class MicropostsController < ApplicationController
         unreply[0].save
       end
     end
+
+    # fresh_when(etag:[@comments,@unreadmicropost])
   end
 
   def add_good
@@ -66,6 +70,16 @@ class MicropostsController < ApplicationController
   def cancel_good
     current_user.begoods.delete(@micropost)
     redirect_to action: "show", controller: "users", id: current_user.id, micropost_id: @micropost.id
+  end
+
+  def add_good_micropost
+    current_user.begoods<<@micropost
+    redirect_to action: "details", id: @micropost.id
+  end
+
+  def cancel_good_micropost
+    current_user.begoods.delete(@micropost)
+    redirect_to action: "details", id: @micropost.id
   end
 
   private

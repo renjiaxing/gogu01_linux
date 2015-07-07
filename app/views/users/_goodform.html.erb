@@ -1,9 +1,9 @@
 <% if current_user.nil? %>
-    <%= link_to m.goods.size.to_s+"个赞", new_session_path, class: "subtitle" %>
+    <li><i class="fa fa-heart"></i><%= link_to m.goods.size.to_s, new_session_path%>
 <% elsif current_user.begoods.exists?(m) %>
-    <%= link_to m.goods.size.to_s+"个赞 取消赞", cancel_good_micropost_path(m),
-                remote: true, class: "subtitle" %>
+    <li><i class="fa fa-heart"></i><%= link_to m.goods.size.to_s, cancel_good_micropost_path(m),
+                remote: true %>
 <% else %>
-    <%= link_to m.goods.size.to_s+"个赞 点赞", add_good_micropost_path(m),
-                remote: true, class: "subtitle" %>
+    <li><i class="fa fa-heart" style="color: #151f28"></i><%= link_to m.goods.size.to_s, add_good_micropost_path(m),
+                remote: true %>
 <% end %>

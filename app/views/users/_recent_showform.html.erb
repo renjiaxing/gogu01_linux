@@ -1,0 +1,20 @@
+<% new_microposts.each do |m| %>
+
+    <% content=m.content %>
+    <% if !content.index("http://www.hkexnews.hk").nil? %>
+        <% content=content[0, content.index("http://www.hkexnews.hk")]+" 点击链接" %>
+    <% end %>
+    <% if content.size>100 %>
+        <% msg=content[0, 99]+"..." %>
+    <% else %>
+        <% msg=content %>
+    <% end %>
+
+    <div class="row margin-bottom-10">
+      <div class="col-md-9 recent-news-inner" style="margin-left: 15px">
+        <h3><%=content%></h3>
+
+        <p style="margin-top:10px"><a style="color: #e45000" href="<%= details_micropost_path(m) %>">查看详情</a></p>
+      </div>
+    </div>
+<% end %>

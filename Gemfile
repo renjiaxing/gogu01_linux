@@ -85,6 +85,8 @@ gem 'rails_admin'
 
 gem 'faraday'
 
+gem 'oneapm_rpm'
+
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'

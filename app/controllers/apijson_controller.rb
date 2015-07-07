@@ -5,8 +5,86 @@ class ApijsonController < ApplicationController
 
   def version_json
     tmp={}
-    tmp["version"]=11
+    tmp["version"]=12
     render json: tmp
+  end
+
+  def active_apple_micro_push_json
+    user=User.find(params[:uid])
+    user.update_column(:apple_micro_push,1);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def deactive_apple_micro_push_json
+    user=User.find(params[:uid])
+    user.update_column(:apple_micro_push,0);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def active_apple_reply_push_json
+    user=User.find(params[:uid])
+    user.update_column(:apple_reply_push,1);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def deactive_apple_reply_push_json
+    user=User.find(params[:uid])
+    user.update_column(:apple_reply_push,0);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def active_apple_chat_push_json
+    user=User.find(params[:uid])
+    user.update_column(:apple_chat_push,1);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def deactive_apple_chat_push_json
+    user=User.find(params[:uid])
+    user.update_column(:apple_chat_push,0);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def my_push_info_json
+    user=User.find(params[:uid])
+    resp={}
+    if user.apple_chat_push
+      resp[:apple_chat_push]="true"
+    else
+      resp[:apple_chat_push]="no"
+    end
+
+    if user.apple_micro_push
+      resp[:apple_micro_push]="true"
+    else
+      resp[:apple_micro_push]="no"
+    end
+    if user.apple_reply_push
+      resp[:apple_reply_push]="true"
+    else
+      resp[:apple_reply_push]="no"
+    end
+
+
+    render json:resp
   end
 
   def main_json
@@ -453,7 +531,7 @@ class ApijsonController < ApplicationController
     comment.user=user
     @resp={}
     if comment.save
-      Comment.save_comment(@micropost, user, comment)
+      Comment.save_comment(@micropost, user, comment,user.apple_micro_push,user.apple_reply_push)
 
       @resp["result"]="ok"
       @resp["comments"]=Micropost.find(params[:mid]).comments.where(visible: true)
@@ -637,20 +715,25 @@ class ApijsonController < ApplicationController
         @msg["topshow"]="你有新的私信～"
         $redis.publish('static', @msg.to_json);
 
-        content={}
-        content_alert={}
-        content_alert["alert"]="你有新的私信～"
-        content["aps"]=content_alert
+        touser=User.find(params[:to_id])
+        if touser.apple_chat_push
+          content={}
+          content_alert={}
+          content_alert["alert"]="你有新的私信～"
+          content["aps"]=content_alert
 
-        req_params={}
-        req_params.merge!({message: content.to_json,
-                           message_type: 1,
-                           account: "account"+params[:to_id].to_s})
-        begin
-          push_single_account(req_params)
-        rescue Exception => e
-          # push_single_account("1",0,content)
+          req_params={}
+          req_params.merge!({message: content.to_json,
+                             message_type: 1,
+                             account: "account"+params[:to_id].to_s})
+          begin
+            push_single_account(req_params)
+          rescue Exception => e
+            # push_single_account("1",0,content)
+          end
         end
+
+
 
       else
         @resp["result"]="nook"

@@ -1,0 +1,27 @@
+<% @comments.each_with_index do |c, i| %>
+    <!--end media-->
+    <div class="media">
+      <!--<a href="javascript:;" class="pull-left">-->
+      <% if signed_in? %>
+          <img src="/user_pic/<%= (c.anonid.to_i+current_user.randint)%100 %>.png" alt="" class="pull-left media-object">
+      <% end %>
+      <!--</a>-->
+      <div class="media-body">
+        <h3><%= c.msg %></h3>
+        <ul class="blog-info2">
+          <li><i class="fa fa-calendar"></i><%= time_ago_in_words c.created_at %>以前</li>
+          <li><i class="fa fa-comment"></i>
+            <% if current_user.nil? %>
+                <%= link_to "私信", new_session_path %>
+            <% else %>
+                <%= link_to "私信", new_pmsg_path(uid: c.user.id) %>
+            <% end %>
+          </li>
+          <% if c.user==current_user %>
+              <li><i class="fa fa-trash"></i><%= link_to "删除", delete_flag_comment_path(c) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <!--end media-->
+<% end %>

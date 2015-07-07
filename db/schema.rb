@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324023856) do
+ActiveRecord::Schema.define(version: 20150613121444) do
 
   create_table "advices", force: true do |t|
     t.string   "title"
@@ -148,6 +148,9 @@ ActiveRecord::Schema.define(version: 20150324023856) do
     t.boolean  "admin",                default: false
     t.integer  "anonnum",              default: 1
     t.integer  "randint",              default: 0
+    t.boolean  "apple_micro_push",     default: true
+    t.boolean  "apple_reply_push",     default: true
+    t.boolean  "apple_chat_push",      default: true
   end
 
 end

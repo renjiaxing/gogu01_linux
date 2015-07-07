@@ -1,5 +1,5 @@
 class MystocksController < ApplicationController
-  before_action :set_mystock, only: [:show, :edit, :update, :destroy]
+  before_action :set_mystock, only: [:show, :edit, :update, :destroy,:delete_mystock]
 
   # GET /mystocks
   # GET /mystocks.json
@@ -58,6 +58,14 @@ class MystocksController < ApplicationController
   # DELETE /mystocks/1
   # DELETE /mystocks/1.json
   def destroy
+    @mystock.destroy
+    respond_to do |format|
+      format.html { redirect_to mystocks_path, notice: 'mystock was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def delete_mystock
     @mystock.destroy
     respond_to do |format|
       format.html { redirect_to mystocks_path, notice: 'mystock was successfully destroyed.' }

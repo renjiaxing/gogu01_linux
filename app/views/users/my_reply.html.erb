@@ -1,0 +1,33 @@
+<div class="main">
+  <div class="container">
+    <ol class="breadcrumb margin-top-10">
+      <li><a href="<%= user_path(current_user) %>">所有信息</a></li>
+      <li class="active"><a href="#">我发布的信息</a></li>
+      <!--<li class="active">Blog Page</li>-->
+    </ol>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-9 col-sm-9 blog-posts">
+              <%= render partial: "unread_msg_showform", locals: {microposts: @microposts} %>
+              <%= paginate @microposts %>
+            </div>
+            <!-- END LEFT SIDEBAR -->
+
+            <!-- BEGIN RIGHT SIDEBAR -->
+            <div class="col-md-3 col-sm-3 blog-sidebar">
+              <%= render partial: 'layouts/slider_right' %>
+            </div>
+            <!-- END RIGHT SIDEBAR -->
+          </div>
+        </div>
+      </div>
+      <!-- END CONTENT -->
+    </div>
+    <!-- END SIDEBAR & CONTENT -->
+  </div>
+</div>

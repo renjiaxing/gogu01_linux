@@ -28,14 +28,20 @@ class UsersController < ApplicationController
     if !user.nil?
       @top_micropost=user.microposts.where(visible:true).order(created_at: :desc).limit(1)[0]
     end
-    @microposts=Micropost.where(visible: true).order(created_at:  :desc).page(params[:page]).per(6)
+    @microposts=Micropost.where(visible: true).order(created_at:  :desc).page(params[:page]).per(8)
     if (!params[:micropost_id].nil?)
       @micropost=Micropost.find(params[:micropost_id])
     end
-    respond_to do |format|
-      format.html
-      format.js # add this line for your js template
-    end
+
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
+
+    @item="show"
+
+    # fresh_when(etag:[@top_micropost,@microposts])
+    # respond_to do |format|
+    #   format.html
+    #   format.js # add this line for your js template
+    # end
   end
 
   def myshow
@@ -47,10 +53,31 @@ class UsersController < ApplicationController
     if !user.nil?
       @top_micropost=user.microposts.where(visible:true).order(created_at: :desc).limit(1)[0]
     end
-    @microposts=Micropost.where(stock:user_stocks,visible: true).order(created_at:  :desc).page(params[:page]).per(6)
+    @microposts=Micropost.where(stock:user_stocks,visible: true).order(created_at:  :desc).page(params[:page]).per(8)
     if (!params[:micropost_id].nil?)
       @micropost=Micropost.find(params[:micropost_id])
     end
+
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
+
+    @item="myshow"
+
+    render 'show'
+
+    # fresh_when(etag:[@top_micropost,@microposts])
+  end
+
+  def stockinfo
+    @microposts=Micropost.where(microtype:1,visible: true).order(created_at: :desc).page(params[:page]).per(8)
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
+    @item="stockinfo"
+    render 'show'
+  end
+
+  def stocknoinfo
+    @microposts=Micropost.where(microtype:0,visible: true).order(created_at: :desc).page(params[:page]).per(8)
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
+    @item="stocknoinfo"
     render 'show'
   end
 
@@ -80,8 +107,21 @@ class UsersController < ApplicationController
 
   end
 
+  def my_info
+
+  end
+
+  def my_reply
+    @microposts=Micropost.joins(:replyrelationships).
+        where("microposts.visible=? and replyrelationships.replyuser_id=?",
+              true, current_user.id).order("microposts.created_at desc").page(params[:page]).per(6)
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
+  end
+
   def my_msg
     @microposts=Micropost.where("user_id=? AND visible=?", current_user.id, true).order(updated_at: :desc).page(params[:page]).per(6)
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
+    # fresh_when(etag:[@microposts])
   end
 
   def unread_msg
@@ -106,8 +146,8 @@ class UsersController < ApplicationController
   end
 
   def update_inform
-    @user=current_user
-    if @user.update_attributes(user_params)
+    user=current_user
+    if @user.update_attribute(:name, params[:user][:name]) && @user.update_attribute(:phone, params[:user][:phone])
       redirect_to user_path(current_user), notice: "信息修改成功"
     else
       render "pre_update_inform"
@@ -117,6 +157,10 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation,:randint)
+  end
+
+  def user_nopasswd_params
+    params.require(:user).permit(:name, :email, :phone)
   end
 
   def check_signed_in

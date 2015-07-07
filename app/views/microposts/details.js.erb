@@ -1,0 +1,1 @@
+$("#good<%=@micropost.id%>").replaceWith("<%= escape_javascript(render partial: "goodform",locals: {m:@micropost} ) %>")

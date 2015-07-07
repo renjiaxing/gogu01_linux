@@ -2,15 +2,76 @@ class PmsgsController < ApplicationController
   before_action :set_pmsg, only: [:show, :edit, :update, :destroy]
 
   def index
-    @msgs=Pmsg.where("fromuser_id=? or touser_id=?", current_user.id, current_user.id).order(created_at: :desc)
+
+    p1=Pmsg.where("fromuser_id=?", current_user.id)
+    p2=Pmsg.where("touser_id=?", current_user.id)
+    u=current_user
+
+    tmp1=[]
+    p1.each do |p|
+      t={}
+      t["touser"]=p.touser_id
+      t["anon"]=p.anonnum
+      tmp1<<t
+    end
+
+    tmp2=[]
+    p2.each do |p|
+      t={}
+      t["touser"]=p.fromuser_id
+      t["anon"]=p.anontonum
+      tmp2<<t
+    end
+    @msginfo=tmp1|tmp2
+
+    # tmp_unread=[]
+    tmp_read=[]
+
+    @msginfo.each do |t|
+      unread=Unreadmsg.where("msgfrom_id=? and msgto_id=?", current_user.id, t["touser"]).first
+      tmp=Pmsg.where("(fromuser_id=? and touser_id=?) or (touser_id=? and fromuser_id=?)",
+                     t["touser"], current_user.id, t["touser"], current_user.id).order("created_at desc")[0]
+      # tmp.touser_id=t["touser"]
+      if !unread.nil?
+        tmp_read<<tmp
+      else
+        tmp=Pmsg.where("(fromuser_id=? and touser_id=?) or (touser_id=? and fromuser_id=?)", t["touser"], current_user.id, t["touser"], current_user.id)[0]
+        # tmp.touser_id=t["touser"]
+        tmp_read<<tmp
+      end
+
+    end
+    @pmsgs=tmp_read.sort_by { |t| t.created_at }.reverse
+
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
+    # fresh_when(etag:[@msgs])
   end
 
   def new
     @pmsg=Pmsg.new
+    @new_microposts=Micropost.where(visible: true).order("created_at desc").limit(6)
+
     if !params[:mid].nil?
       @touser=Micropost.find(params[:mid]).user
+      @pmsgs=Pmsg.where("(fromuser_id=? AND touser_id=?) OR (fromuser_id=? AND touser_id=?)",
+                        current_user, Micropost.find(params[:mid]).user_id,
+                        Micropost.find(params[:mid]).user_id, current_user).order("created_at")
+      unreadmsg=Unreadmsg.where("(msgfrom_id=? and msgto_id=?) OR (msgto_id=? and msgfrom_id=?)",
+                                current_user, Micropost.find(params[:mid]).user_id,
+                                Micropost.find(params[:mid]).user_id, current_user)
     elsif !params[:uid].nil?
       @touser=User.find(params[:uid])
+      @pmsgs=Pmsg.where("(fromuser_id=? AND touser_id=?) OR (fromuser_id=? AND touser_id=?)",
+                        current_user, params[:uid],
+                        params[:uid], current_user).order("created_at")
+      unreadmsg=Unreadmsg.where("(msgfrom_id=? and msgto_id=?) OR (msgto_id=? and msgfrom_id=?)",
+                                current_user, params[:uid],
+                                params[:uid], current_user)
+    end
+
+    unreadmsg.each do |m|
+      m.msgunread=0
+      m.save
     end
   end
 
@@ -55,27 +116,31 @@ class PmsgsController < ApplicationController
         @msg["content"]="你有新的私信～"
         @msg["topshow"]="你有新的私信～"
         $redis.publish('static', @msg.to_json);
-        redirect_to pmsgs_path
 
-        content={}
-        content_alert={}
-        content_alert["alert"]="你有新的私信～"
-        content["aps"]=content_alert
+        touser=User.find(params[:pmsg][:touser_id])
+        if touser.apple_chat_push
+          content={}
+          content_alert={}
+          content_alert["alert"]="你有新的私信～"
+          content["aps"]=content_alert
 
-        req_params={}
-        req_params.merge!({message: content.to_json,
-                           message_type: 1,
-                           account: "account"+params[:pmsg][:touser_id].to_s})
-        begin
-          push_single_account(req_params)
-        rescue Exception => e
-          # push_single_account("1",0,content)
+          req_params={}
+          req_params.merge!({message: content.to_json,
+                             message_type: 1,
+                             account: "account"+params[:pmsg][:touser_id].to_s})
+          begin
+            push_single_account(req_params)
+          rescue Exception => e
+            # push_single_account("1",0,content)
+          end
         end
+
+        redirect_to action: 'new', uid: params[:pmsg][:touser_id]
       else
-        redirect_to :new
+        redirect_to action: 'new', uid: params[:pmsg][:touser_id]
       end
     else
-      redirect_to :new
+      redirect_to action: 'new', uid: params[:pmsg][:touser_id]
     end
 
   end

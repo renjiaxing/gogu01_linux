@@ -1,0 +1,20 @@
+<% pmsgs.each_with_index do |c, i| %>
+    <!--end media-->
+    <div class="media">
+      <!--<a href="javascript:;" class="pull-left">-->
+      <% if c.fromuser==current_user %>
+          <img src="/user_pic/<%= (current_user.randint)%100 %>.png" alt="" class="pull-left media-object">
+      <% else %>
+          <img src="/user_pic/<%= (c.anontonum+current_user.randint)%100 %>.png" alt="" class="pull-left media-object">
+      <% end %>
+      <!--</a>-->
+      <div class="media-body">
+        <h3><%= c.msg %></h3>
+        <ul class="blog-info2">
+          <li><i class="fa fa-calendar"></i><%= time_ago_in_words c.created_at %>以前</li>
+          <!--<li><i class="fa fa-trash"></i><%= link_to "删除", delete_flag_comment_path(c) %></li>-->
+        </ul>
+      </div>
+    </div>
+    <!--end media-->
+<% end %>

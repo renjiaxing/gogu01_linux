@@ -10,8 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
+//= require fronted/jquery.min.js
 //= require twitter/bootstrap
 //= require turbolinks
 //= require jquery.ui.autocomplete

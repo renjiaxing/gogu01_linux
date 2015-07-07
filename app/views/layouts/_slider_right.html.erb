@@ -1,0 +1,91 @@
+<!-- CATEGORIES START -->
+
+<% if signed_in? %>
+    <div class="portlet box red margin-bottom-40">
+      <div class="portlet-title">
+        <div class="caption">
+          新建信息
+        </div>
+      </div>
+      <div class="portlet-body">
+        <a href="<%= new_micropost_path %>">
+          <button type="button" class="btn btn-primary">新建信息</button>
+        </a>
+      </div>
+    </div>
+<% end %>
+
+<h2 class="no-top-space">信息分类</h2>
+<ul class="nav sidebar-categories margin-bottom-40">
+  <% if signed_in? %>
+      <li><a href="<%= user_path(current_user) %>">所有信息</a></li>
+      <li><a href="<%= myshow_users_path(current_user) %>">我关注信息</a></li>
+      <li><a href="<%= stockinfo_users_path %>">公告信息</a></li>
+      <li><a href="<%= stocknoinfo_users_path %>">非公告信息</a></li>
+  <% else %>
+      <li><a href="<%= user_path(0) %>">所有信息</a></li>
+  <% end %>
+
+</ul>
+<!-- CATEGORIES END -->
+
+<!-- BEGIN RECENT NEWS -->
+<h2>最新消息</h2>
+
+<div class="recent-news margin-bottom-10">
+  <%= render partial: "users/recent_showform", locals: {new_microposts: @new_microposts} %>
+</div>
+<!-- END RECENT NEWS -->
+
+<!-- BEGIN BLOG TALKS -->
+<!--<div class="blog-talks margin-bottom-30">-->
+<!--<h2>Popular Talks</h2>-->
+<!--<div class="tab-style-1">-->
+<!--<ul class="nav nav-tabs">-->
+<!--<li class="active"><a data-toggle="tab" href="#tab-1">Multipurpose</a></li>-->
+<!--<li><a data-toggle="tab" href="#tab-2">Documented</a></li>-->
+<!--</ul>-->
+<!--<div class="tab-content">-->
+<!--<div id="tab-1" class="tab-pane row-fluid fade in active">-->
+<!--<p class="margin-bottom-10">Raw denim you probably haven't heard of them jean shorts Austin. eu banh mi, qui irure terry richardson ex squid Aliquip placeat salvia cillum iphone.</p>-->
+<!--<p><a class="more" href="javascript:;">Read more</a></p>-->
+<!--</div>-->
+<!--<div id="tab-2" class="tab-pane fade">-->
+<!--<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. aliquip jean shorts ullamco ad vinyl aesthetic magna delectus mollit. Keytar helvetica VHS salvia..</p>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!-- END BLOG TALKS -->
+
+<!-- BEGIN BLOG PHOTOS STREAM -->
+<!--<div class="blog-photo-stream margin-bottom-20">-->
+<!--<h2>Photos Stream</h2>-->
+<!--<ul class="list-unstyled">-->
+<!--<li><a href="javascript:;"><icon alt="" src="../../assets/frontend/pages/icon/people/img5-small.jpg"></a></li>-->
+<!--<li><a href="javascript:;"><icon alt="" src="../../assets/frontend/pages/icon/works/img1.jpg"></a></li>-->
+<!--<li><a href="javascript:;"><icon alt="" src="../../assets/frontend/pages/icon/people/img4-large.jpg"></a></li>-->
+<!--<li><a href="javascript:;"><icon alt="" src="../../assets/frontend/pages/icon/works/img6.jpg"></a></li>-->
+<!--<li><a href="javascript:;"><icon alt="" src="../../assets/frontend/pages/icon/pics/img1-large.jpg"></a></li>-->
+<!--<li><a href="javascript:;"><icon alt="" src="../../assets/frontend/pages/icon/pics/img2-large.jpg"></a></li>-->
+<!--<li><a href="javascript:;"><icon alt="" src="../../assets/frontend/pages/icon/works/img3.jpg"></a></li>-->
+<!--<li><a href="javascript:;"><icon alt="" src="../../assets/frontend/pages/icon/people/img2-large.jpg"></a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!-- END BLOG PHOTOS STREAM -->
+
+<!-- BEGIN BLOG TAGS -->
+<!--<div class="blog-tags margin-bottom-20">-->
+<!--<h2>Tags</h2>-->
+<!--<ul>-->
+<!--<li><a href="javascript:;"><i class="fa fa-tags"></i>OS</a></li>-->
+<!--<li><a href="javascript:;"><i class="fa fa-tags"></i>Metronic</a></li>-->
+<!--<li><a href="javascript:;"><i class="fa fa-tags"></i>Dell</a></li>-->
+<!--<li><a href="javascript:;"><i class="fa fa-tags"></i>Conquer</a></li>-->
+<!--<li><a href="javascript:;"><i class="fa fa-tags"></i>MS</a></li>-->
+<!--<li><a href="javascript:;"><i class="fa fa-tags"></i>Google</a></li>-->
+<!--<li><a href="javascript:;"><i class="fa fa-tags"></i>Keenthemes</a></li>-->
+<!--<li><a href="javascript:;"><i class="fa fa-tags"></i>Twitter</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!-- END BLOG TAGS -->

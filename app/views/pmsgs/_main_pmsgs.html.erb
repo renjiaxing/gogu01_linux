@@ -1,0 +1,25 @@
+<% pmsgs.each_with_index do |c, i| %>
+    <!--end media-->
+    <div class="media">
+      <% if c.fromuser==current_user %>
+          <% msgunread=Unreadmsg.where('msgfrom_id=? and msgto_id=?',c.fromuser,c.touser).first %>
+          <img src="/user_pic/<%= (c.anonnum+current_user.randint)%100 %>.png" alt="" class="pull-left media-object">
+      <% else %>
+          <% msgunread=Unreadmsg.where('msgfrom_id=? and msgto_id=?',c.touser,c.fromuser).first %>
+          <img src="/user_pic/<%= (c.anontonum+current_user.randint)%100 %>.png" alt="" class="pull-left media-object">
+      <% end %>
+      <div class="media-body">
+        <h3>
+          <% if !msgunread.nil? && msgunread.msgunread>0 %>
+              <span class="badge badge-danger"><%= msgunread.msgunread %></span>
+          <% end %>
+          <%= link_to c.msg, new_pmsg_path(uid: c.touser_id) %>
+        </h3>
+        <ul class="blog-info2">
+          <li><i class="fa fa-calendar pull-right"></i><%= time_ago_in_words c.created_at %>以前</li>
+          <!--<li><i class="fa fa-trash"></i><%= link_to "删除", delete_flag_comment_path(c) %></li>-->
+        </ul>
+      </div>
+    </div>
+    <!--end media-->
+<% end %>

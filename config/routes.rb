@@ -18,14 +18,19 @@ Rails.application.routes.draw do
 
   resources :chatmsgs
 
-  resources :mystocks
+  resources :mystocks do
+    member do
+      get 'delete_mystock'
+    end
+  end
 
   get 'static_pages/index'
   post 'static_pages/index'
 
   resources :users do
     collection do
-      get 'my_msg', 'unread_msg', 'pre_update_passwd', 'pre_update_inform','myshow'
+      get 'my_msg', 'unread_msg', 'pre_update_passwd', 'pre_update_inform','myshow','my_info','my_reply',
+          'stockinfo','stocknoinfo'
       post 'update_passwd', 'update_inform'
     end
   end
@@ -36,7 +41,7 @@ Rails.application.routes.draw do
 
   resources :microposts do
     member do
-      get 'details', 'add_good', 'cancel_good', 'delete_flag'
+      get 'details', 'add_good', 'cancel_good', 'delete_flag', 'add_good_micropost', 'cancel_good_micropost'
     end
   end
 
@@ -47,15 +52,16 @@ Rails.application.routes.draw do
   end
 
   get 'choose_stock', to: 'stocks#choose_stock', as: :choose_stock
-  post 'show_stock_microposts', to: 'stocks#show_stock_microposts', as: :show_stock_microposts
+  get 'show_stock_microposts', to: 'stocks#show_stock_microposts', as: :show_stock_microposts
 
   resources :apijson do
     collection do
       get 'version_json', 'forget_password_json', 'microposts_json', 'up_microposts_json', 'down_microposts_json',
           'detail_micropost_json', 'del_micropost_json', 'login_json', 'login_token_json', 'del_comment_json',
-          'mystock_json','check_stock_json','main_json'
+          'mystock_json','check_stock_json','main_json','my_push_info_json'
       post 'change_password_json', 'new_advice_json', 'new_micropost_json', "change_micropost_json", 'new_comment_json',
-           'reg_json','addstock_json','delstock_json'
+           'reg_json','addstock_json','delstock_json','active_apple_micro_push_json','deactive_apple_micro_push_json',
+          'active_apple_reply_push_json','deactive_apple_reply_push_json','active_apple_chat_push_json','deactive_apple_chat_push_json'
     end
   end
 

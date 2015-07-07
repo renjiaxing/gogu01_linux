@@ -1,95 +1,86 @@
-<div class="container1">
-  <div class="bg-yellow">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-sm-push-2 msg">
-          <p class="micropost-details"><%= raw(@micropost.content) %></p>
-
-          <p class="subtitle"><%= time_ago_in_words @micropost.created_at %>以前</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="cm-yellow">
+<div class="main">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-8 col-sm-push-2 msg">
-        <%= simple_form_for @micropost.comments.build, class: "contact-form" do |m| %>
-            <input id="micrpost_id" name="comment[mid]" value=<%= @micropost.id %> hidden="hidden"/>
+    <ol class="breadcrumb margin-top-10">
+      <li><a href="<%= user_path %>">信息</a></li>
+      <li class="active">信息详情</li>
+      <!--<li class="active">Blog Page</li>-->
+    </ol>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <h1 class="margin-top-10">信息详情</h1>
 
-            <div class="form-group">
-              <%= m.input :msg, label: false, placeholder: "填写评论", input_html: {class: 'form-control input-lg', rows: '4'} %>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-9 col-sm-9 blog-item">
+              <% content=@micropost.content %>
+              <% if !content.index("http://www.hkexnews.hk").nil? %>
+                  <% content=content[0, content.index("http://www.hkexnews.hk")]+
+                          "<a href="+content[content.index("http://www.hkexnews.hk"), content.length]+">点击链接</a>" %>
+              <% end %>
+              <h2><%= raw(content) %></h2>
+              <%= image_tag @micropost.image_url, class: "icon-responsive" %>
+              <ul class="blog-info">
+                <% if @micropost.stock!=nil %>
+                    <li>
+                      <i class="fa fa-tags"></i><%= link_to @micropost.stock.name, show_stock_microposts_path(stock: {id: @micropost.stock.id.to_s}),
+                                                            method: :post %></li>
+                <% else %>
+                    <li><i class="fa fa-tags"></i>无公司绑定</li>
+                <% end %>
+                <li><i class="fa fa-calendar"></i><%= time_ago_in_words @micropost.created_at %>以前</li>
+                <li id="good<%= @micropost.id.to_s %>"><%= render partial: "goodform", locals: {m: @micropost} %></li>
+                <li><i class="fa fa-comment"></i>
                   <% if current_user.nil? %>
-                      <%= link_to "提交", new_session_path, class: 'form-control input-lg btn-success text-center' %>
+                      <%= link_to "私信", new_session_path %>
                   <% else %>
-                      <%= m.submit "提交", class: 'form-control input-lg btn-success','data-disable-with' =>"提交中" %>
+                      <%= link_to "私信", new_pmsg_path(mid: @micropost) %>
                   <% end %>
-                </div>
+                </li>
+                <% if @micropost.user==current_user %>
+                    <li><i class="fa fa-pencil"></i><%= link_to "删除", delete_flag_micropost_path(@micropost) %></li>
+                    <li><i class="fa fa-trash"></i><%= link_to "修改", edit_micropost_path(@micropost) %></li>
+                <% end %>
+              </ul>
+
+              <h2>评论</h2>
+
+              <div class="comments">
+                <%= render partial: "comments", locals: {comments: @comments} %>
               </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= link_back %>
-                </div>
+
+              <div class="post-comment padding-top-40">
+                <% if signed_in? %>
+                    <h3>撰写评论</h3>
+                    <%= simple_form_for @micropost.comments.build do |m| %>
+                        <input id="micrpost_id" name="comment[mid]" value=<%= @micropost.id %> hidden="hidden"/>
+
+                        <div class="form-group">
+                          <label>评论内容<span class="color-red">*</span></label>
+                          <%= m.input :msg, label: false, input_html: {class: 'form-control', rows: '8'} %>
+                        </div>
+                        <p>
+                          <%= m.submit "提交", class: 'btn btn-primary', 'data-disable-with' => "提交中" %>
+                        </p>
+                    <% end %>
+                <% end %>
               </div>
             </div>
-        <% end %>
+
+            <!-- END LEFT SIDEBAR -->
+
+            <!-- BEGIN RIGHT SIDEBAR -->
+            <div class="col-md-3 col-sm-3 blog-sidebar">
+              <%= render partial: 'layouts/slider_right' %>
+            </div>
+            <!-- END RIGHT SIDEBAR -->
+          </div>
+        </div>
       </div>
+      <!-- END CONTENT -->
     </div>
+    <!-- END SIDEBAR & CONTENT -->
   </div>
 </div>
-
-<% if @comments %>
-    <div class="cm-title-yellow">
-      <div class="container">
-        <div class="row ">
-          <div class="col-sm-8 col-sm-push-2">
-            <h1>评论</h1>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <% @comments.each_with_index do |c, i| %>
-
-        <div
-        <% if i%2==0 %>class="cm-white"
-        <% else %>class="cm-yellow"
-        <% end %>>
-          <div class="container">
-            <div class="row ">
-              <div class="col-sm-8 col-sm-push-2 msg">
-                <% if current_user.nil? %>
-                    <p class="subtitle"><%= link_to "匿名用户"+c.micropost.anons.find_by_anonuser_id(c.user.id).anonnum.to_s,new_session_path %></p>
-                <% else %>
-                    <p class="subtitle"><%= link_to "匿名用户"+c.micropost.anons.find_by_anonuser_id(c.user.id).anonnum.to_s, new_pmsg_path(uid: c.user.id) %></p>
-                <% end %>
-                <h1><%= c.msg %></h1>
-                <% if c.user==current_user %>
-                    <div class="row">
-                      <div class="col-sm-push-3 col-sm-2"><%= link_to "删除", delete_flag_comment_path(c), class: "subtitle" %></div>
-                      <div class="col-sm-push-3 col-sm-2"><%= link_to "修改", edit_comment_path(c), class: "subtitle" %></div>
-                      <div class="col-sm-push-3 col-sm-2"><%= link_to "私信", new_pmsg_path(uid: c.user.id), class: "subtitle" %></div>
-                    </div>
-                <% elsif current_user.nil? %>
-                    <%= link_to "私信", new_session_path, class: "subtitle" %>
-                <% else %>
-                    <div class="row">
-                      <%= link_to "私信", new_pmsg_path(uid: c.user.id), class: "subtitle" %>
-                    </div>
-                <% end %>
-                <p class="subtitle"><%= time_ago_in_words c.created_at %>以前</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-    <% end %>
-<% end %>

@@ -1,37 +1,125 @@
-<div class="login-page">
+<div class="main">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-6 col-sm-push-3">
-        <% if flash[:alert] %>
-            <h2 class="red-color"> <%= flash[:alert] %></h2>
-        <% end %>
-        <%= simple_form_for @user,url: password_reset_path(params[:id]) do |f| %>
-            <h2>重置密码</h2>
-
-            <div class="form-group">
-              <%= f.input :password, label:false,  input_html: {class: 'form-control input-lg'}, :placeholder => "请输入重置密码" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.input :password_confirmation, label:false, input_html: {class: 'form-control input-lg'}, :placeholder => "请再次输入密码" %>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-6" >
-                <div class="form-group">
-                  <%= f.submit "提交",class: 'form-control input-lg btn-success','data-disable-with' =>"提交中"%>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%=link_back %>
-                </div>
-              </div>
-            </div>
-        <% end %>
-
+    <ul class="breadcrumb">
+      <li><a href="index.html">首页</a></li>
+      <li class="active">忘记密码</li>
+    </ul>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-bottom-40">
+      <!-- BEGIN SIDEBAR -->
+      <div class="sidebar col-md-3 col-sm-3">
+        <ul class="list-group margin-bottom-25 sidebar-menu">
+          <li class="list-group-item clearfix">
+            <a href="<%= new_session_path %>"><i class="fa fa-angle-right"></i> 登陆</a></li>
+          <li class="list-group-item clearfix"><a href="<%= new_user_path %>"><i class="fa fa-angle-right"></i> 注册</a>
+          </li>
+          <li class="list-group-item clearfix">
+            <a href="<%= new_password_reset_path %>"><i class="fa fa-angle-right"></i> 忘记密码</a></li>
+          <li class="list-group-item clearfix">
+            <a href="<%= root_page_path %>"><i class="fa fa-angle-right"></i> 返回首页</a></li>
+        </ul>
       </div>
+      <!-- END SIDEBAR -->
+
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-9 col-sm-9">
+        <div class="row">
+          <div class="col-md-7 col-sm-7">
+            <div class="row">
+              <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+                <h1>重置密码</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-form-page">
+          <div class="row">
+            <div class="col-md-7 col-sm-7">
+              <%= simple_form_for @user, url: password_reset_path(params[:id]),
+                                  html: {class: 'form-horizontal'} do |f| %>
+                  <div class="form-group">
+                    <label for="password" class="col-lg-4 control-label">输入重置密码 <span class="require">*</span></label>
+
+                    <div class="col-lg-8">
+                      <input type="password" class="form-control" id="user_password" name="user[password]">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="user_password_confirmation" class="col-lg-4 control-label">确认重置密码 <span class="require">*</span></label>
+
+                    <div class="col-lg-8">
+                      <input type="password" class="form-control" id="user_password_confirmation" name="user[password_confirmation]">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-5">
+                      <%= f.submit "提交", class: 'btn btn-primary', 'data-disable-with' => "提交中" %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+            <div class="col-md-4 col-sm-4 pull-right">
+              <div class="form-info">
+                <h2><em>重置</em>密码</h2>
+
+                <p class="margin-top-15">输入重置密码</p>
+
+                <p>再次输入确认</p>
+
+                <p>提交，完成密码重置</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END CONTENT -->
     </div>
+    <!-- END SIDEBAR & CONTENT -->
   </div>
 </div>
+
+<div class="row margin-top-20 margin-bottom-50"></div>
+<div class="row margin-top-20 margin-bottom-35"></div>
+
+<!--<div class="login-page">-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-sm-6 col-sm-push-3">-->
+<!--
+<% if flash[:alert] %>-->
+    <!--<h2 class="red-color"> <%= flash[:alert] %></h2>-->
+    <!--
+<% end %>-->
+<!--<%= simple_form_for @user, url: password_reset_path(params[:id]) do |f| %>-->
+    <!--<h2>重置密码</h2>-->
+
+    <!--<div class="form-group">-->
+    <!--<%= f.input :password, label: false, input_html: {class: 'form-control input-lg'}, :placeholder => "请输入重置密码" %>-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+    <!--<%= f.input :password_confirmation, label: false, input_html: {class: 'form-control input-lg'}, :placeholder => "请再次输入密码" %>-->
+    <!--</div>-->
+
+    <!--<div class="row">-->
+    <!--<div class="col-sm-6" >-->
+    <!--<div class="form-group">-->
+    <!--<%= f.submit "提交", class: 'form-control input-lg btn-success', 'data-disable-with' => "提交中" %>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-sm-6">-->
+    <!--<div class="form-group">-->
+    <!--<%= link_back %>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--
+<% end %>-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 

@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment.user=current_user
     if @comment.save
       flash[:success] = "comment created!"
-      Comment.save_comment(@micropost,current_user,@comment)
+      Comment.save_comment(@micropost,current_user,@comment,current_user.apple_micro_push,current_user.apple_reply_push)
       # anon=@micropost.anons.find_by_anonuser_id(current_user.id)
       # if(anon.nil?)
       #   @micropost.anonusers.push(current_user)

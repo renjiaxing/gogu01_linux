@@ -1,41 +1,55 @@
-<div class="login-page">
+<div class="main">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-6 col-sm-push-3">
-        <% if flash[:notice] %>
-            <h2 class="red-color"> <%= flash[:notice] %></h2>
-        <% end %>
-        <%= simple_form_for @micropost, class:"contact-form" do |m| %>
-            <h2>修改内容</h2>
-
-            <div class="form-group">
-              <%= m.input :content, label: false, input_html: {class: 'form-control input-lg', rows: '8'} %>
-            </div>
-            <div class="form-group">
-              <input id="micropost_stock_name" placeholder="输入股票代码" class="form-control input-lg" name="micropost[stock_name]">
-              <input id="micropost_stock_id" type="hidden" name="micropost[stock_id]">
-            </div>
-            <div class="form-group">
-              <% if @micropost.image.to_s!="" %>
-                  <p><%= @micropost.image %></p>
-              <% end %>
-              <%= m.input :image, label: false %>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
+    <ol class="breadcrumb margin-top-10">
+      <li><a href="<%= user_path(current_user) %>">所有信息</a></li>
+      <li class="active"><a href="#">修改信息</a></li>
+    </ol>
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-12 col-sm-12 blog-posts">
+              <div class="portlet box red">
+                <div class="portlet-title">
+                  <div class="caption">
+                    修改信息
+                  </div>
+                </div>
+                <div class="portlet-body form">
+                  <%= simple_form_for @micropost, html: {multipart: true} do |m| %>
+                      <div class="form-body">
+                        <div class="form-group">
+                          <label>输入信息</label>
+                          <%= m.input :content, label: false, input_html: {class: 'form-control', rows: '8'} %>
+                        </div>
+                        <div class="form-group">
+                          <label>输入股票代码</label>
+                          <input id="micropost_stock_name" class="form-control" name="micropost[stock_name]">
+                          <input id="micropost_stock_id" type="hidden" name="micropost[stock_id]">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputFile1">上传图片</label>
+                          <% if @micropost.image.to_s!="" %>
+                              <p><%= @micropost.image %></p>
+                          <% end %>
+                          <%= m.input :image, label: false %>
+                          <p class="help-block">
+                            上传图片覆盖哦~
+                          </p>
+                        </div>
+                      </div>
+                      <div class="form-actions">
+                        <%= m.submit "提交", class: 'btn btn-primary', 'data-disable-with' => "提交中" %>
+                        <%= link_back %>
+                      </div>
+                  <% end %>
                 </div>
               </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= link_back %>
-                </div>
-              </div>
             </div>
-
-        <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

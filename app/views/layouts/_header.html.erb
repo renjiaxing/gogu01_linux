@@ -1,0 +1,128 @@
+<div class="header">
+  <div class="container">
+
+    <%= link_to image_tag("logo_green.jpg", alt: "股刺网", size: "120x50"), root_page_path, class: "site-logo" %>
+
+    <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+    <div class="header-navigation pull-right font-transform-inherit">
+      <ul>
+        <li><%= link_to "首页", root_page_path %></li>
+        <% if signed_in? %>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="<%= user_path(current_user) %>" href="<%= user_path(current_user) %>">
+                信息
+              </a>
+
+              <ul class="dropdown-menu">
+                <li><a href="<%= user_path(current_user) %>">所有信息</a></li>
+                <li><a href="<%= myshow_users_path(current_user) %>">我关注的信息</a></li>
+                <li><a href="<%= stockinfo_users_path %>">公告信息</a></li>
+                <li><a href="<%= stocknoinfo_users_path %>">非公告信息</a></li>
+              </ul>
+            </li>
+        <% else %>
+            <li><%= link_to "信息", user_path(0) %></li>
+        <% end %>
+
+        <% if signed_in? %>
+            <li><%= link_to "关注股票", mystocks_path %></li>
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">
+                个人信息
+                <% if (@my_msg_unread+@my_chat_unread+@my_reply_unread)>0 %>
+                    <span class="badge badge-danger"><%= (@my_msg_unread+@my_chat_unread+@my_reply_unread) %></span>
+                <% end %>
+              </a>
+
+              <ul class="dropdown-menu">
+                <li><a href="<%= my_msg_users_path %>">我发布的信息
+                  <% if @my_msg_unread>0 %>
+                      <span class="badge badge-danger"><%= @my_msg_unread %></span>
+                  <% end %></a></li>
+                <li><a href="<%= my_reply_users_path %>">我回复的信息
+                  <% if @my_reply_unread>0 %>
+                      <span class="badge badge-danger"><%= @my_reply_unread %></span>
+                  <% end %></a></li>
+                <li><a href="<%= pmsgs_path %>">我的私信
+                  <% if @my_chat_unread>0 %>
+                      <span class="badge badge-danger"><%= @my_chat_unread %></span>
+                  <% end %></a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown margin-right-55">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="<%= my_info_users_path %>" href="<%= my_info_users_path %>">
+                我的
+              </a>
+
+              <ul class="dropdown-menu">
+                <li><a href="<%= my_info_users_path %>">我的信息</a></li>
+                <li><a href="<%= pre_update_inform_users_path %>">修改信息</a></li>
+                <li><a href="<%= pre_update_passwd_users_path %>">修改密码</a></li>
+                <li><a href="<%= new_advice_path %>">提交建议</a></li>
+                <% if current_user.admin? %>
+                    <li><a href="<%= advices_path %>">所有建议</a></li>
+                    <li><a href="<%= chatmsgs_path %>">推送消息</a></li>
+                <% end %>
+                <li><a href="<%= session_path(current_user) %>">注销</a></li>
+              </ul>
+            </li>
+        <% else %>
+            <li><%= link_to "注册", new_user_path %></li>
+            <li><%= link_to "登陆", new_session_path %></li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+    jQuery(document).ready(function () {
+        Layout.init();
+        Layout.initOWL();
+        RevosliderInit.initRevoSlider();
+//            Layout.initTwitter();
+        Layout.initFixHeaderWithPreHeader();
+        /* Switch On Header Fixing (only if you have pre-header) */
+        //Layout.initNavScrolling();
+    });
+    $(function () {
+
+        $("#stock_name").autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: "/stock_json",
+                    dataType: "json",
+                    data: {
+                        code: request.term,
+                        maxRows: 10
+                    },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.code + ", " + item.name,
+                                value: item.id
+
+                            }
+                        }));
+                    }
+                });
+            },
+
+            select: function (event, ui) {
+                $("#stock_name").val(ui.item.label);
+                $("#stock_id").val(ui.item.value);
+                return false;
+            }
+        });
+    });
+</script>
+
+
+</div>

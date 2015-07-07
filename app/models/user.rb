@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :name,length: { maximum: 100 }
   validates :email, presence: true, format: { with: EMAIL_REGEX },
             uniqueness: true, length: { minimum: 6 }
-  validates :phone, presence: true, length: { maximum: 15 },numericality: { only_integer: true }
+  # validates :phone, length: { maximum: 15 },numericality: { only_integer: true }
   validates :password, length: { minimum: 6 }
 
   has_many :microposts,dependent: :destroy

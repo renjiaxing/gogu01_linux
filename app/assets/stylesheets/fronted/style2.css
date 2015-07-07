@@ -1,0 +1,226 @@
+.content-center {
+    text-align: center;
+}
+
+/* Services block */
+.services-block {
+    background: #f6f6f6;
+    padding: 60px 0 70px;
+}
+.services-block .row {
+    padding-top: 44px;
+}
+.services-block .item {
+    border-right: solid 1px #e8e7e7;
+    padding-top: 9px;
+}
+.services-block .col-md-3:last-child {
+    border-right: none;
+}
+.services-block .fa {
+    background: #e85425;
+    color: #fff;
+    width: 99px;
+    height: 99px;
+    line-height: 1;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 29px;
+}
+.services-block .fa:after {
+    bottom: -8px;
+    width: 0;
+    height: 0;
+    left: 50%;
+    margin-left: -9px;
+    z-index: 2;
+    content: " ";
+    display: block;
+    position: absolute;
+    border-top: 9px solid #e85425;
+    border-right: 9px solid transparent;
+    border-left: 9px solid transparent;
+}
+
+.services-block .fa {
+    font-size: 38px;
+    padding: 35px 0 0;
+}
+
+.services-block p {
+    margin-bottom: 5px;
+}
+
+/* message block */
+.message-block {
+    position: relative;
+    min-height: 457px;
+    height: auto;
+    padding: 0 0 50px;
+    z-index: 0;
+    background: #292F34 url(/assets/quote.jpg) no-repeat fixed;
+    position: relative;
+}
+/*.message-block:after {
+  background: rgba(0,0,0,0.73);
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 1;
+}*/
+.message-block h2 {
+    z-index: 2;
+    color: #fff;
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 42px;
+    position: relative;
+    padding: 0;
+    /* margin: 150px 0 14px; */
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+}
+.message-block h2:after {
+    display: none;
+}
+.message-block h2 strong {
+    color: #18bbff;
+    display: block;
+}
+.message-block em {
+    font: 300 15px "Open Sans", Arial, sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    display: block;
+}
+
+/* Pricing */
+.prices-block {
+    background: #F6F6F6;
+    padding: 60px 0 40px;
+}
+.pricing-item {
+    /*border: solid 2px #8695a1;*/
+    background: #fff;
+    font: 400 18px "PT Sans Narrow", Arial, sans-serif;
+    margin-bottom: 30px;
+}
+.pricing-head {
+    background: #8695a1;
+    color: #fff;
+    font: 400 17px/1.2 "PT Sans Narrow", Arial, sans-serif;
+    padding: 13px 15px 9px;
+    margin-bottom: 26px;
+}
+@-moz-document url-prefix() {
+    .pricing-head {
+        padding: 12px 15px 10px;
+    }
+}
+.pricing-head h3 {
+    font: 400 43px/1.2 "PT Sans Narrow", Arial, sans-serif;
+}
+.pi-price {
+    margin-bottom: 31px;
+}
+.pi-price strong {
+    font-size: 35px;
+    font-weight: 400;
+    display: inline-block;
+
+    background: #e85425;
+    color: #fff;
+    width: 128px;
+    height: 128px;
+    line-height: 1;
+    border-radius: 50%;
+    position: relative;
+    padding: 28px 0 0;
+    margin-bottom: 20px;
+}
+.pi-price strong:after {
+    bottom: -8px;
+    width: 0;
+    height: 0;
+    left: 50%;
+    margin-left: -9px;
+    z-index: 2;
+    content: " ";
+    display: block;
+    position: absolute;
+    border-top: 9px solid #e85425;
+    border-right: 9px solid transparent;
+    border-left: 9px solid transparent;
+}
+.pi-price strong em {
+    font-size: 71px;
+    font-style: normal;
+}
+.pricing-content {
+    padding: 0 15px;
+    margin-bottom: 24px;
+}
+.pricing-content .list-unstyled {
+    text-align: left;
+    color: #7d8489;
+}
+.pricing-content .list-unstyled li {
+    margin-bottom: 6px;
+}
+.pricing-content .list-unstyled li i {
+    color: #e85425;
+    position: relative;
+    top: -1px;
+}
+.pricing-footer {
+    padding: 15px;
+}
+.pricing-footer .btn-default {
+    background: #afb7be;
+    color: #fff;
+    display: block;
+    font: 400 22px/22px "PT Sans Narrow", Arial, sans-serif;
+    padding: 13px 10px;
+    border: none;
+}
+.pricing-footer .btn-default:hover, .pricing-footer .btn-default:focus, .pricing-footer .btn-default:active {
+    border: none;
+    background: #E85425;
+}
+
+.blog-info2 {
+    list-style: none;
+    margin: 15px 0 12px 0;
+    padding-left:0;
+}
+.blog-info2 li {
+    padding: 0;
+    color: #555;
+    font-size: 13px;
+    margin-right: 10px;
+    display: inline-block;
+}
+.blog-info2 li i {
+    color: #E84D1C;
+}
+
+.content-page .white-color{
+    color: #ffffff;
+}
+
+.breadcrumb .active a{
+    color: #E85425;
+}
+
+.margin-right-55 {
+    margin-right: 55px;
+}
+
+.margin-bottom-80 {
+    margin-bottom: 80px;
+}

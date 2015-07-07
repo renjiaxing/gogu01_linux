@@ -1,0 +1,56 @@
+<% microposts.each_with_index do |m, i| %>
+    <div class="row">
+      <% content=m.content %>
+      <% if !content.index("http://www.hkexnews.hk").nil? %>
+          <% content=content[0, content.index("http://www.hkexnews.hk")]+" 点击链接" %>
+      <% end %>
+      <% if content.size>100 %>
+          <% msg=content[0, 99]+"..." %>
+      <% else %>
+          <% msg=content %>
+      <% end %>
+
+      <% unread=Replyrelationship.where('replyuser_id=? and replymicropost_id=?', current_user, m).first %>
+
+      <div class="col-md-12 col-sm-12">
+        <ul class="blog-info">
+          <% if m.stock!=nil %>
+              <li>
+                <i class="fa fa-tags"></i><%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
+                                                      method: :post %></li>
+          <% else %>
+              <li><i class="fa fa-tags"></i>无公司绑定</li>
+          <% end %>
+
+        </ul>
+        <h2>
+          <% if !unread.nil? && unread.replyunread>0 %>
+              <span class="badge badge-danger"><%= unread.replyunread %></span>
+          <% end %>
+          <%= content %>
+        </h2>
+        <% if m.image.to_s!="" %>
+            <%= image_tag(m.image_url, size: "50x50") %>
+        <% end %>
+        <ul class="blog-info">
+          <li><i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at %>以前</li>
+          <li><i class="fa fa-comments"></i><%= m.comments.size.to_s %></li>
+          <li id="good<%= m.id.to_s %>"><%= render partial: "goodform", locals: {m: m} %></li>
+          <li><i class="fa fa-comment"></i>
+            <% if current_user.nil? %>
+                <%= link_to "私信", new_session_path %>
+            <% else %>
+                <%= link_to "私信", new_pmsg_path(mid: m) %>
+            <% end %>
+          </li>
+          <% if m.user==current_user %>
+              <li><i class="fa fa-pencil"></i><%= link_to "修改", edit_micropost_path(m) %></li>
+              <li><i class="fa fa-trash"></i><%= link_to "删除", delete_flag_micropost_path(m) %></li>
+          <% end %>
+
+        </ul>
+        <a href="<%= details_micropost_path(m) %>" class="more">查看详情<i class="icon-angle-right"></i></a>
+      </div>
+    </div>
+    <hr class="blog-post-sep">
+<% end %>

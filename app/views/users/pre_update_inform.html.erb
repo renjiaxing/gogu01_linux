@@ -1,30 +1,59 @@
-<div class="login-page">
+<div class="main">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-6 col-sm-push-3">
-        <%= simple_form_for @user, url: update_inform_users_path, method: :post do |m| %>
-            <h2>修改信息</h2>
+    <ol class="breadcrumb margin-top-10">
+      <li><a href="#"></a>我的</li>
+      <li class="active"><a href="#">修改信息</a></li>
+    </ol>
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="sidebar col-md-3 col-sm-3">
+        <ul class="list-group margin-bottom-25 sidebar-menu">
+          <li class="list-group-item clearfix"><a href="<%= my_info_users_path %>"><i class="fa fa-angle-right"></i>我的信息</a>
+          <li class="list-group-item clearfix">
+            <a href="<%= pre_update_inform_users_path %>"><i class="fa fa-angle-right"></i>修改我的信息</a></li>
+          </li>
+          <li class="list-group-item clearfix">
+            <a href="<%= pre_update_passwd_users_path %>"><i class="fa fa-angle-right"></i>修改密码</a></li>
+        </ul>
+      </div>
 
-            <div class="form-group">
-              <%= m.input :name, placeholder: "输入用户名", label: false, input_html: {class: 'form-control input-lg', rows: '8'} %>
-            </div>
-            <div class="form-group">
-              <%= m.input :phone, placeholder: "输入手机号码", label: false, input_html: {class: 'form-control input-lg', rows: '8'} %>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= m.submit "提交", class: 'form-control input-lg btn-success' %>
+      <div class="col-md-9 col-sm-9">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-12 col-sm-12 blog-posts margin-bottom-40">
+              <div class="portlet box red">
+                <div class="portlet-title">
+                  <div class="caption">
+                    修改我的信息
+                  </div>
+                </div>
+                <div class="portlet-body form">
+                  <%= simple_form_for @user, url: update_inform_users_path, method: :post do |m| %>
+                      <div class="form-body">
+                        <div class="form-group">
+                          <label>输入用户名</label>
+                          <%= m.input :name, label: false %>
+                        </div>
+                        <div class="form-group">
+                          <label>输入手机号码</label>
+                          <%= m.input :phone, label: false%>
+                        </div>
+
+                      </div>
+                      <div class="form-actions">
+                        <%= m.submit "提交", class: 'btn btn-primary', 'data-disable-with' => "提交中" %>
+                        <%= link_back %>
+                      </div>
+                  <% end %>
                 </div>
               </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= link_back %>
-                </div>
-              </div>
             </div>
-        <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+

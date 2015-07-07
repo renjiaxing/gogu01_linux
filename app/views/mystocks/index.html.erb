@@ -1,34 +1,65 @@
-<div class="login-page">
+<div class="main">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-6 col-sm-push-3">
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="form-group">
-              <%= link_to "新增", new_mystock_path, class: 'form-control btn-success text-center', 'data-disable-with' => "提交中" %>
+    <ol class="breadcrumb margin-top-20">
+      <li><a href="<%= user_path(current_user) %>">所有信息</a></li>
+      <li class="active"><a href="#">关注股票</a></li>
+    </ol>
+    <div class="row margin-top-20 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-12 col-sm-12 blog-posts margin-top-10 margin-bottom-40">
+              <div class="portlet box red">
+                <div class="portlet-title">
+                  <div class="caption">
+                    关注股票
+                  </div>
+                </div>
+                <div class="portlet-body">
+                  <div class="table-toolbar">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="btn-group  margin-top-20 margin-bottom-20">
+                          <%= link_to "新增", new_mystock_path, class: 'btn btn-primary white-color', 'data-disable-with' => "提交中" %>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                      </div>
+                    </div>
+                  </div>
+                  <div id="sample_1_wrapper margin-bottom-30" class="dataTables_wrapper no-footer">
+                    <div class="table-scrollable">
+                      <%= grid(@mystocks) do |g|
+                        #
+                        # g.column name: "编号" do |task|
+                        #   task.id
+                        # end
+
+                        g.column name: "股票代码" do |task|
+                          task.stock.code
+                        end
+
+                        g.column name: "股票名称" do |task|
+                          task.stock.name
+                        end
+
+                        g.column name: "操作" do |task|
+                          link_to('删除', delete_mystock_mystock_path(task), data: {confirm: "确定删除"})
+                        end
+                      end -%>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <%= grid(@mystocks) do |g|
-          #
-          # g.column name: "编号" do |task|
-          #   task.id
-          # end
-
-          g.column name: "股票代码" do |task|
-            task.stock.code
-          end
-
-          g.column name: "股票名称" do |task|
-            task.stock.name
-          end
-
-          g.column name: "操作" do |task|
-            link_to('删除', task, method: :delete, data: {confirm: "确定删除"})
-          end
-        end -%>
       </div>
     </div>
   </div>
 </div>
+
+
 

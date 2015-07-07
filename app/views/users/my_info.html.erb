@@ -1,0 +1,60 @@
+<div class="main">
+  <div class="container">
+    <ol class="breadcrumb margin-top-10">
+      <li><a href="<%= my_info_users_path %>"></a>我的</li>
+      <li class="active"><a href="#">我的信息</a></li>
+    </ol>
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="sidebar col-md-3 col-sm-3">
+        <ul class="list-group margin-bottom-25 sidebar-menu">
+          <li class="list-group-item clearfix">
+            <a href="<%= my_info_users_path %>"><i class="fa fa-angle-right"></i>我的信息</a>
+          <li class="list-group-item clearfix">
+            <a href="<%= pre_update_inform_users_path %>"><i class="fa fa-angle-right"></i>修改我的信息</a></li>
+          </li>
+          <li class="list-group-item clearfix">
+            <a href="<%= pre_update_passwd_users_path %>"><i class="fa fa-angle-right"></i>修改密码</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-9 col-sm-9">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-12 col-sm-12 blog-posts margin-bottom-50">
+              <div class="portlet box red">
+                <div class="portlet-title">
+                  <div class="caption">
+                    个人信息
+                  </div>
+                </div>
+                <div class="portlet-body form">
+                  <div class="form-body margin-top-10">
+                    <div class="form-group">
+                      <label>邮件名称:</label>
+
+                      <h3 class="margin-bottom-20"><%= current_user.email %></h3>
+                    </div>
+                    <div class="form-group">
+                      <label>用户名:</label>
+
+                      <h3 class="margin-bottom-20"><%= current_user.name %></h3>
+                    </div>
+                    <div class="form-group">
+                      <label>输入手机号码</label>
+
+                      <h3 class="margin-bottom-20"><%= current_user.phone %></h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
