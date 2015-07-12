@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount SurveyorGui::Engine => "/surveyor_gui", :as => "surveyor_gui"
+  mount Surveyor::Engine => "/surveys", :as => "surveyor"
   resources :userconfig do
     collection do
       get 'show_code', 'update_code'
