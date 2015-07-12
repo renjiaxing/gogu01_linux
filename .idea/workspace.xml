@@ -2,218 +2,167 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee25e1a5-608d-420f-b98c-65ac6b87fdc8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/android2wei.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/ios2wei.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/next.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/prev.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/doc/question types.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/doc/surveyor question combinations.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/doc/surveyor reject or delete decision matrix.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/doc/surveyor_models.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/doc/surveyor_models2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-bg_flat_0_aaaaaa_40x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-bg_flat_75_ffffff_40x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-bg_glass_55_fbf9ee_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-bg_glass_65_ffffff_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-bg_glass_75_dadada_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-bg_glass_75_e6e6e6_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-bg_glass_95_fef1ec_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-bg_highlight-soft_75_cccccc_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-icons_222222_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-icons_2e83ff_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-icons_454545_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-icons_888888_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/images/surveyor/ui-icons_cd0a0a_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/.rspec" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/surveys/EXTENDING_SURVEYOR.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/Gemfile.rails_version" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/Gemfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/MIT-LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/surveys/MODIFYING_SURVEYOR.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/REDCapDemoDatabase_DataDictionary.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/doc/REPRESENTATIONS.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/Rakefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/partials/_answer.html.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/partials/_dependents.html.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/partials/_question.html.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/partials/_question_group.html.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/partials/_section.html.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/partials/_section_menu.html.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/acts_as_response.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_api_id_to_question_groups.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_api_ids.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_api_ids_to_response_sets_and_responses.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_correct_answer_id_to_questions.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_default_value_to_answers.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_display_order_to_surveys.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_display_type_to_answers.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_index_to_response_sets.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_index_to_surveys.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_input_mask_attributes_to_answer.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_section_id_to_responses.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_unique_index_on_access_code_and_version_in_surveys.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_unique_indicies.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/add_version_to_surveys.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/features/ajax_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/answer.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/answer_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/answer_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/doc/api_id_schema.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/api_ids_must_be_unique.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/features/api_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/chinese_survey.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/common.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/lib/common_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_answers.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_dependencies.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_dependency_conditions.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_question_groups.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_questions.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_response_sets.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_responses.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_survey_sections.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_survey_translations.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_surveys.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_validation_conditions.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/create_validations.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/vendor/assets/stylesheets/custom.sass" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/custom_generator.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/surveys/date_survey.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/dependency.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/dependency_condition.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/dependency_condition_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/dependency_condition_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/dependency_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/dependency_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/drop_unique_index_on_access_code_in_surveys.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/features/duplicate_prevention_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/surveyor/edit.html.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/engine.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/everything.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/surveyor/export.json.rabl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/factories.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/favorites-ish.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/favorites.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/feelings.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/helpers/formtastic_custom_input.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/helpers/formtastic_custom_input_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/rails/init.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/install_generator.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/javascripts/surveyor/jquery-1.9.0.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/javascripts/surveyor/jquery-ui-1.10.0.custom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/stylesheets/surveyor/jquery-ui-1.10.0.custom.sass" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/stylesheets/surveyor/jquery-ui-timepicker-addon.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/javascripts/surveyor/jquery-ui-timepicker-addon.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/javascripts/surveyor/jquery.maskedinput.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/javascripts/surveyor/jquery.selectToUISlider.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/javascripts/surveyor/jquery.surveyor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/surveys/kitchen_sink_survey.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/surveys/translations/languages.es.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/surveys/translations/languages.he.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/surveys/translations/languages.ko.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/surveys/languages.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/lifestyle.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/mustache_context.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/surveyor/new.html.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/numbers.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/parser.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/lib/parser_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/permitted_params.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/question.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/question_group.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/question_group_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/question_group_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/question_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/question_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/inputs/quiet_input.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/surveys/quiz.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/lib/rake_kitchen_sink.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/rcov.opts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/redcap_new_headers.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/redcap_parser.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/lib/redcap_parser_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/redcap_siblings.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/fixtures/redcap_whitespace.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/stylesheets/surveyor/reset.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/response.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/response_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/response_set.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/response_set_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/doc/response_set_schema.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/response_set_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/response_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/stylesheets/surveyor/results.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/layouts/results.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/helpers/results_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/config/routes.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/support/shared.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/surveyor/show.html.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/surveyor/show.json.rabl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/spec.opts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/spec_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/survey.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/helpers/survey_form_builder.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/survey_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/survey_section.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/survey_section_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/survey_section_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/survey_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/survey_translation.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/survey_translation_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/surveyor.gemspec" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/stylesheets/surveyor.sass" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/app/assets/stylesheets/surveyor_all.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/app/assets/javascripts/surveyor_all.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/support/surveyor_api_helpers.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/inputs/surveyor_check_boxes_input.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/controllers/surveyor_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/app/controllers/surveyor_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/surveyor_controller_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/controllers/surveyor_controller_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/app/views/layouts/surveyor_custom.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/views/layouts/surveyor_default.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/config/locales/surveyor_en.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/config/locales/surveyor_es.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/config/locales/surveyor_he.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/helpers/surveyor_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/helpers/surveyor_helper_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/helpers/surveyor_helper_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/config/locales/surveyor_ko.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/inputs/surveyor_radio_input.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/tasks/surveyor_tasks.rake" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/doc/surveyor_timestamp_schema.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/support/surveyor_ui_helpers.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/switch.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/lib/tasks_spec.rake" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/features/translations_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/assets/stylesheets/surveyor/ui.slider.extras.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/features/ui_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/unparser.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/lib/unparser_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/update_blank_api_ids_on_question_group.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/generators/surveyor/templates/db/migrate/update_blank_versions_on_surveys.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/validation.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/app/models/validation_condition.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/validation_condition_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/validation_condition_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/models/validation_methods.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/models/validation_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/lib/surveyor/version.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/surveyor-master/spec/support/wait_for_ajax.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/will_paginate.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/android.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/apple.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/arrow_large_left.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/arrow_large_right.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/bg1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/bg2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/bg3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/bg4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/bg5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/bg6.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/bg7.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/bg8.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/bg9.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/file/gogu02-11.apk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/hint1-blue.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/hint1-green.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/hint1-orange.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/hint1-red.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/hint2-blue.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/hint2-green.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/hint2-orange.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/hint2-red.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/ipad.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/ipadmini.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/iphone.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/iphone_large.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/iphone_left.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/iphone_right.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/lady.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/large_left.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/large_right.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/loader.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo-corp-green.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo_green.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/mac.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/macbook.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/man-winner.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/quote.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/shadow1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/thumbs/thumb1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/thumbs/thumb2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/thumbs/thumb3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/thumbs/thumb4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/thumbs/thumb5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/thumbs/thumb6.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/thumbs/thumb7.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/timer.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/icon/toggler.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/up.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/revolution/woman.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/microposts/_comments.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/_error_message.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/_footer.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/microposts/_goodform.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/pmsgs/_main_pmsgs.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/_my_msg_showform.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/pmsgs/_pmsgs.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/_recent_showform.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/_slider_right.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/_unread_msg_showform.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/back-to-top.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/components.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/custom.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/microposts/details.js.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/jquery-migrate.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/jquery.fancybox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/jquery.fancybox.pack.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/jquery.themepunch.revolution.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/jquery.themepunch.tools.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/layout.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/my_info.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/my_reply.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/oneapm.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/owl.carousel.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/owl.carousel.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/red.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/respond.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/fronted/revo-slider-init.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/settings.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/style-responsive.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/style-revolution-slider.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/fronted/style2.css" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/advices.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/apijson.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/chatmsgs.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/comments.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/microposts.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/mystocks.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/password_resets.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/pmsgs.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/sessions.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/static_pages.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/stocks.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/tests.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/userconfig.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/advices.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/apijson.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/chatmsgs.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/comments.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/microposts.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/mystocks.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/password_resets.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/pmsgs.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/sessions.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/static_pages.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/stocks.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/tests.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/userconfig.css.scss" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/file/gogu02.apk" afterPath="$PROJECT_DIR$/public/file/gogu02.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/_goodform.html.erb" afterPath="$PROJECT_DIR$/app/views/users/_goodform.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/_showform.html.erb" afterPath="$PROJECT_DIR$/app/views/users/_showform.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/apijson_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/apijson_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/comment.rb" afterPath="$PROJECT_DIR$/app/models/comment.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/comments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/comments_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/microposts/details.html.erb" afterPath="$PROJECT_DIR$/app/views/microposts/details.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/microposts/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/microposts/edit.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/password_resets/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/password_resets/edit.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gogu01.iml" afterPath="$PROJECT_DIR$/.idea/gogu01.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/advices/index.html.erb" afterPath="$PROJECT_DIR$/app/views/advices/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/chatmsgs/index.html.erb" afterPath="$PROJECT_DIR$/app/views/chatmsgs/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/mystocks/index.html.erb" afterPath="$PROJECT_DIR$/app/views/mystocks/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pmsgs/index.html.erb" afterPath="$PROJECT_DIR$/app/views/pmsgs/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assets/javascripts/jquery.infinitescroll.js" afterPath="$PROJECT_DIR$/vendor/assets/javascripts/jquery.infinitescroll.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/microposts_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/microposts_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/my_msg.html.erb" afterPath="$PROJECT_DIR$/app/views/users/my_msg.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/mystocks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/mystocks_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/advices/new.html.erb" afterPath="$PROJECT_DIR$/app/views/advices/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/chatmsgs/new.html.erb" afterPath="$PROJECT_DIR$/app/views/chatmsgs/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/microposts/new.html.erb" afterPath="$PROJECT_DIR$/app/views/microposts/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/mystocks/new.html.erb" afterPath="$PROJECT_DIR$/app/views/mystocks/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/password_resets/new.html.erb" afterPath="$PROJECT_DIR$/app/views/password_resets/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pmsgs/new.html.erb" afterPath="$PROJECT_DIR$/app/views/pmsgs/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/sessions/new.html.erb" afterPath="$PROJECT_DIR$/app/views/sessions/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/new.html.erb" afterPath="$PROJECT_DIR$/app/views/users/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pmsgs_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pmsgs_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/pre_update_inform.html.erb" afterPath="$PROJECT_DIR$/app/views/users/pre_update_inform.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/pre_update_passwd.html.erb" afterPath="$PROJECT_DIR$/app/views/users/pre_update_passwd.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/root_page.html.erb" afterPath="$PROJECT_DIR$/app/views/users/root_page.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/scaffolds.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/scaffolds.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/simple_form.rb" afterPath="$PROJECT_DIR$/config/initializers/simple_form.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show.js.erb" afterPath="$PROJECT_DIR$/app/views/users/show.js.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/stocks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/stocks_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/unread_msg.html.erb" afterPath="$PROJECT_DIR$/app/views/users/unread_msg.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/users.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/users.css.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/zh-CN.yml" afterPath="$PROJECT_DIR$/config/locales/zh-CN.yml" />
     </list>
     <ignored path="gogu01.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -228,7 +177,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/gogu01@Development__gogu01.coverage" NAME="Development: gogu01 Coverage Results" MODIFIED="1436684146428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gogu01" />
+    <SUITE FILE_PATH="coverage/gogu01@Development__gogu01.coverage" NAME="Development: gogu01 Coverage Results" MODIFIED="1436162960146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gogu01" />
     <SUITE FILE_PATH="coverage/gogu01@Rails_console__gogu01.coverage" NAME="Rails console: gogu01 Coverage Results" MODIFIED="1436110190315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gogu01" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -240,101 +189,104 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile">
+      <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.7777777">
-              <caret line="26" column="25" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="25" />
+            <state vertical-scroll-proportion="-15.0">
+              <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="will_paginate.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/initializers/will_paginate.rb">
+      <file leaf-file-name="_slider_right.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/_slider_right.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.625">
+              <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_recent_showform.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/_recent_showform.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.875">
+              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+              <folding>
+                <element signature="e#496#519#0#HTML" expanded="true" />
+                <element signature="e#523#545#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="details.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/microposts/details.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.75">
+              <caret line="50" column="41" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_comments.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/microposts/_comments.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.25">
+              <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apijson_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/apijson_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.79646015">
+              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my_info.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/my_info.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-34.375">
+              <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="37" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <file leaf-file-name="stocks_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/stocks_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="68" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="68" />
+            <state vertical-scroll-proportion="-11.333333">
+              <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="surveyor_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/surveyor_controller.rb">
+      <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/stocks/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="surveyor_custom.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/surveyor_custom.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quiz.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/surveys/quiz.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="languages.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/surveys/languages.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="kitchen_sink_survey.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/surveys/kitchen_sink_survey.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EXTENDING_SURVEYOR.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/surveys/EXTENDING_SURVEYOR.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61445785">
-              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile.lock" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile.lock">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-48.11111">
-              <caret line="264" column="25" selection-start-line="264" selection-start-column="25" selection-end-line="264" selection-end-column="25" />
+            <state vertical-scroll-proportion="-1.875">
+              <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -356,6 +308,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/config/environments/development.rb" />
+        <option value="$PROJECT_DIR$/app/views/users/show.js.erb" />
         <option value="$PROJECT_DIR$/app/views/users/_goodform.html.erb" />
         <option value="$PROJECT_DIR$/config/locales/zh-CN.yml" />
         <option value="$PROJECT_DIR$/app/models/comment.rb" />
@@ -386,6 +340,7 @@
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/unread_msg.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/_unread_msg_showform.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/root_page.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/fronted/style.css" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/fronted/style-responsive.css" />
         <option value="$PROJECT_DIR$/app/views/users/new.html.erb" />
@@ -404,9 +359,6 @@
         <option value="$PROJECT_DIR$/app/views/microposts/details.html.erb" />
         <option value="$PROJECT_DIR$/app/views/microposts/_comments.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/apijson_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/users/root_page.html.erb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/config/initializers/will_paginate.rb" />
       </list>
     </option>
   </component>
@@ -455,6 +407,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -663,11 +617,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="surveyor-master" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -681,25 +631,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gogu01" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gogu01_linux" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="surveys" />
+              <option name="myItemId" value="file" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -717,11 +653,231 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mystocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="microposts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="comments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chatmsgs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gogu01_linux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="RailsProjectView" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -745,11 +901,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/vendor" />
-      <recent name="$PROJECT_DIR$/app/assets/images" />
       <recent name="$PROJECT_DIR$/public/file" />
       <recent name="$PROJECT_DIR$/app/assets/images/icon" />
       <recent name="$PROJECT_DIR$/app/assets/javascripts/fronted" />
+      <recent name="$PROJECT_DIR$/app/assets/images" />
+      <recent name="$PROJECT_DIR$/app/views/users" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/views/users" />
@@ -1030,17 +1186,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3069467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29725364" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3237519" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262519" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32776934" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27162367" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27162367" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24878837" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32776934" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32776934" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44461304" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994923" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1049,7 +1206,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262519" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1087,6 +1243,79 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/views/users/pre_update_passwd.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.75">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/sessions/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.997619">
+          <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/advices/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/advices/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4642857">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/advices/create.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/sessions_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27027026">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/microposts/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.75">
+          <caret line="30" column="30" selection-start-line="0" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/fronted/style2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="225" column="1" selection-start-line="225" selection-start-column="1" selection-end-line="225" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/advices/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.75">
+          <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/mystocks/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.875">
+          <caret line="43" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="43" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/chatmsgs/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.875">
@@ -1105,6 +1334,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1112,6 +1342,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="48" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1119,6 +1350,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.0">
           <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1126,6 +1358,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.375">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,6 +1366,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.125">
           <caret line="13" column="80" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="80" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1140,6 +1374,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.625">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1155,6 +1390,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1181,6 +1417,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33278146">
           <caret line="478" column="50" selection-start-line="478" selection-start-column="39" selection-end-line="478" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1188,6 +1425,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.044701986">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1195,6 +1433,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1202,6 +1441,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.044701986">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/root_page.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1861614">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1209,6 +1457,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.3097199">
           <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1216,6 +1467,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19769357">
           <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1223,6 +1475,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42630744">
           <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1230,6 +1483,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5930807">
           <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1237,6 +1491,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1244,6 +1499,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.875">
           <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1251,6 +1507,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1258,6 +1515,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.291667">
           <caret line="38" column="61" selection-start-line="38" selection-start-column="61" selection-end-line="38" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1265,6 +1523,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.0">
           <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1272,6 +1531,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6177924">
           <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1279,6 +1539,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33278146">
+          <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1286,13 +1555,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.4444447">
           <caret line="66" column="29" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/stocks_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-11.333333">
           <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,156 +1571,73 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="37" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/stocks/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07413509">
+        <state vertical-scroll-proportion="-1.875">
           <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/my_info.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72817135">
+        <state vertical-scroll-proportion="-34.375">
           <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-15.0">
           <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/_slider_right.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-10.625">
           <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/_recent_showform.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-11.875">
           <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding>
+            <element signature="e#496#519#0#HTML" expanded="true" />
+            <element signature="e#523#545#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/microposts/details.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-18.75">
           <caret line="50" column="41" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/microposts/_comments.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-16.25">
           <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/apijson_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.79646015">
           <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/root_page.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="294" column="41" selection-start-line="294" selection-start-column="41" selection-end-line="294" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/surveyor-master/surveyor.gemspec">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8674699">
-          <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-48.11111">
-          <caret line="264" column="25" selection-start-line="264" selection-start-column="25" selection-end-line="264" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.7777777">
-          <caret line="26" column="25" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/will_paginate.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="68" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/surveyor_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/surveyor_custom.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/surveys/quiz.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/surveys/languages.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/surveys/kitchen_sink_survey.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/surveys/EXTENDING_SURVEYOR.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61445785">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
           <folding />
         </state>
       </provider>

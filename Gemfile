@@ -57,7 +57,7 @@ gem 'therubyracer'
 
 gem 'execjs'
 
-gem 'jquery-ui-rails',' 4.0.2'
+gem 'jquery-ui-rails'
 
 gem "less-rails"
 
@@ -93,5 +93,3 @@ gem 'capistrano-rails'
 gem 'capistrano-rbenv'
 gem 'capistrano-rvm', github: 'capistrano/rvm'
 
-gem 'surveyor', github: 'NUBIC/surveyor'
-gem 'surveyor_gui'
