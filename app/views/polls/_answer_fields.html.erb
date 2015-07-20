@@ -1,0 +1,7 @@
+<div class="nested-fields">
+  <div class="form-group">
+    <%= f.label :content,'答案' %>
+    <%= f.text_field :content, class: 'form-control', required: true %>
+  </div>
+  <%= link_to_remove_association "删除", f %>
+</div>
