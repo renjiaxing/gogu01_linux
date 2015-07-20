@@ -1,0 +1,22 @@
+<% polls.each_with_index do |m, i| %>
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h2>
+          <%= m.topic %>
+        </h2>
+        <ul class="blog-info">
+          <li><i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at %>以前</li>
+          <li><i class="fa fa-check"></i><%= m.polls_summary(m) %></li>
+          <% if signed_in? %>
+              <% if current_user.admin? %>
+                  <li><i class="fa fa-pencil"></i><%= link_to "修改", edit_poll_path(m) %></li>
+                  <li><i class="fa fa-trash"></i><%= link_to "删除", poll_path(m),
+                                                             method: :delete, data: {confirm: '确认删除?'}  %></li>
+              <% end %>
+          <% end %>
+        </ul>
+        <a href="<%= poll_path(m) %>" class="more">参与投票<i class="icon-angle-right"></i></a>
+      </div>
+    </div>
+    <hr class="blog-post-sep">
+<% end %>

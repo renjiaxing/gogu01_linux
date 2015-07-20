@@ -1,0 +1,25 @@
+<%= form_for @poll do |f| %>
+    <div class="form-body">
+      <div class="form-group">
+        <%= f.label :topic,'标题' %>
+        <%= f.text_area :topic, rows: 3, required: true, class: 'form-control' %>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">问题</div>
+        <div class="panel-body">
+          <%= f.fields_for :questions do |options_form| %>
+              <%= render 'question_fields', f: options_form %>
+          <% end %>
+
+          <div class="links">
+            <%= link_to_add_association '新增问题', f, :questions %>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.submit '提交', class: 'btn btn-primary', 'data-disable-with' => "提交中" %>
+        <%= link_back %>
+      </div>
+    </div>
+<% end %>

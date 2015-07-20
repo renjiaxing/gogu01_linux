@@ -1,0 +1,31 @@
+<div class="main">
+  <div class="container">
+    <ol class="breadcrumb margin-top-10">
+      <li><a href="<%= polls_path %>">所有投票</a></li>
+      <li class="active"><a href="#">修改投票</a></li>
+    </ol>
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-12 col-sm-12 blog-posts">
+              <div class="portlet box red">
+                <div class="portlet-title">
+                  <div class="caption">
+                    修改投票
+                  </div>
+                </div>
+                <div class="portlet-body form">
+                  <%= render 'form' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

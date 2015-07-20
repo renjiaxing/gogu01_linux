@@ -1,0 +1,16 @@
+<% @poll.questions.each do |q| %>
+    <div class="form-group">
+      <h3><%= q.title %></h3>
+      <% q.answers.each do |a| %>
+          <div class="radio-list">
+            <%= content_tag(:label) do %>
+                <%= radio_button_tag "answer["+q.id.to_s+"]", a.id %>
+                <%= a.content %>
+            <% end %>
+            <% if current_user.voted_for?(@poll) %>
+                <%= visualize_votes_for a %>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+<% end %>

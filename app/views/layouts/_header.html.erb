@@ -25,6 +25,22 @@
             <li><%= link_to "信息", user_path(0) %></li>
         <% end %>
 
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" data-target="<%= polls_path %>" href="<%= polls_path %>">
+            投票
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="<%= polls_path %>">所有投票</a></li>
+            <% if signed_in? %>
+                <% if current_user.admin? %>
+                    <li><a href="<%= new_poll_path %>">新建投票</a></li>
+                <% end %>
+                <li><a href="<%= my_index_polls_path %>">我的投票</a></li>
+            <% end %>
+          </ul>
+        </li>
+
         <% if signed_in? %>
             <li><%= link_to "关注股票", mystocks_path %></li>
 

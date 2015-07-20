@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require fronted/jquery.min.js
+//= require fronted/jquery.validate
+//= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
 //= require jquery.ui.autocomplete
@@ -18,6 +20,7 @@
 //= require socket.io
 //= require wice_grid
 //= require jquery.ui.datepicker
+//= require cocoon
 //= require_tree .
 
 //$(document).ready(function(){

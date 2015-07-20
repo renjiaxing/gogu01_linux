@@ -93,3 +93,5 @@ gem 'capistrano-rails'
 gem 'capistrano-rbenv'
 gem 'capistrano-rvm', github: 'capistrano/rvm'
 
+gem "cocoon"
+

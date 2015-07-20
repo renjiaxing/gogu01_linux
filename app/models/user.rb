@@ -41,6 +41,11 @@ class User < ActiveRecord::Base
   has_many :replyrelationships,foreign_key: "replyuser_id"
   has_many :replymicroposts,through: :replyrelationships,source: :replymicropost
 
+  has_many :votes ,dependent: :destroy
+  has_many :answers,through: :votes
+  has_many :questions,through: :votes
+  has_many :polls,through: :votes
+
   def self.authenticate_user(email, password)
     user = find_by_email(email)
     if user && user.authenticate(password)
@@ -71,4 +76,7 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
+  def voted_for?(poll)
+    questions.distinct.any? {|v| v.poll == poll }
+  end
 end

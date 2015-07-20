@@ -1,0 +1,22 @@
+<div class="nested-fields">
+  <div class="form-group">
+    <%= f.label :title, '问题描述' %>
+    <%= f.text_field :title, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <%= link_to_remove_association "删除", f %>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">答案选项</div>
+    <div class="panel-body">
+      <%= f.fields_for :answers do |answer_form| %>
+          <%= render 'answer_fields', f: answer_form %>
+      <% end %>
+
+      <div class="links">
+        <%= link_to_add_association '新增答案', f, :answers %>
+      </div>
+    </div>
+  </div>
+</div>

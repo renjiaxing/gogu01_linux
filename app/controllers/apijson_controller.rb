@@ -11,16 +11,86 @@ class ApijsonController < ApplicationController
 
   def active_apple_micro_push_json
     user=User.find(params[:uid])
-    user.update_column(:apple_micro_push,1);
+    user.update_column(:apple_micro_push, 1);
     resp={}
     resp[:result]="ok"
 
     render json: resp
   end
 
+
+  def polls_json
+    polls=Poll.order("created_at desc").limit(6)
+    render json: polls.to_json(include: {questions: {include: :answers}})
+  end
+
+  def down_polls_json
+    p=Poll.find(params[:min])
+    polls=Poll.where("created_at < ?", p.created_at).order("created_at desc").limit(6)
+    render json: polls.to_json(include: {questions: {include: :answers}})
+  end
+
+  def up_polls_json
+    p=Poll.find(params[:max])
+    polls=Poll.where("created_at > ?", p.created_at).order("created_at").limit(6).reverse
+    render json: polls.to_json(include: {questions: {include: :answers}})
+  end
+
+  def detail_question_json
+    poll=Poll.find(params[:id])
+    user=User.find(params[:uid])
+    # render json:p.questions.to_json(include: :answers)
+    ps=poll.attributes
+    ps["voted"]=user.voted_for?(poll).to_s
+
+    questions=poll.questions
+    qs=[]
+    questions.each do |q|
+      answers=q.answers
+      qtmp=q.attributes
+      as=[]
+      answers.each do |a|
+        atmp=a.attributes
+        if a.users.include?(user)
+          atmp["choose"]="true"
+        else
+          atmp["choose"]="false"
+        end
+        atmp["percentage"]=q.normalized_votes_for(a)
+        as.push(atmp)
+      end
+      qtmp["answers"]=as
+      qs.push(qtmp)
+    end
+    ps["questions"]=qs
+    render json:ps
+  end
+
+  def vote_json
+    @poll = Poll.find_by_id(params[:pid])
+    user=User.find(params[:uid])
+    resp={}
+    if user && params[:pid] && params[:answer]
+      @poll.questions.each do |q|
+        @option=q.answers.find_by_id(params[:answer][q.id.to_s])
+        if @option && @poll && !user.voted_for?(@poll)
+          @option.votes.create({user_id: user.id, question_id: q.id, poll_id: @poll.id})
+          @poll.votenum=@poll.questions[0].votes_summary
+          @poll.save
+          resp["result"]="ok"
+        else
+          resp["result"]="nook"
+        end
+      end
+    else
+      resp["result"]="nook"
+    end
+    render json: resp
+  end
+
   def deactive_apple_micro_push_json
     user=User.find(params[:uid])
-    user.update_column(:apple_micro_push,0);
+    user.update_column(:apple_micro_push, 0);
     resp={}
     resp[:result]="ok"
 
@@ -29,7 +99,7 @@ class ApijsonController < ApplicationController
 
   def active_apple_reply_push_json
     user=User.find(params[:uid])
-    user.update_column(:apple_reply_push,1);
+    user.update_column(:apple_reply_push, 1);
     resp={}
     resp[:result]="ok"
 
@@ -38,7 +108,7 @@ class ApijsonController < ApplicationController
 
   def deactive_apple_reply_push_json
     user=User.find(params[:uid])
-    user.update_column(:apple_reply_push,0);
+    user.update_column(:apple_reply_push, 0);
     resp={}
     resp[:result]="ok"
 
@@ -47,7 +117,7 @@ class ApijsonController < ApplicationController
 
   def active_apple_chat_push_json
     user=User.find(params[:uid])
-    user.update_column(:apple_chat_push,1);
+    user.update_column(:apple_chat_push, 1);
     resp={}
     resp[:result]="ok"
 
@@ -56,7 +126,7 @@ class ApijsonController < ApplicationController
 
   def deactive_apple_chat_push_json
     user=User.find(params[:uid])
-    user.update_column(:apple_chat_push,0);
+    user.update_column(:apple_chat_push, 0);
     resp={}
     resp[:result]="ok"
 
@@ -84,7 +154,7 @@ class ApijsonController < ApplicationController
     end
 
 
-    render json:resp
+    render json: resp
   end
 
   def main_json
@@ -531,7 +601,7 @@ class ApijsonController < ApplicationController
     comment.user=user
     @resp={}
     if comment.save
-      Comment.save_comment(@micropost, user, comment,user.apple_micro_push,user.apple_reply_push)
+      Comment.save_comment(@micropost, user, comment, user.apple_micro_push, user.apple_reply_push)
 
       @resp["result"]="ok"
       @resp["comments"]=Micropost.find(params[:mid]).comments.where(visible: true)
@@ -732,7 +802,6 @@ class ApijsonController < ApplicationController
             # push_single_account("1",0,content)
           end
         end
-
 
 
       else

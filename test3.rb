@@ -25,6 +25,7 @@ tmp.each_with_index do |t, i|
       micropost.stock=stock
       micropost.content=stock_content+" "+stock_href
       micropost.user_id=1;
+      micropost.microtype=1;
       micropost.randint=rand(100)
       micropost.created_at=stock_date.to_datetime
       micropost.save
@@ -55,6 +56,7 @@ tmp.each_with_index do |t, i|
       micropost.stock=stock
       micropost.content=stock_content+" "+stock_href
       micropost.user_id=1;
+      micropost.microtype=1;
       micropost.randint=rand(100)
       micropost.created_at=stock_date.to_datetime
       micropost.save
@@ -62,3 +64,5 @@ tmp.each_with_index do |t, i|
   end
 end
 p "aaac"
+
+

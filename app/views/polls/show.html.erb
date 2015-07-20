@@ -1,0 +1,66 @@
+<div class="main">
+  <div class="container">
+    <ol class="breadcrumb margin-top-10">
+      <li><a href="<%= polls_path %>">所有投票</a></li>
+      <li class="active"><a href="<%= polls_path %>">投票</a></li>
+    </ol>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-top-10 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-9 col-sm-9 blog-posts">
+              <div class="col-md-12 col-sm-12 blog-posts">
+                <div class="portlet box red">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      投票
+                    </div>
+                  </div>
+                  <div class="portlet-body form">
+
+                    <%= render 'voting_form' %>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END LEFT SIDEBAR -->
+
+            <!-- BEGIN RIGHT SIDEBAR -->
+            <div class="col-md-3 col-sm-3 blog-sidebar">
+              <%= render partial: 'layouts/slider_right' %>
+            </div>
+            <!-- END RIGHT SIDEBAR -->
+          </div>
+        </div>
+      </div>
+      <!-- END CONTENT -->
+    </div>
+    <!-- END SIDEBAR & CONTENT -->
+  </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        var rules = new Object();
+        var messages = new Object();
+        $('input[name^=answer]').each(function() {
+            rules[this.name] = { required: true };
+            messages[this.name] = { required: '有问题没有回答哟~' };
+        });
+
+        var voting_form = $('#voting_form');
+        voting_form.validate({
+            focusInvalid: false,
+            errorClass: 'alert alert-warning',
+            errorElement: "div",
+            errorPlacement: function(error, element) { voting_form.before(error); },
+            rules: rules,
+            messages:messages,
+        });
+    });
+</script>
+

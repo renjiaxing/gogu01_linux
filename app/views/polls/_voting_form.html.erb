@@ -1,0 +1,42 @@
+<%= form_tag votes_path, method: :post, id: 'voting_form' do %>
+    <div class="form-body">
+      <div class="form-group margin-top-10">
+        <h2><%= @poll.topic %></h2>
+      </div>
+      <div class="form-group">
+        <p><b>投票数: <%= @poll.questions[0].votes_summary %></b></p>
+      </div>
+      <%= hidden_field_tag 'poll[id]', @poll.id %>
+      <% if !flash[:alert].nil? %>
+         <p class="text-danger"> <%=flash[:alert] %></p>
+      <% end %>
+
+      <%= render 'shared/errors', object: @poll %>
+
+      <%= render partial: 'polls/answer_form' %>
+
+      <div class="form-group margin-top-20">
+        <ul class="blog-info">
+          <li><i class="fa fa-calendar"></i><%= time_ago_in_words @poll.created_at %>以前</li>
+          <li><i class="fa fa-check"></i><%= @poll.polls_summary(@poll) %></li>
+          <% if signed_in? %>
+              <% if current_user.admin? %>
+                  <li><i class="fa fa-pencil"></i><%= link_to "修改", edit_poll_path(@poll) %></li>
+                  <li><i class="fa fa-trash"></i><%= link_to "删除", poll_path(@poll),
+                                                             method: :delete, data: {confirm: '确认删除?'} %>
+                  </li>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="form-actions">
+        <% if current_user.voted_for?(@poll) %>
+            <p>你已经投过票了~</p>
+        <% else %>
+            <%= submit_tag '投票', class: 'btn btn-primary', 'data-disable-with' => "投票中" %>
+            <%= link_back %>
+        <% end %>
+      </div>
+    </div>
+<% end %>
