@@ -945,7 +945,7 @@ class ApijsonController < ApplicationController
     result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", uid).sum("msgunread")
     sum=0
     tmp_u=Unreadrelation.where("unreaduser_id=?", uid)
-    tmp_u.each { |t| sum+=t.unread if t.unreadmicropost.visible==true }
+    tmp_u.each { |t| sum+=t.unread if !t.unreadmicropost.nil? && t.unreadmicropost.visible==true }
     result["unreadmicro"]=sum
     # result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?", uid).sum("unread")
     sum=0
