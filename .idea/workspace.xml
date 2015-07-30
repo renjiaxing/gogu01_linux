@@ -32,8 +32,8 @@
       <file leaf-file-name="apijson_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/apijson_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4357367">
-              <caret line="940" column="7" selection-start-line="940" selection-start-column="7" selection-end-line="940" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.5768025">
+              <caret line="952" column="66" selection-start-line="952" selection-start-column="66" selection-end-line="952" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -1377,8 +1377,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/apijson_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4357367">
-          <caret line="940" column="7" selection-start-line="940" selection-start-column="7" selection-end-line="940" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.5768025">
+          <caret line="952" column="66" selection-start-line="952" selection-start-column="66" selection-end-line="952" selection-end-column="66" />
           <folding />
         </state>
       </provider>
