@@ -24,6 +24,12 @@ class ApijsonController < ApplicationController
     render json: polls.to_json(include: {questions: {include: :answers}})
   end
 
+  def my_polls_json
+    user=User.find(params[:uid])
+    polls=user.polls.order("created_at desc").distinct.limit(6)
+    render json:polls
+  end
+
   def down_polls_json
     p=Poll.find(params[:min])
     polls=Poll.where("created_at < ?", p.created_at).order("created_at desc").limit(6)

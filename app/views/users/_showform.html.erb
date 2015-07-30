@@ -14,8 +14,8 @@
         <ul class="blog-info">
           <% if m.stock!=nil %>
               <li>
-                <i class="fa fa-tags"></i><%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}),
-                                                      method: :post %></li>
+                <i class="fa fa-tags"></i><%= link_to m.stock.name, show_stock_microposts_path(stock: {id: m.stock.id.to_s}) %>
+              </li>
           <% else %>
               <li><i class="fa fa-tags"></i>无公司绑定</li>
           <% end %>
@@ -31,7 +31,7 @@
           <li><i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at %>以前</li>
           <li><i class="fa fa-comments"></i><%= m.comments.size.to_s %></li>
           <% if signed_in? %>
-              <li id="good<%= m.id.to_s %>"><%= render partial: "goodform", locals: {m: m} %></li>
+              <%= render partial: "goodform", locals: {m: m} %>
               <li><i class="fa fa-comment"></i>
                 <% if current_user.nil? %>
                     <%= link_to "私信", new_session_path %>

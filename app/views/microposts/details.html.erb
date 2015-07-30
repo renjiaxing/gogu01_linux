@@ -31,7 +31,7 @@
                     <li><i class="fa fa-tags"></i>无公司绑定</li>
                 <% end %>
                 <li><i class="fa fa-calendar"></i><%= time_ago_in_words @micropost.created_at %>以前</li>
-                <li id="good<%= @micropost.id.to_s %>"><%= render partial: "goodform", locals: {m: @micropost} %></li>
+                <%= render partial: "goodform", locals: {m: @micropost} %>
                 <li><i class="fa fa-comment"></i>
                   <% if current_user.nil? %>
                       <%= link_to "私信", new_session_path %>

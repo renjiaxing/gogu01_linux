@@ -1,9 +1,0 @@
-<% if current_user.nil? %>
-    <li><i class="fa fa-heart"></i><%= link_to m.goods.size.to_s, new_session_path%>
-<% elsif current_user.begoods.exists?(m) %>
-    <li><i class="fa fa-heart"></i><%= link_to m.goods.size.to_s, cancel_good_micropost_micropost_path(m),
-                remote: true %>
-<% else %>
-    <li><i class="fa fa-heart" style="color: #151f28"></i><%= link_to m.goods.size.to_s, add_good_micropost_micropost_path(m),
-                remote: true %>
-<% end %>
