@@ -238,12 +238,12 @@ class ApijsonController < ApplicationController
     result["unreadnum"]=Unreadmsg.where("msgfrom_id=?", params[:uid]).sum("msgunread")
     sum=0
     tmp_u=Unreadrelation.where("unreaduser_id=?", params[:uid])
-    tmp_u.each { |t| sum+=t.unread if t.unreadmicropost.visible==true }
+    tmp_u.each { |t| sum+=t.unread if t&&t.unreadmicropost.visible==true }
     result["unreadmicro"]=sum
     # result["unreadmicro"]=Unreadrelation.where("unreaduser_id=?", uid).sum("unread")
     sum=0
     tmp_r=Replyrelationship.where("replyuser_id=?", params[:uid])
-    tmp_r.each { |t| sum+=t.replyunread if t.replymicropost.visible==true }
+    tmp_r.each { |t| sum+=t.replyunread if t&&t.replymicropost.visible==true }
     result["unreplymicro"]=sum
     # result["unreplymicro"]=Replyrelationship.where("replyuser_id=?", uid).sum("replyunread")
     user=User.find(params[:uid])
