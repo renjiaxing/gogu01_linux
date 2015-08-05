@@ -5,7 +5,7 @@ class ApijsonController < ApplicationController
 
   def version_json
     tmp={}
-    tmp["version_code"]=13
+    tmp["code"]=13
     tmp["version_name"]="股刺网"
     tmp["version_desc"]="股刺网有新版本哦，赶快下载更新吧~~"
     render json: tmp
