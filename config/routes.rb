@@ -67,10 +67,13 @@ Rails.application.routes.draw do
       get 'version_json', 'forget_password_json', 'microposts_json', 'up_microposts_json', 'down_microposts_json',
           'detail_micropost_json', 'del_micropost_json', 'login_json', 'login_token_json', 'del_comment_json',
           'mystock_json','check_stock_json','main_json','my_push_info_json','polls_json',
-          'down_polls_json','up_polls_json','detail_question_json','vote_json','my_polls_json'
+          'down_polls_json','up_polls_json','detail_question_json','vote_json','my_polls_json','up_my_polls_json',
+          'down_my_polls_json'
       post 'change_password_json', 'new_advice_json', 'new_micropost_json', "change_micropost_json", 'new_comment_json',
            'reg_json','addstock_json','delstock_json','active_apple_micro_push_json','deactive_apple_micro_push_json',
-          'active_apple_reply_push_json','deactive_apple_reply_push_json','active_apple_chat_push_json','deactive_apple_chat_push_json'
+          'active_apple_reply_push_json','deactive_apple_reply_push_json','active_apple_chat_push_json','deactive_apple_chat_push_json',
+          'active_android_micro_push_json','deactive_android_micro_push_json', 'active_android_reply_push_json',
+           'deactive_android_reply_push_json','active_android_chat_push_json','deactive_android_chat_push_json'
     end
   end
 

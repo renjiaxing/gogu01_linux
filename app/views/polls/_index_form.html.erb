@@ -12,6 +12,7 @@
                   <li><i class="fa fa-pencil"></i><%= link_to "修改", edit_poll_path(m) %></li>
                   <li><i class="fa fa-trash"></i><%= link_to "删除", poll_path(m),
                                                              method: :delete, data: {confirm: '确认删除?'}  %></li>
+                  <li><%=m.id %></li>
               <% end %>
           <% end %>
         </ul>

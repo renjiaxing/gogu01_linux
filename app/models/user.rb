@@ -79,4 +79,55 @@ class User < ActiveRecord::Base
   def voted_for?(poll)
     questions.distinct.any? {|v| v.poll == poll }
   end
+
+
+  def umeng_android_push_send(ticker_title,title,text,send_type,alias_type,alias_name,open,activity,extra)
+    appkey = '55bb222767e58ea1020021a4'
+    app_master_secret = 'geywoqplclq2n53gynvaau32zrcbwpni'
+    timestamp = Time.now.to_i
+    method = 'POST'
+    url = 'http://msg.umeng.com/api/send'
+    tmp={}
+    tmp["appkey"]=appkey
+    tmp["timestamp"]=timestamp
+    tmp["type"]=send_type
+    if send_type=="customizedcast"
+      tmp["alias"]=alias_name
+      tmp["alias_type"]=alias_type
+    end
+    body={}
+    body["ticker"]=ticker_title
+    body["title"]=title
+    body["text"]=text
+    body["after_open"]=open
+    payload={}
+    payload["body"]=body
+    if open=="go_activity"
+      body["activity"]=activity
+      payload["extra"]=extra
+    end
+    payload["display_type"]="notification"
+    tmp["payload"]=payload
+
+    post_body=tmp.to_json
+
+    sign=Digest::MD5.hexdigest([method, url, post_body, app_master_secret].join)
+
+    conn = Faraday.new(:url => 'http://msg.umeng.com') do |faraday|
+      faraday.request  :url_encoded             # form-encode POST params
+      faraday.response :logger                  # log requests to STDOUT
+      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+    end
+
+    resp=conn.post do |req|
+      req.url '/api/send?sign='+sign
+      req.headers['Content-Type'] = 'application/json'
+      req.body = post_body
+    end
+
+    p post_body
+
+    return resp.body
+
+  end
 end

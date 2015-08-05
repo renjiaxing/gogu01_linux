@@ -12,8 +12,21 @@ class ChatmsgsController < ApplicationController
   def create
     @chatmsg=Chatmsg.new(chatmsg_params)
     @chatmsg.msgtype="1"
+    aty="com.rjx.gogu02.aty.MainActivity"
+    extra={}
     if @chatmsg.save
-      $redis.publish('static',@chatmsg.to_json);
+      # $redis.publish('static',@chatmsg.to_json);
+      if params[:chatmsg][:atyresource_id].nil?||params[:chatmsg][:atyresource_id]==""
+        aty="com.rjx.gogu02.aty.MainActivity"
+      else
+        aty=Atyresource.find(params[:chatmsg][:atyresource_id]).aty
+        if params[:chatmsg][:param1]
+          extra["id"]=params[:chatmsg][:param1]
+        end
+      end
+      current_user.umeng_android_push_send(params[:chatmsg][:topshow],
+                                           params[:chatmsg][:title],params[:chatmsg][:content],"broadcast","",
+                                           "","go_activity",aty,extra)
       redirect_to chatmsgs_path
     else
       render :new

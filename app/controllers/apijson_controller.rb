@@ -5,13 +5,69 @@ class ApijsonController < ApplicationController
 
   def version_json
     tmp={}
-    tmp["version"]=12
+    tmp["version_code"]=13
+    tmp["version_name"]="股刺网"
+    tmp["version_desc"]="股刺网有新版本哦，赶快下载更新吧~~"
     render json: tmp
   end
 
   def active_apple_micro_push_json
     user=User.find(params[:uid])
     user.update_column(:apple_micro_push, 1);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def active_android_micro_push_json
+    user=User.find(params[:uid])
+    user.update_column(:android_micro_push, 1);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def deactive_android_micro_push_json
+    user=User.find(params[:uid])
+    user.update_column(:android_micro_push, 0);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def active_android_reply_push_json
+    user=User.find(params[:uid])
+    user.update_column(:android_reply_push, 1);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def deactive_android_reply_push_json
+    user=User.find(params[:uid])
+    user.update_column(:android_reply_push, 0);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def active_android_chat_push_json
+    user=User.find(params[:uid])
+    user.update_column(:android_chat_push, 1);
+    resp={}
+    resp[:result]="ok"
+
+    render json: resp
+  end
+
+  def deactive_android_chat_push_json
+    user=User.find(params[:uid])
+    user.update_column(:android_chat_push, 0);
     resp={}
     resp[:result]="ok"
 
@@ -27,7 +83,21 @@ class ApijsonController < ApplicationController
   def my_polls_json
     user=User.find(params[:uid])
     polls=user.polls.order("created_at desc").distinct.limit(6)
-    render json:polls
+    render json: polls
+  end
+
+  def up_my_polls_json
+    user=User.find(params[:uid])
+    p=Poll.find(params[:max])
+    polls=user.polls.where("polls.created_at > ?", p.created_at).order("created_at desc").distinct.limit(6).reverse
+    render json: polls
+  end
+
+  def down_my_polls_json
+    user=User.find(params[:uid])
+    p=Poll.find(params[:min])
+    polls=user.polls.where("polls.created_at < ?", p.created_at).order("created_at desc").distinct.limit(6)
+    render json: polls
   end
 
   def down_polls_json
@@ -38,7 +108,7 @@ class ApijsonController < ApplicationController
 
   def up_polls_json
     p=Poll.find(params[:max])
-    polls=Poll.where("created_at > ?", p.created_at).order("created_at").limit(6).reverse
+    polls=Poll.where("created_at > ?", p.created_at).order("created_at").limit(6)
     render json: polls.to_json(include: {questions: {include: :answers}})
   end
 
@@ -69,7 +139,7 @@ class ApijsonController < ApplicationController
       qs.push(qtmp)
     end
     ps["questions"]=qs
-    render json:ps
+    render json: ps
   end
 
   def vote_json
@@ -176,7 +246,11 @@ class ApijsonController < ApplicationController
     tmp_r.each { |t| sum+=t.replyunread if t.replymicropost.visible==true }
     result["unreplymicro"]=sum
     # result["unreplymicro"]=Replyrelationship.where("replyuser_id=?", uid).sum("replyunread")
-    result["randint"]=User.find(params[:uid]).randint
+    user=User.find(params[:uid])
+    result["randint"]=user.randint
+    result["android_micro_push"]=user.android_micro_push
+    result["android_reply_push"]=user.android_reply_push
+    result["android_chat_push"]=user.android_chat_push
 
     render json: result
   end
@@ -789,7 +863,11 @@ class ApijsonController < ApplicationController
         @msg["title"]="你有新的私信～"
         @msg["content"]="你有新的私信～"
         @msg["topshow"]="你有新的私信～"
-        $redis.publish('static', @msg.to_json);
+        # $redis.publish('static', @msg.to_json);
+
+        if to_user.android_chat_push
+          to_user.umeng_android_push_send("你有新的私信~", "你有新的私信~", "你有新的私信~", "customizedcast", "gogu02", params[:to_id].to_s, "go_activity", "com.rjx.gogu02.aty.MyChatAty", {})
+        end
 
         touser=User.find(params[:to_id])
         if touser.apple_chat_push
@@ -958,3 +1036,5 @@ class ApijsonController < ApplicationController
     return result
   end
 end
+
+

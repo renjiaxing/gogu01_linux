@@ -73,6 +73,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    china_sms (0.0.7)
     cocoon (1.2.6)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -243,6 +244,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano-rvm!
   carrierwave
+  china_sms
   cocoon
   coffee-rails (~> 4.0.0)
   execjs

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714145024) do
+ActiveRecord::Schema.define(version: 20150805061259) do
 
   create_table "advices", force: true do |t|
     t.string   "title"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 20150714145024) do
     t.datetime "updated_at"
   end
 
+  create_table "atyresources", force: true do |t|
+    t.string   "name"
+    t.string   "aty"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "chatmsgs", force: true do |t|
     t.string   "title"
     t.string   "content"
@@ -42,6 +49,8 @@ ActiveRecord::Schema.define(version: 20150714145024) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "msgtype"
+    t.integer  "atyresource_id"
+    t.string   "param1"
   end
 
   create_table "comments", force: true do |t|
@@ -99,7 +108,7 @@ ActiveRecord::Schema.define(version: 20150714145024) do
     t.text     "topic"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "votenum"
+    t.integer  "votenum",    default: 0
   end
 
   create_table "questions", force: true do |t|
@@ -172,6 +181,9 @@ ActiveRecord::Schema.define(version: 20150714145024) do
     t.boolean  "apple_micro_push",     default: true
     t.boolean  "apple_reply_push",     default: true
     t.boolean  "apple_chat_push",      default: true
+    t.boolean  "android_micro_push",   default: true
+    t.boolean  "android_reply_push",   default: true
+    t.boolean  "android_chat_push",    default: true
   end
 
   create_table "votes", force: true do |t|

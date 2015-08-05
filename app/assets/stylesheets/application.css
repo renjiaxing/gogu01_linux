@@ -18,3 +18,8 @@
 /*.surreal-logo {*/
     /*background-image: url("/icon/logo_green.jpg")*/
 /*}*/
+
+.site-logo.padding-top-bottom-0{
+    padding-top: 15px;
+    padding-bottom: 0px;
+}

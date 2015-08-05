@@ -9,9 +9,9 @@ class Comment < ActiveRecord::Base
       faraday.adapter Faraday.default_adapter # make requests with Net::HTTP
     end
     req_params.merge!({
-                          access_id:2200120344,
-                          timestamp:Time.now.to_i,
-                          environment:1  #生产环境用1
+                          access_id: 2200120344,
+                          timestamp: Time.now.to_i,
+                          environment: 1 #生产环境用1
                       })
     p=req_params
     # p.merge!({message: message, message_type: message_type, account: account, access_id: access_id, timestamp: Time.now.to_i, environment: environment}
@@ -27,7 +27,7 @@ class Comment < ActiveRecord::Base
     p result
   end
 
-  def self.save_comment(micropost, user, comment,apple_micro_push,apple_reply_push)
+  def self.save_comment(micropost, user, comment, apple_micro_push, apple_reply_push)
     anon=micropost.anons.find_by_anonuser_id(user.id)
     if anon.nil?
       micropost.anonusers.push(user)
@@ -55,7 +55,11 @@ class Comment < ActiveRecord::Base
       msg["content"]="你有新的回复～"
       msg["topshow"]="你有新的回复～"
       msg["user_id"]=micropost.user_id
-      $redis.publish('static', msg.to_json)
+      # $redis.publish('static', msg.to_json)
+
+      if micropost.user.android_micro_push
+        user.umeng_android_push_send("你有新的回复~", "你有新的回复~", "你有新的回复~", "customizedcast", "gogu02", micropost.user_id.to_s, "go_activity", "com.rjx.gogu02.aty.MyMicropostAty", {})
+      end
 
       # touser=User.find(params[:pmsg][:touser_id])
       if apple_micro_push
@@ -84,7 +88,6 @@ class Comment < ActiveRecord::Base
     otherreplies=Replyrelationship.where("replyuser_id!=? AND replymicropost_id=?", user.id, micropost.id)
 
 
-
     otherreplies.each do |r|
       r.replyunread+=1
       r.save
@@ -93,7 +96,11 @@ class Comment < ActiveRecord::Base
       msg["topshow"]="你回复的帖子有新的回复～"
       msg["user_id"]=r.replyuser_id
       msg["msgtype"]="4"
-      $redis.publish('static', msg.to_json)
+      # $redis.publish('static', msg.to_json)
+
+      if r.replyuser.android_reply_push
+        user.umeng_android_push_send("你回复的帖子有新的回复~", "你回复的帖子有新的回复~", "你回复的帖子有新的回复~", "customizedcast", "gogu02", r.replyuser_id.to_s, "go_activity", "com.rjx.gogu02.aty.MyReplyAty", {})
+      end
 
       content={}
       content_alert={}

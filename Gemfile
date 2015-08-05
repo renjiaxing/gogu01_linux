@@ -95,3 +95,5 @@ gem 'capistrano-rvm', github: 'capistrano/rvm'
 
 gem "cocoon"
 
+gem 'china_sms'
+

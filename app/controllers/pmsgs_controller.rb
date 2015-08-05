@@ -115,9 +115,14 @@ class PmsgsController < ApplicationController
         @msg["title"]="你有新的私信～"
         @msg["content"]="你有新的私信～"
         @msg["topshow"]="你有新的私信～"
-        $redis.publish('static', @msg.to_json);
+        # $redis.publish('static', @msg.to_json);
 
         touser=User.find(params[:pmsg][:touser_id])
+
+        if touser.android_chat_push
+          current_user.umeng_android_push_send("你有新的私信~", "你有新的私信~", "你有新的私信~", "customizedcast", "gogu02", params[:pmsg][:touser_id].to_s, "go_activity", "com.rjx.gogu02.aty.MyChatAty", {})
+        end
+
         if touser.apple_chat_push
           content={}
           content_alert={}
