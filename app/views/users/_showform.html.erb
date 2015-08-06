@@ -3,7 +3,7 @@
       <% content=m.content %>
       <% if !content.index("http://www.hkexnews.hk").nil? %>
           <% content=content[0, content.index("http://www.hkexnews.hk")] %>
-          <% url=m.content[m.content.index("http://www.hkexnews.hk"),m.content.size-1] %>
+          <% url=m.content[m.content.index("http://www.hkexnews.hk"), m.content.size-1] %>
       <% end %>
       <% if content.size>100 %>
           <% msg=content[0, 99]+"..." %>
@@ -24,13 +24,20 @@
         </ul>
         <h2>
           <a href="<%= details_micropost_path(m) %>" style="color:black"><%= content %></a>
-          <a href="<%=url%>" style="color:black" %>点击链接</a>
+          <a href="<%= url %>" style="color:black" %>点击链接</a>
         </h2>
         <% if m.image.to_s!="" %>
             <%= image_tag(m.image_url, size: "50x50") %>
         <% end %>
         <ul class="blog-info">
-          <li><i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at %>以前</li>
+          <% if url %>
+              <li>
+                <i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at+ (-Time.zone_offset(Time.now.zone)) %>
+                以前
+              </li>
+          <% else %>
+              <li><i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at %>以前</li>
+          <% end %>
           <li><i class="fa fa-comments"></i><%= m.comments.size.to_s %></li>
           <% if signed_in? %>
               <%= render partial: "goodform", locals: {m: m} %>
