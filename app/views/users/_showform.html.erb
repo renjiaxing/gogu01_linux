@@ -2,7 +2,8 @@
     <div class="row">
       <% content=m.content %>
       <% if !content.index("http://www.hkexnews.hk").nil? %>
-          <% content=content[0, content.index("http://www.hkexnews.hk")]+" 点击链接" %>
+          <% content=content[0, content.index("http://www.hkexnews.hk")] %>
+          <% url=m.content[m.content.index("http://www.hkexnews.hk"),m.content.size-1] %>
       <% end %>
       <% if content.size>100 %>
           <% msg=content[0, 99]+"..." %>
@@ -22,7 +23,8 @@
 
         </ul>
         <h2>
-          <%= content %>
+          <a href="<%= details_micropost_path(m) %>" style="color:black"><%= content %></a>
+          <a href="<%=url%>" style="color:black" %>点击链接</a>
         </h2>
         <% if m.image.to_s!="" %>
             <%= image_tag(m.image_url, size: "50x50") %>

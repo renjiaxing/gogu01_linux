@@ -20,7 +20,7 @@ class ChatmsgsController < ApplicationController
         aty="com.rjx.gogu02.aty.MainActivity"
       else
         aty=Atyresource.find(params[:chatmsg][:atyresource_id]).aty
-        if params[:chatmsg][:param1]
+        if params[:chatmsg][:param1]&&params[:chatmsg][:atyresource_id]=="2"
           extra["id"]=params[:chatmsg][:param1]
         end
       end
@@ -41,7 +41,7 @@ class ChatmsgsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def chatmsg_params
-    params.require(:chatmsg).permit(:title,:content,:topshow,:type)
+    params.require(:chatmsg).permit(:title,:content,:topshow,:type,:atyresource_id,:param1)
   end
 
   def check_admin
