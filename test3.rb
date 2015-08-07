@@ -17,7 +17,9 @@ tmp.each_with_index do |t, i|
 
   stock=Stock.find_by_code(stock_id[1, 4]+".HK")
 
-  m_exist=Micropost.find_by(stock: stock, created_at: stock_date.to_datetime)
+  # m_exist=Micropost.find_by(stock: stock, created_at: stock_date.to_datetime)
+
+  m_exist=Micropost.find_by(content:stock_content)
 
   if m_exist.nil?
     if !stock.nil?
@@ -28,6 +30,7 @@ tmp.each_with_index do |t, i|
       micropost.microtype=1;
       micropost.randint=rand(100)
       micropost.created_at=stock_date.to_datetime
+      micropost.created_at=micropost.created_at-Time.now.utc_offset
       micropost.save
     end
   end
@@ -48,7 +51,9 @@ tmp.each_with_index do |t, i|
 
   stock=Stock.find_by_code(stock_id[1, 4]+".HK")
 
-  m_exist=Micropost.find_by(stock: stock, created_at: stock_date.to_datetime)
+  # m_exist=Micropost.find_by(stock: stock, created_at: stock_date.to_datetime)
+
+  m_exist=Micropost.find_by(content:stock_content)
 
   if m_exist.nil?
     if !stock.nil?
@@ -59,6 +64,7 @@ tmp.each_with_index do |t, i|
       micropost.microtype=1;
       micropost.randint=rand(100)
       micropost.created_at=stock_date.to_datetime
+      micropost.created_at=micropost.created_at-Time.now.utc_offset
       micropost.save
     end
   end
