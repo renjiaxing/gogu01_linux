@@ -14,6 +14,7 @@ tmp.each_with_index do |t, i|
   p i.to_s+" "+stock_id+" "+stock_content+" "+stock_href
   stock_date=t.css("td").first.content
   stock_date.insert(10, " ")
+  stock_date=stock_date+" CST"
 
   stock=Stock.find_by_code(stock_id[1, 4]+".HK")
 
@@ -45,6 +46,7 @@ tmp.each_with_index do |t, i|
   p i.to_s+" "+stock_id+" "+stock_content+" "+stock_href
   stock_date=t.css("td").first.content
   stock_date.insert(10, " ")
+  stock_date=stock_date+" CST"
 
   stock=Stock.find_by_code(stock_id[1, 4]+".HK")
 

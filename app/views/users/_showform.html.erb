@@ -24,20 +24,15 @@
         </ul>
         <h2>
           <a href="<%= details_micropost_path(m) %>" style="color:black"><%= content %></a>
-          <a href="<%= url %>" style="color:black" %>点击链接</a>
+          <% if url %>
+              <a href="<%= url %>" style="color:black" %>点击链接</a>
+          <% end %>
         </h2>
         <% if m.image.to_s!="" %>
             <%= image_tag(m.image_url, size: "50x50") %>
         <% end %>
         <ul class="blog-info">
-          <% if url %>
-              <li>
-                <i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at-3600*8 %>
-                以前
-              </li>
-          <% else %>
-              <li><i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at %>以前</li>
-          <% end %>
+          <li><i class="fa fa-calendar"></i><%= time_ago_in_words m.created_at %>以前</li>
           <li><i class="fa fa-comments"></i><%= m.comments.size.to_s %></li>
           <% if signed_in? %>
               <%= render partial: "goodform", locals: {m: m} %>
