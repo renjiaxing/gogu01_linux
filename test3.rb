@@ -19,7 +19,7 @@ tmp.each_with_index do |t, i|
 
   # m_exist=Micropost.find_by(stock: stock, created_at: stock_date.to_datetime)
 
-  m_exist=Micropost.find_by(content:stock_content)
+  m_exist=Micropost.find_by(content:stock_content+" "+stock_href)
 
   if m_exist.nil?
     if !stock.nil?
@@ -53,7 +53,7 @@ tmp.each_with_index do |t, i|
 
   # m_exist=Micropost.find_by(stock: stock, created_at: stock_date.to_datetime)
 
-  m_exist=Micropost.find_by(content:stock_content)
+  m_exist=Micropost.find_by(content:stock_content+" "+stock_href)
 
   if m_exist.nil?
     if !stock.nil?
