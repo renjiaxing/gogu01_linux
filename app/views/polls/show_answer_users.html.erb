@@ -1,0 +1,46 @@
+<div class="main">
+  <div class="container">
+    <ol class="breadcrumb margin-top-20">
+      <li><a href="<%=show_polls_polls_path %>">投票报表</a></li>
+      <li><a href="<%=show_answers_poll_path(@poll)%>">投票详细</a></li>
+      <li class="active"><a href="#">投票用户</a></li>
+    </ol>
+    <div class="row margin-top-20 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-12 col-sm-12 blog-posts margin-top-10 margin-bottom-40">
+              <div class="portlet box red">
+                <div class="portlet-title">
+                  <div class="caption">
+                    <%=@answer.content %>
+                  </div>
+                </div>
+                <div class="portlet-body">
+                  <div id="sample_1_wrapper margin-bottom-30" class="dataTables_wrapper no-footer">
+                    <div class="table-scrollable">
+                      <%= grid(@grid_users) do |g|
+
+                        g.column name: '序号' do |task|
+                          task.user.id
+                        end
+
+                        g.column name: '用户名' do |task|
+                          task.user.email
+                        end
+
+                      end -%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

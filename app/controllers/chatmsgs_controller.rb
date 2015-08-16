@@ -11,23 +11,44 @@ class ChatmsgsController < ApplicationController
 
   def create
     @chatmsg=Chatmsg.new(chatmsg_params)
-    @chatmsg.msgtype="1"
+    # @chatmsg.msgtype="1"
     aty="com.rjx.gogu02.aty.MainActivity"
     extra={}
     if @chatmsg.save
-      # $redis.publish('static',@chatmsg.to_json);
-      if params[:chatmsg][:atyresource_id].nil?||params[:chatmsg][:atyresource_id]==""
-        aty="com.rjx.gogu02.aty.MainActivity"
-      else
-        aty=Atyresource.find(params[:chatmsg][:atyresource_id]).aty
-        if params[:chatmsg][:param1]&&params[:chatmsg][:atyresource_id]=="2"
-          extra["id"]=params[:chatmsg][:param1]
+
+      if @chatmsg.msgtype=="1"
+        # $redis.publish('static',@chatmsg.to_json);
+        if params[:chatmsg][:atyresource_id].nil?||params[:chatmsg][:atyresource_id]==""
+          aty="com.rjx.gogu02.aty.MainActivity"
+        else
+          aty=Atyresource.find(params[:chatmsg][:atyresource_id]).aty
+          if params[:chatmsg][:param1]&&params[:chatmsg][:atyresource_id]=="2"
+            extra["id"]=params[:chatmsg][:param1]
+          end
         end
+        current_user.umeng_android_push_send(params[:chatmsg][:topshow],
+                                             params[:chatmsg][:title], params[:chatmsg][:content], "broadcast", "",
+                                             "", "go_activity", aty, extra)
+        redirect_to chatmsgs_path
+      elsif @chatmsg.msgtype=="2"
+        content={}
+        content_alert={}
+        content_alert["alert"]=params[:chatmsg][:topshow]
+        content["aps"]=content_alert
+
+        if params[:chatmsg][:param1]&&params[:chatmsg][:atyresource_id]=="2"
+          content["controller"]="vote"
+          content["id"]=params[:chatmsg][:param1]
+        end
+
+        req_params={}
+        req_params.merge!({message: content.to_json,
+                           message_type: 1})
+
+        push_all_devices(req_params)
+
+        redirect_to chatmsgs_path
       end
-      current_user.umeng_android_push_send(params[:chatmsg][:topshow],
-                                           params[:chatmsg][:title],params[:chatmsg][:content],"broadcast","",
-                                           "","go_activity",aty,extra)
-      redirect_to chatmsgs_path
     else
       render :new
     end
@@ -41,7 +62,7 @@ class ChatmsgsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def chatmsg_params
-    params.require(:chatmsg).permit(:title,:content,:topshow,:type,:atyresource_id,:param1)
+    params.require(:chatmsg).permit(:title, :content, :topshow, :type, :atyresource_id, :param1, :msgtype)
   end
 
   def check_admin

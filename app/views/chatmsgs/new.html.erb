@@ -33,6 +33,10 @@
                         </div>
 
                         <div class="form-group">
+                          <%= m.input :msgtype, label: false, placeholder: "推送类型（1为安卓 2为IOS）", input_html: {class: 'form-control input-lg'} %>
+                        </div>
+
+                        <div class="form-group">
                           <%= m.association :atyresource, label: "请选择页面", input_html: {class: 'form-control input-lg'} %>
                         </div>
 

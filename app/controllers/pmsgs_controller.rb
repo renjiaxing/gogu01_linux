@@ -128,6 +128,7 @@ class PmsgsController < ApplicationController
           content_alert={}
           content_alert["alert"]="你有新的私信～"
           content["aps"]=content_alert
+          content["controller"]="chat"
 
           req_params={}
           req_params.merge!({message: content.to_json,

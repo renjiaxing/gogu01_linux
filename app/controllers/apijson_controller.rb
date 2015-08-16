@@ -5,7 +5,7 @@ class ApijsonController < ApplicationController
 
   def version_json
     tmp={}
-    tmp["version"]=13
+    tmp["version"]=14
     tmp["version_name"]="股刺网"
     tmp["version_desc"]="股刺网有新版本哦，赶快下载更新吧~~"
     render json: tmp
@@ -659,7 +659,7 @@ class ApijsonController < ApplicationController
       unreply.replyunread=0
       unreply.save
     end
-    render json: @micropost.to_json(include: :comments, order: "updated_at desc");
+    render json: @micropost.to_json(include: [:comments,:stock], order: "updated_at desc");
   end
 
   def change_micropost_json
@@ -875,6 +875,7 @@ class ApijsonController < ApplicationController
           content_alert={}
           content_alert["alert"]="你有新的私信～"
           content["aps"]=content_alert
+          content["controller"]="chat"
 
           req_params={}
           req_params.merge!({message: content.to_json,

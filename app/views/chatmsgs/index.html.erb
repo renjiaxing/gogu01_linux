@@ -48,6 +48,10 @@
                           task.topshow
                         end
 
+                        g.column name: '类型', attribute: 'msgtype' do |task|
+                          task.msgtype
+                        end
+
                         g.column name: '选择页面', model:'Atyresource',attribute: 'name' do |task|
                           task.atyresource.name if task.atyresource
                         end

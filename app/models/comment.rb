@@ -62,11 +62,12 @@ class Comment < ActiveRecord::Base
       end
 
       # touser=User.find(params[:pmsg][:touser_id])
-      if apple_micro_push
+      if micropost.user.apple_micro_push
         content={}
         content_alert={}
         content_alert["alert"]="你有新的回复～"
         content["aps"]=content_alert
+        content["controller"]="mymicro"
 
         req_params={}
         req_params.merge!({message: content.to_json,
@@ -106,8 +107,9 @@ class Comment < ActiveRecord::Base
       content_alert={}
       content_alert["alert"]="你回复的帖子有新的回复～"
       content["aps"]=content_alert
+      content["controller"]="myreply"
 
-      if apple_reply_push
+      if r.replyuser.apple_reply_push
         req_params={}
         req_params.merge!({message: content.to_json,
                            message_type: 1,

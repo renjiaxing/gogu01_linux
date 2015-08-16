@@ -10,7 +10,10 @@ Rails.application.routes.draw do
 
   resources :polls do
     collection do
-      get 'my_index'
+      get 'my_index','show_polls'
+    end
+    member do
+      get 'show_answers','show_answer_users'
     end
   end
 

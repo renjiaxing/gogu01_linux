@@ -51,6 +51,22 @@ class PollsController < ApplicationController
     redirect_to polls_path
   end
 
+
+  def show_polls
+    @grid_polls=initialize_grid(Poll,per_page: 20)
+  end
+
+  def show_answers
+    @grid_answers=initialize_grid(Answer,include: [:question],conditions:["questions.poll_id=?",params[:id]],per_page: 20)
+    @poll=Poll.find(params[:id])
+  end
+
+  def show_answer_users
+    @poll=Poll.find(params[:pid])
+    @answer=Answer.find(params[:id])
+    @grid_users=initialize_grid(Vote,include: [:user],conditions:["answer_id=?",params[:id]],per_page: 20)
+  end
+
   private
 
   def poll_params

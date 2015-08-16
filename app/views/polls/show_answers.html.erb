@@ -1,0 +1,57 @@
+<div class="main">
+  <div class="container">
+    <ol class="breadcrumb margin-top-20">
+      <li><a href="<%=show_polls_polls_path %>">投票报表</a></li>
+      <li class="active"><a href="#">投票详细</a></li>
+    </ol>
+    <div class="row margin-top-20 margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <div class="content-page">
+          <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-12 col-sm-12 blog-posts margin-top-10 margin-bottom-40">
+              <div class="portlet box red">
+                <div class="portlet-title">
+                  <div class="caption">
+                    <%=@poll.topic %>
+                  </div>
+                </div>
+                <div class="portlet-body">
+                  <div id="sample_1_wrapper margin-bottom-30" class="dataTables_wrapper no-footer">
+                    <div class="table-scrollable">
+                      <%= grid(@grid_answers) do |g|
+
+                        g.column name: '序号', attribute: 'id' do |task|
+                          task.id
+                        end
+
+                        g.column name: '问题',model:'Question',attribute: 'title' do |task|
+                          task.question.title
+                        end
+
+                        g.column name: '答案', attribute: 'content' do |task|
+                          task.content
+                        end
+
+                        g.column name: '投票比例' do |task|
+                          task.question.normalized_votes_for(task).to_s+"%"
+                        end
+
+                        g.column do |task|
+                          link_to('查看详细', show_answer_users_poll_path(id:task,pid:@poll))
+                        end
+
+                      end -%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
